@@ -9,8 +9,10 @@
    <link rel="icon" href="../_images/Icone_Planta_03.png">
    <link rel="stylesheet" type="text/css" href="../_css/estilos.css">
    <link rel="stylesheet" type="text/css" href="../_css/contato.css">
-   <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css" />
+   <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css">
    <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
+   <script language="JavaScript" src="../_javascript/script.js" defer></script>
+   <script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js" defer></script>
 </head>
 
 <body id="contato">
@@ -58,12 +60,13 @@
          <h1 class="cadastro_title">Envie sua mensagem!</h1>
          <form name="formulario_conato" method="post" onsubmit="envia_formulario(event);" action=" ">
             <fieldset id="fieldset_contato" class="form_fieldset">
-                  <label class="input_legend">Nome</label>
-                  <input id="nome" class="form_input" type="text" placeholder="Nome completo">
-                  <label class="input_legend">E-mail</label>
-                  <input id="email" class="form_input" type="email" placeholder="seu.email@mail.com">
-                  <label class="input_legend">Mensagem</label>
-                  <textarea class="form_textarea" id="texto_contato" rows="6" placeholder="Digite a sua mensagem..."></textarea>
+               <label class="input_legend">Nome</label>
+               <input id="nome" class="form_input" type="text" placeholder="Nome completo">
+               <label class="input_legend">E-mail</label>
+               <input id="email" class="form_input" type="email" placeholder="seu.email@mail.com">
+               <label class="input_legend">Mensagem</label>
+               <textarea class="form_textarea" id="texto_contato" rows="6"
+                  placeholder="Digite a sua mensagem..."></textarea>
             </fieldset>
 
             <footer id="btn_cadastrar">
@@ -82,8 +85,5 @@
       <a href="https://www.instagram.com/" target="_blank" class="links">Instagram</a>
    </footer>
 
-   <script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
-   <script language="JavaScript" src="../_javascript/script.js"></script>
 </body>
-
 </html>
