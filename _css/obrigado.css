@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+* {
+    /* Resetar modulos de espaçamentos*/
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    /*background-color: rgb(255, 255, 255);*/
+    font-family: "Arial", sans-serif;
+    font-weight: 500;
+    color: rgb(45, 62, 81);
+}
+
+body {
+    background-color: white;
+    margin: 5% 5% 0 5%;
+}
+
+h1 {
+    font-size: 60pt;
+    padding: 10pt;
+}
+
+p {
+    font-size: 20pt;
+    padding: 10pt;
+    margin-bottom: 1%;
+}
+
+a {
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10pt;
+    margin: 10pt;
+    color: white;
+    background-color: rgb(45, 62, 81);
+    border-radius: 10px;
+}
+
+a:hover {
+    color: rgb(45, 62, 81);
+    font-weight: 600;
+    background-color: white;
+    border: 3px rgb(45, 62, 81) solid;
+    transition-duration: 0.4s;
+}

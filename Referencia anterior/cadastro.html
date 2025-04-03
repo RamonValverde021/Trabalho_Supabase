@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login com Supabase</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script language="JavaScript" src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <main class="cadastro">
+        <h1 class="login_title">Login com Supabase</h1>
+        <form class="formulario" onsubmit="return false;">
+            <input type="email" id="email" class="form_input" placeholder="Digite seu email" required />
+            <input type="password" id="senha" class="form_input" placeholder="Digite sua senha" required />
+            <div class="buttons">
+                <button class="botoes" type="button" onclick="login()">Entrar</button>
+                <button class="botoes" type="button" onclick="cadastrar()">Cadastrar</button>
+            </div>
+        </form>
+        <p id="mensagem"></p>
+    </main>
+</body>
+
+</html>

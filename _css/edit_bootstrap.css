@@ -1,0 +1,236 @@
+@charset "UTF-8";
+
+nav.navbar {
+   box-shadow: 0px 0px 6px 2px  #286145;
+   z-index: 5;
+}
+
+img {
+   margin: 5px;
+   height: 80px;
+   width: auto;
+   animation: slideInIMG 1s ease-out forwards;
+}
+
+span#logomarca {
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: bold;
+   font-size: 30px;
+   color: rgb(45, 62, 81);
+   margin-left: 10px;
+   animation: slideIn 1.2s ease-out forwards;
+}
+
+div#navbarSupportedContent {
+   animation: slideInMenu 1.3s ease-out forwards;
+}
+
+form.form-inline {
+   display: flex;
+   justify-content: center;
+}
+
+input.form-control {
+   margin-left: 25px;
+}
+
+button.btn {
+   margin: 0 25px;
+}
+
+button#acessiblidade {
+   animation: blinking 3s infinite;
+   padding: 2px 10px;
+   border-radius: 10px;
+   margin: 5px 0;
+}
+
+@keyframes blinking {
+   50% {
+      opacity: 0.7;
+      color: white;
+      background-color: #198754;
+   }
+}
+
+div.d-block {
+   margin: 0;
+   width: 100%;
+   height: 77vh;
+}
+
+div#conteudoNavbarSuportado {
+   display: flex;
+   justify-content: space-between;
+   padding: 0 2%;
+}
+
+ul.navbar-nav {
+   width: 80%;
+   display: flex;
+   justify-content: space-around;
+   padding-left: 2%;
+}
+
+li.nav-item {
+   font-size: 30px;
+}
+
+a.nav-link {
+   font-size: 30px;
+}
+
+a.nav-link:hover {
+   color: #198754;
+   transition: 0.2s;
+}
+
+a.nav-link-dropdown {
+   font-size: 25px;
+   color: rgb(45, 62, 81);
+   text-decoration: none;
+}
+
+a.nav-link-dropdown:hover {
+   color: #198754;
+   transition: 0.2s;
+}
+
+button.nav-link {
+   color: rgba(15, 70, 87, 0.7);
+}
+
+button.nav-link:hover {
+   color: #198754;
+   transition: 0.2s;
+}
+
+span.carousel-control-prev-icon {
+   padding: 25px;
+   border-radius: 10px;
+}
+
+span.carousel-control-prev-icon:hover {
+   background-color: rgba(15, 70, 87, 0.5);
+}
+
+
+span.carousel-control-next-icon {
+   padding: 25px;
+   border-radius: 10px;
+}
+
+span.carousel-control-next-icon:hover {
+   background-color: rgba(15, 70, 87, 0.5);
+}
+
+div.carousel-inner {
+   z-index: -1;
+}
+
+div#slide_01 {
+   background: url(../_images/slide_06.jpg) no-repeat top center fixed;
+   background-size: cover;
+   background-position-y: center;
+}
+
+div#slide_02 {
+   background: url(../_images/slide_03.jpg) no-repeat top center fixed;
+   background-size: cover;
+   background-position-y: center;
+}
+
+div#slide_03 {
+   background: url(../_images/slide_05.jpg) no-repeat top center fixed;
+   background-size: cover;
+   background-position-y: center;
+}
+
+div#slide_04 {
+   background: url(../_images/slide_09.jpg) no-repeat top center fixed;
+   background-size: cover;
+   background-position-y: center;
+}
+
+div#slide_05 {
+   background: url(../_images/slide_07.jpg) no-repeat top center fixed;
+   background-size: cover;
+   background-position-y: center;
+}
+
+div.carousel-caption>h5 {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 40px;
+   margin-bottom: -10px;
+   -webkit-text-stroke: 1px 2F4F4F;
+   color: white;
+   text-shadow: 3px 3px 2px #2F4F4F;
+}
+
+div.carousel-caption>p {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 26px;
+   padding: 2% 0;
+   margin-bottom: -10px;
+   -webkit-text-stroke: 1px 2F4F4F;
+   color: white;
+   text-shadow: 3px 3px 2px #2F4F4F;
+}
+
+
+
+/* ------------------------- Definição da animação ------------------------- */
+
+@keyframes slideInIMG {
+   from {
+       transform: translateX(-100px);
+       /* Fora da tela à esquerda */
+   }
+
+   to {
+       transform: translateX(0);
+       /* Posição final */
+   }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-400px);
+        /* Fora da tela à esquerda */
+    }
+
+    to {
+        transform: translateX(0);
+        /* Posição final */
+    }
+}
+
+@keyframes slideInMenu {
+   from {
+      transform: translateX(-600px);
+      /* Fora da tela à esquerda */
+  }
+
+  to {
+      transform: translateX(0);
+      /* Posição final */
+  }
+}
+
+
+@media(max-width: 550px) {
+   img {
+      animation: slideInIMG 1s ease-out forwards;
+   }
+   
+   span#logomarca {
+
+      animation: slideIn 1s ease-out forwards;
+   }
+   
+   div#navbarSupportedContent {
+      animation: slideInMenu 1s ease-out forwards;
+   }
+   
+}
+

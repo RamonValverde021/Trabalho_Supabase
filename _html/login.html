@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta name="author" content="Ramon Valverde" />
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>Cadastre-se</title>
+   <link rel="icon" href="../_images/Icone_Planta_03.png">
+   <link rel="stylesheet" type="text/css" href="../_css/estilos.css">
+   <link rel="stylesheet" type="text/css" href="../_css/login.css">
+   <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css" />
+   <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
+   <script language="JavaScript" src="../_javascript/login_supabase.js" defer></script>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body id="pessoa">
+
+   <!-- Menu -->
+   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+         <img src="../_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy"> <span
+            id="logomarca">SpringFy</span>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               <li class="nav-item active">
+                  <a class="nav-link" href="../index.html">Home</a>
+               </li>
+               <li class="nav-item active"><a class="nav-link" href="sobre.html">Sobre</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     Contato
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><a class="nav-link-dropdown" href="contato.html">Contato</a></li>
+                     <li><a class="nav-link-dropdown" href="pessoa.html">Cadastre-se</a></li>
+                     <li><a class="nav-link-dropdown" href="profissional.html">Trabalhe Conosco</a></li>
+                  </ul>
+               </li>
+               <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
+               <li class="nav-item active">
+                  <button class="nav-link" id="acessiblidade" onclick="alterarFonte()">Acessibilidade</button>
+               </li>
+            </ul>
+            <!-- 
+            <form class="d-flex" role="search">
+               <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+               <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
+            -->
+         </div>
+      </div>
+   </nav>
+
+   <main class="cadastro">
+      <div id="login_interface">
+         <h1 class="login_title">Crie um login de acesso!</h1>
+         <form name="formulario_login" onsubmit="return false;">
+            <fieldset id="fieldset_login" class="form_fieldset">
+               <input id="email" class="form_input" type="text" placeholder="Digite seu email">
+               <input id="senha" class="form_input" type="password" placeholder="Digite a senha">
+            </fieldset>
+            <footer id="btn_cadastrar">
+               <button class="botoes" type="button" onclick="login()">Entrar</button>
+               <button class="botoes" type="button" onclick="cadastrar()">Cadastrar</button>
+            </footer>
+         </form>
+         <p id="mensagem"></p>
+
+      </div>
+      <div class="atention">
+         <h2 class="alert_title">ATENÇÃO</h2>
+         <p class="alert_text">O login precisa conter apenas 5 digitos com apenas números ímpares.</p>
+         <p class="alert_text">A senha precisa ser de apenas 4 dígitos com números pares.</p>
+      </div>
+   </main>
+
+   <div class="espaco"></div>
+
+   <!-- Rodapé -->
+   <footer class="assinatura">
+      <em>Copyright © 2024 by Ramon Aguiar Valverde</em><br>
+      <a href="https://www.facebook.com/" target="_blank" class="links">Facebook</a>
+      <a href="https://www.instagram.com/" target="_blank" class="links">Instagram</a>
+   </footer>
+
+   <script language="JavaScript" src="../_javascript/login.js"></script>
+   <script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+   <script language="JavaScript" src="../_javascript/script.js"></script>
+</body>
+
+</html>

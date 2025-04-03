@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+* {
+   /* Resetar modulos de espaçamentos*/
+   margin: 0px;
+   padding: 0px;
+}
+
+html {
+   /*background-color: rgb(255, 255, 255);*/
+   font-family: "Arial", sans-serif;
+   font-weight: 500;
+   color: white;
+}
+/*------------------------ Formatação MENU ------------------------*/
+
+ul.menu-list {
+   position: relative;
+   width: 100%;
+   display: flex;
+   justify-content: left;
+   flex-direction: row;
+}
+
+a.menu-link {
+   list-style: none;
+   text-decoration: none;
+   text-align: center;
+   margin: 15px 0 0 20px;
+}
+
+li.menu-item {
+   font-size: 16px;
+   font-weight: bold;
+   color: rgb(45, 62, 81);
+   text-decoration: none;
+   background-color: lightgray;
+   border: 2px rgb(45, 62, 81) solid;
+   border-radius: 10px;
+   text-align: center;
+   text-decoration: none;
+   padding: 5px 15px;
+   list-style: none;
+}
+
+li.menu-item:hover {
+   color: white;
+   background-color: rgb(45, 62, 81);
+   border: 2px white solid;
+   transition-duration: 0.4s;
+}
+
+ul.dropdown-menu li {
+   padding-left: 10px;
+}
+
+/*------------------------ Formatação Rpdapé ------------------------*/
+
+footer.assinatura {
+   width: 100%;
+   font-size: 20px;
+   text-align: center;
+   padding: 2vh 0;
+   color: rgb(45, 62, 81);
+   background-color: #f8f9fa;
+   box-shadow: 0px 0px 5px 2px #286145;
+   z-index: 5;
+}
+
+a.links {
+   text-decoration: none;
+   color: rgb(45, 62, 81);
+   margin: 0 1%;
+   margin-top: 50px;
+}
+
+a.links:hover {
+   color: #198754;
+   transition: 0.2s;
+}
+
+/*-------------------- Formatação Index --------------------*/
+
+body#index {
+   background-color: white;
+   background-size: cover;
+}
+
+ul#menu_index {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+}
+
+a.menu_index {
+   list-style: none;
+   text-decoration: none;
+   text-align: center;
+   width: 60%;
+   margin: 3% 0;
+}
+
+li.menu_index {
+   text-decoration: none;
+   font-weight: bolder;
+   color: rgb(45, 62, 81);
+   background-color: lightgray;
+   border: 2px rgb(45, 62, 81) solid;
+   border-radius: 10px;
+   padding: 3% 0%;
+}
+
+li.menu_index:hover {
+   color: white;
+   background-color: rgb(45, 62, 81);
+   border: 2px white solid;
+   transition-duration: 0.3s;
+}
+
+/*-------------------- Pagina Sobre --------------------*/
+h1.titulo-h1 {
+   font-family: "Arial", sans-serif;
+   color: rgb(45, 62, 81);
+}
+
+h2.titulo-h2 {
+   font-family: "Arial", sans-serif;
+   color: rgb(45, 62, 81);
+}
+
+p.paragrafo {
+   font-family: "Arial", sans-serif;
+   color: rgb(45, 62, 81);
+   font-size: 20px;
+}
+
+b.paragrafo {
+   font-family: "Arial", sans-serif;
+   color: rgb(45, 62, 81);
+   font-size: 20px;
+}
+
+main#main-sobre {
+   text-align: center;
+   margin: 0 15%;
+   text-align: left;
+   width: 70%;
+   padding-top: 2%;
+   min-height: 77vh;
+   animation: slideIn 1s ease-out forwards;
+}
+
+div.div-video {
+   width: 100%;
+   padding: 2% 0;
+   text-align: center;
+   margin-bottom: 10%;
+}
+
+iframe.iframe-video {
+   /* 16:9  Multiplica o width por 16 e o height por 9 para manter a proporção do video */
+   height: 60vh;
+   width: 100%;
+}
+
+legend.legenda-video {
+   font-size: 20px;
+}
+
+div.div-graphic {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+}
+
+/* --------------------------- CORREÇÃO DE RESPONSIVIDADE --------------------------- */
+
+@media(max-width: 550px) {
+
+   main#main-sobre {
+      padding-top: 5%;
+      width: 80%;
+      margin: 0 10%;
+   }
+
+   iframe.iframe-video {
+      height: 20vh;
+   }
+
+}
+
+/* ------------------------- Definição da animação ------------------------- */
+
+@keyframes slideIn {
+   from {
+       transform: translateX(-400px);
+       /* Fora da tela à esquerda */
+   }
+
+   to {
+       transform: translateX(0);
+       /* Posição final */
+   }
+}

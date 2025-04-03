@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta name="author" content="Ramon Valverde" />
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>Cadastre-se</title>
+   <link rel="icon" href="../_images/Icone_Planta_03.png">
+   <link rel="stylesheet" type="text/css" href="../_css/estilos.css">
+   <link rel="stylesheet" type="text/css" href="../_css/contato.css">
+   <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css" />
+   <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body id="pessoa">
+
+   <!-- Menu -->
+   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+         <img src="../_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy"> <span
+            id="logomarca">SpringFy</span>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               <li class="nav-item active">
+                  <a class="nav-link" href="../index.html">Home</a>
+               </li>
+               <li class="nav-item active"><a class="nav-link" href="sobre.html">Sobre</a></li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     Contato
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><a class="nav-link-dropdown" href="contato.html">Contato</a></li>
+                     <li><a class="nav-link-dropdown" href="profissional.html">Trabalhe Conosco</a></li>
+                  </ul>
+               </li>
+               <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
+               <li class="nav-item active">
+                  <button class="nav-link" id="acessiblidade" onclick="alterarFonte()">Acessibilidade</button>
+               </li>
+            </ul>
+            <!-- 
+            <form class="d-flex" role="search">
+               <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+               <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
+            -->
+         </div>
+      </div>
+   </nav>
+
+   <main class="cadastro">
+
+      <div id="cadastro-interface">
+
+         <h1 class="cadastro-title">
+            Preencha com suas informações pessoais
+         </h1>
+         
+         <form name="formulario_alunos" method="post" onsubmit="envia_formulario(event);" action=" ">
+
+            <fieldset id="fieldset-identificacao" class="form-fieldset">
+               <legend class="form-legend">Identificação</legend>
+
+               <div class="div-name">
+                  <label class="input-legend">Nome</label>
+                  <input id="nome" class="form-input" type="text" placeholder="Nome completo" />
+               </div>
+
+               <section class="setion-1-identification">
+                  <div class="div-identification">
+                     <label class="input-legend">CPF</label>
+                     <input id="cpf" type="text" class="form-input" placeholder="000.000.000-00"
+                        oninput="autoincremento(this, 'CPF')" />
+
+                     <label class="input-legend">Data de Nascimento</label>
+                     <input id="nascimento" class="form-input" type="date" placeholder="__/__/____" />
+
+                     <label class="input-legend">Sexo</label><br>
+                     <input id="sex_masc" class="form-radio" type="radio" name="sexo">
+                     <label class="label-sexo" for="sex_masc">Mascolino</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                     <input id="sex_fem" class="form-radio" type="radio" name="sexo">
+                     <label class="label-sexo" for="sex_fem">Feminino</label>
+                  </div>
+
+                  <div class="div-identification">
+                     <label class="input-legend">Estado Civil</label>
+                     <select name="estado_civil" id="estado_civil" class="form-select">
+                        <option value="solt" selected>Solteiro(a)</option>
+                        <option value="casad">Casado(a)</option>
+                        <option value="divor">Divorciado(a)</option>
+                     </select>
+
+                     <label class="input-legend">Celular</label>
+                     <input id="celular" class="form-input" type="tel" placeholder="(00) 0 0000 - 0000"
+                        oninput="autoincremento(this, 'CEL')" />
+
+                     <label class="input-legend">E-mail</label>
+                     <input id="email" class="form-input" type="email" placeholder="seu.email@mail.com" />
+                  </div>
+               </section>
+            </fieldset>
+
+            <fieldset id="fieldset-endereco" class="form-fieldset">
+               <legend class="form-legend">Endereço</legend>
+
+               <div class="div-name">
+                  <label class="input-legend">Logradouro</label>
+                  <input id="logradouro" class="form-input" type="text" placeholder="Rua, Avenida, Travessa..." />
+               </div>
+
+               <section class="setion-1-address">
+                  <div class="div-address">
+                     <label class="input-legend">CEP</label>
+                     <input id="cep" class="form-input" type="text" placeholder="00000-000"
+                        oninput="autoincremento(this, 'CEP')" />
+
+                     <label class="input-legend">Número</label>
+                     <input id="numero" class="form-input" type="number" placeholder="Número da residência" />
+
+                     <label class="input-legend">Complemento</label>
+                     <input id="complemento" class="form-input" type="text"
+                        placeholder="Casa, Apartamento, próximo há..." />
+                  </div>
+
+                  <div class="div-address">
+                     <label class="input-legend">Estado</label>
+                     <select name="estados" id="estados" class="form-select">
+                        <optgroup label="Região Sudeste">
+                           <option value="MG" selected>Minas Gerais</option>
+                           <!-- "selected" deixa a opçaõ de minas gerais maracada automaticamente-->
+                           <option value="SP">São Paulo</option>
+                           <option value="RJ">Rio de Janeiro</option>
+                           <option value="ES">Espírito Santo</option>
+                        </optgroup>
+
+                        <optgroup label="Região Sul">
+                           <option value="PR">Paraná</option>
+                           <option value="SC">Santa Catarina</option>
+                           <option value="RS">Rio Grande do Sul</option>
+                        </optgroup>
+
+                        <optgroup label="Região Centro-Oeste">
+                           <option value="DF">Distrito Federal</option>
+                           <option value="MT">Mato Grosso</option>
+                           <option value="GO">Goiás</option>
+                           <option value="MS">Mato Grosso do Sul</option>
+                        </optgroup>
+
+                        <optgroup label="Região Norte">
+                           <option value="AM">Amazonas</option>
+                           <option value="AC">Acre</option>
+                           <option value="RR">Rorâima</option>
+                           <option value="AP">Amapá</option>
+                           <option value="PA">Pará</option>
+                           <option value="RO">Rondônia</option>
+                           <option value="TO">Tocantins</option>
+                        </optgroup>
+
+                        <optgroup label="Região Nordeste">
+                           <option value="CE">Ceará</option>
+                           <option value="AL">Alagoas</option>
+                           <option value="BA">Bahia</option>
+                           <option value="MA">Maranhão</option>
+                           <option value="PB">Paraíba</option>
+                           <option value="PE">Pernambuco</option>
+                           <option value="PI">Piauí</option>
+                           <option value="RN">Rio Grande do Norte</option>
+                           <option value="SE">Sergipe</option>
+                        </optgroup>
+                     </select>
+
+                     <label class="input-legend">Cidade</label>
+                     <input id="cidade" class="form-input" type="text" placeholder="Cidade" />
+                     <label class="input-legend">Bairro</label>
+                     <input id="bairro" class="form-input" type="text" placeholder="Bairro" />
+                  </div>
+               </section>
+            </fieldset>
+
+            <footer id="btn_cadastrar">
+               <button href="obrigado.html" id="btn_cadastrar">Cadastrar</button>
+            </footer>
+
+         </form>
+      </div>
+   </main>
+
+   <!-- Rodapé -->
+   <footer class="assinatura">
+      <em>Copyright © 2024 by Ramon Aguiar Valverde</em><br>
+      <a href="https://www.facebook.com/" target="_blank" class="links">Facebook</a>
+      <a href="https://www.instagram.com/" target="_blank" class="links">Instagram</a>
+   </footer>
+
+   <script language="JavaScript" src="../_javascript/validacao_aluno.js"></script>
+   <script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+   <script language="JavaScript" src="../_javascript/edit_chart.js"></script>
+   <script language="JavaScript" src="../_javascript/script.js"></script>
+</body>
+
+</html>

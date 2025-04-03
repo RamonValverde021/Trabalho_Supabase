@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta name="author" content="Ramon Valverde">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description"
+      content="Aprimore sua agricultura com automação de irrigação, cultivo inteligente e gestão eficiente de fertilizantes e pesticidas. A SpringFy oferece soluções ideais para aumentar sua produtividade de forma sustentável.">
+   <title>SpringFy: Automação de Irrigação e Plantio Inteligente</title>
+   <link rel="icon" href="_images/Icone_Planta_03.png">
+   <link rel="stylesheet" type="text/css" href="_css/estilos.css" />
+   <link rel="stylesheet" type="text/css" href="_css/edit_bootstrap.css" />
+   <link href="_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body id="index">
+
+   <!-- Menu -->
+   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+         <img src="_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy"> <span
+            id="logomarca">SpringFy</span>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               <li class="nav-item active"><a class="nav-link" href="_html/sobre.html">Sobre</a></li>
+               <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contato</a>
+                  <ul class="dropdown-menu">
+                     <li><a class="nav-link-dropdown" href="_html/contato.html">Contato</a></li>
+                     <li><a class="nav-link-dropdown" href="_html/pessoa.html">Cadastre-se</a></li>
+                     <li><a class="nav-link-dropdown" href="_html/profissional.html">Trabalhe Conosco</a></li>
+                  </ul>
+               </li>
+               <li class="nav-item active"><a class="nav-link" href="_html/login.html">Login</a></li>
+               <li class="nav-item active">
+                  <button class="nav-link" id="acessiblidade" onclick="alterarFonte()">Acessibilidade</button>
+               </li>
+            </ul>
+            <!-- 
+            <form class="d-flex" role="search">
+               <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+               <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
+            -->
+         </div>
+      </div>
+   </nav>
+
+   <!-- Carrossel Automático -->
+   <!-- <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"> -->
+   <div id="carouselExampleCaptions" class="carousel slide">
+
+      <!-- Botões Slides -->
+      <div class="carousel-indicators">
+         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+            aria-label="Slide 4"></button>
+         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+            aria-label="Slide 5"></button>
+      </div>
+
+      <!-- Slides -->
+      <div class="carousel-inner">
+
+         <div class="carousel-item active">
+            <div id="slide_01" class="d-block w-100"></div>
+            <div class="carousel-caption d-none d-md-block">
+               <h5>A Base para um Cultivo Eficiente</h5>
+               <p>Entenda as características do solo antes do plantio. Nosso sistema realiza uma análise detalhada que
+                  ajuda a otimizar o uso de nutrientes e água, garantindo um solo equilibrado e produtivo.</p>
+            </div>
+         </div>
+
+         <div class="carousel-item active">
+            <div id="slide_02" class="d-block w-100"></div>
+            <div class="carousel-caption d-none d-md-block">
+               <h5>Monitoramento e Automação</h5>
+               <p>Com tecnologia avançada, garantimos que suas plantas recebam o cuidado necessário, desde irrigação
+                  controlada até a aplicação precisa de fertilizantes, tudo monitorado em tempo real.</p>
+            </div>
+         </div>
+
+         <div class="carousel-item active">
+            <div id="slide_03" class="d-block w-100"></div>
+            <div class="carousel-caption d-none d-md-block">
+               <h5>Maximização da Produtividade</h5>
+               <p>A automação e os sensores permitem um cultivo mais eficiente. Ajuste os recursos de acordo com as
+                  necessidades das suas plantas, promovendo o crescimento saudável e colheitas abundantes.</p>
+            </div>
+         </div>
+
+         <div class="carousel-item">
+            <div id="slide_04" class="d-block w-100"></div>
+            <div class="carousel-caption d-none d-md-block">
+               <h5>Soluções Sustentáveis</h5>
+               <p>Nossas soluções visam aumentar a rentabilidade do produtor, reduzindo desperdícios e promovendo
+                  práticas sustentáveis que asseguram uma agricultura mais lucrativa e ambientalmente responsável.</p>
+            </div>
+         </div>
+
+         <div class="carousel-item">
+            <div id="slide_05" class="d-block w-100"></div>
+            <div class="carousel-caption d-none d-md-block">
+               <h5>Inovação e Futuro</h5>
+               <p>A agricultura está evoluindo, e a <em>SpringFy</em> está na vanguarda dessa transformação. Com
+                  tecnologias que garantem sustentabilidade e eficiência, o futuro do campo nunca foi tão promissor.</p>
+            </div>
+         </div>
+      </div>
+
+      <!-- Botões Anterior e Próximo -->
+      <button id="prev" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+         data-bs-slide="prev">
+         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         <span class="visually-hidden">Previous</span>
+      </button>
+      <button id="next" class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+         data-bs-slide="next">
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="visually-hidden">Next</span>
+      </button>
+   </div>
+
+   <!-- Rodapé -->
+   <footer class="assinatura">
+      <em>Copyright © 2024 by Ramon Aguiar Valverde</em><br>
+      <a href="https://www.facebook.com/" target="_blank" class="links">Facebook</a>
+      <a href="https://www.instagram.com/" target="_blank" class="links">Instagram</a>
+   </footer>
+
+</body>
+<script language="JavaScript" src="_bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+<script language="JavaScript" src="_javascript/script.js"></script>
+
+</html>

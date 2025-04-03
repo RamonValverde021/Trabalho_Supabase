@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta name="author" content="Ramon Valverde">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="Venha conhecer sobre nossa empresa e oque ela pode oferecer para você!">
+   <title>SpringFy: Automação de Irrigação e Plantio Inteligente - Sobre nós</title>
+   <link rel="icon" href="../_images/Icone_Planta_03.png">
+   <link rel="stylesheet" type="text/css" href="../_css/estilos.css" />
+   <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css" />
+   <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
+   <!-- <script language="JavaScript" src="../_javascript/funcoes.js"></script> -->
+</head>
+
+<body>
+   <!-- Menu -->
+   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+         <img src="../_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy"> <span
+            id="logomarca">SpringFy</span>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               <li class="nav-item active">
+                  <a class="nav-link" href="../index.html">Home</a>
+               </li>
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                     aria-expanded="false">
+                     Contato
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><a class="nav-link-dropdown" href="contato.html">Contato</a></li>
+                     <li><a class="nav-link-dropdown" href="pessoa.html">Cadastre-se</a></li>
+                     <li><a class="nav-link-dropdown" href="profissional.html">Trabalhe Conosco</a></li>
+                  </ul>
+               </li>
+               <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
+               <li class="nav-item active">
+                  <button class="nav-link" id="acessiblidade" onclick="alterarFonte()">Acessibilidade</button>
+               </li>
+            </ul>
+            <!-- 
+            <form class="d-flex" role="search">
+               <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+               <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+            </form>
+            -->
+         </div>
+      </div>
+   </nav>
+
+   <main id="main-sobre">
+      <h1 class="titulo-h1">Sobre Nós</h1>
+      <p class="paragrafo">Na <b class="paragrafo">SpringFy</b>, estamos transformando a agricultura com tecnologia de ponta e soluções
+         inteligentes de
+         automação. Nossa missão é ajudar agricultores a otimizar seus processos de plantio e irrigação, promovendo
+         uma
+         produção mais eficiente, sustentável e lucrativa.</p>
+
+      <p class="paragrafo">Combinando anos de experiência no setor agrícola e inovação em automação, oferecemos
+         sistemas de
+         monitoramento
+         em tempo real e controle automatizado de irrigação. Nosso objetivo é tornar o cultivo mais inteligente,
+         utilizando dados e sensores para garantir que cada planta receba a quantidade ideal de água e nutrientes,
+         reduzindo desperdícios e maximizando a produtividade.</p>
+
+      <p class="paragrafo">Nossos clientes contam com soluções personalizadas que se adaptam às condições climáticas e
+         às necessidades
+         específicas de cada plantação. Acreditamos no futuro sustentável da agricultura, onde a tecnologia se torna
+         aliada do produtor, e o meio ambiente é preservado para as próximas gerações.</p>
+
+      <p class="paragrafo">Seja bem-vindo à <b class="paragrafo">SpringFy</b> – onde a inovação encontra o campo.</p>
+
+      <div class="div-video">
+         <h2 class="titulo-h2">Agricultura Familiar</h2>
+         <iframe class="iframe-video" src="https://www.youtube.com/embed/0bL-DPSMhPw?si=6NAep1Na_sda6-3t"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+         <legend class="legenda-video">Um pouco sobre a historia do Sr. Laerte e sua jornada no campo</legend>
+      </div>
+
+   <div class="div-graphic">
+         <canvas class="graficos" id="line-chart"></canvas><br>
+         <p class="paragrafo">Em 1996, o Decreto nº. 1.946, de 28 de junho, estabeleceu o Programa Nacional de Fortalecimento da
+            Agricultura Familiar (PRONAF).</p>
+         <p class="paragrafo">Embora o PRONAF tivesse outros objetivos, como a comercialização e a infraestrutura, teve um papel
+            importante no crédito rural. Possibilitou que muitos agricultores que antes não participavam das linhas
+            oficiais de financiamento do crédito rural passassem a utilizar dos recursos.</p><br>
+   </div>
+
+   <div class="div-graphic">
+         <canvas class="graficos" id="bar-chart"></canvas><br>
+         <p class="paragrafo">Em 2003 é criado o Programa de Aquisição de Alimentos da Agricultura Familiar (PAA) por meio da Lei nº.
+            10.696, com a finalidade de incentivar a agricultura familiar, compreendendo ações vinculadas à
+            distribuição de produtos agropecuários para pessoas em situação de insegurança alimentar e à formação de
+            estoques estratégicos.</p>
+         <p class="paragrafo">O PAA representou uma oportunidade para os agricultores familiares comercializarem a produção ao preço
+            normalmente pago pelos equipamentos públicos (escolas, hospitais, etc.) aos intermediários, eliminando
+            esse agente.</p><br>
+   </div>
+</main>
+
+   <!-- Rodapé -->
+   <footer class="assinatura">
+      <em>Copyright © 2024 by Ramon Aguiar Valverde</em><br>
+      <a href="https://www.facebook.com/" target="_blank" class="links">Facebook</a>
+      <a href="https://www.instagram.com/" target="_blank" class="links">Instagram</a>
+   </footer>
+</body>
+<script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+<script language="JavaScript" src="../_chart/chart.js"></script>
+<script language="JavaScript" src="../_javascript/edit_chart.js"></script>
+<script language="JavaScript" src="../_javascript/script.js"></script>
+
+</html>
