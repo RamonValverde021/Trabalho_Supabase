@@ -49,11 +49,6 @@ li.menu_item:hover {
    border: 2px white solid;
    transition-duration: 0.4s;
 }
-
-ul.dropdown_menu li {
-   padding-left: 10px;
-}
-
 /*------------------------ Formatação Rpdapé ------------------------*/
 
 footer.assinatura {

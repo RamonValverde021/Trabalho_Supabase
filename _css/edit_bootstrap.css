@@ -85,6 +85,10 @@ a.nav-link:hover {
    transition: 0.2s;
 }
 
+ul.dropdown-menu li {
+   padding-left: 10px;
+}
+
 a.nav-link-dropdown {
    font-size: 25px;
    color: rgb(45, 62, 81);
