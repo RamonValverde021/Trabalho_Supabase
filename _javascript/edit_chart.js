@@ -3,7 +3,7 @@
 Chart.defaults.font.size = 15;
 
 // Grafico de Linha
-const ctx1 = document.getElementById("line-chart");
+const ctx1 = document.getElementById("line_chart");
 var chartGraph1 = new Chart(ctx1, {
    type: 'line',
    data: {
@@ -31,7 +31,7 @@ var chartGraph1 = new Chart(ctx1, {
 });
 
 // Grafico de Barra
-const ctx2 = document.getElementById("bar-chart");
+const ctx2 = document.getElementById("bar_chart");
 const stackedBar = new Chart(ctx2, {
    type: 'bar',
    data: {

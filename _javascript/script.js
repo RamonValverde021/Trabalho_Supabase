@@ -1,5 +1,7 @@
 
 
+
+/* ----------- Codigo aumentar e diminuir a fonte de todos os textos ----------- */
 let aumentar = true; // Controla se o tamanho da fonte deve aumentar ou diminuir
 
 function alterarFonte() {

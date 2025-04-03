@@ -39,14 +39,10 @@
                   </a>
                   <ul class="dropdown-menu">
                      <li><a class="nav-link-dropdown" href="contato.html">Contato</a></li>
-                     <li><a class="nav-link-dropdown" href="pessoa.html">Cadastre-se</a></li>
-                     <li><a class="nav-link-dropdown" href="profissional.html">Trabalhe Conosco</a></li>
+                     <li><a class="nav-link-dropdown" href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
                   </ul>
                </li>
                <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
-               <li class="nav-item active">
-                  <button class="nav-link" id="acessiblidade" onclick="alterarFonte()">Acessibilidade</button>
-               </li>
             </ul>
             <!-- 
             <form class="d-flex" role="search">
@@ -58,9 +54,9 @@
       </div>
    </nav>
 
-   <main class="cadastro">
+   <main class="login">
       <div id="login_interface">
-         <h1 class="login_title">Crie um login de acesso!</h1>
+         <h1 class="login_title">Degite suas credenciais de acesso!</h1>
          <form name="formulario_login" onsubmit="return false;">
             <fieldset id="fieldset_login" class="form_fieldset">
                <input id="email" class="form_input" type="text" placeholder="Digite seu email">
@@ -68,16 +64,10 @@
             </fieldset>
             <footer id="btn_cadastrar">
                <button class="botoes" type="button" onclick="login()">Entrar</button>
-               <button class="botoes" type="button" onclick="cadastrar()">Cadastrar</button>
+               <a class="botoes" href="cadastre-se.html">Cadastrar</a>
             </footer>
          </form>
          <p id="mensagem"></p>
-
-      </div>
-      <div class="atention">
-         <h2 class="alert_title">ATENÇÃO</h2>
-         <p class="alert_text">O login precisa conter apenas 5 digitos com apenas números ímpares.</p>
-         <p class="alert_text">A senha precisa ser de apenas 4 dígitos com números pares.</p>
       </div>
    </main>
 

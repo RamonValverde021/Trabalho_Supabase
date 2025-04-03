@@ -10,7 +10,7 @@ main.cadastro {
    /* Esse recurso é para empurrar o footer para o final da pagina, min-height = 100vh - (Soma de cada espaçamento vertical dos elemntos de footer) + 10*/
 }
 
-h1.cadastro-title {
+h1.cadastro_title {
    font-family: "Arial", sans-serif;
    color: rgb(45, 62, 81);
    font-size: 30px;
@@ -22,21 +22,21 @@ h1.cadastro-title {
    text-align: center;
 }
 
-fieldset#fieldset-contato {
+fieldset#fieldset_contato {
    margin-top: 15px;
 }
 
-div#cadastro-interface {
+div#cadastro_interface {
    width: 60%;
    animation: slideIn 1s ease-out forwards;
 }
 
-div#contato-interface {
+div#contato_interface {
    width: 40%;
    animation: slideIn 1s ease-out forwards;
 }
 
-legend.form-legend {
+legend.form_legend {
    margin-top: 30px;
    margin-bottom: -10px;
    font-size: 24px;
@@ -44,9 +44,9 @@ legend.form-legend {
    color: rgb(45, 62, 81);
 }
 
-input.form-input,
-select.form-select, 
-textarea.form-textarea {
+input.form_input,
+select.form_select, 
+textarea.form_textarea {
    border: 2px rgb(45, 62, 81) solid;
    border-radius: 8px;
    padding: 5px;
@@ -58,9 +58,9 @@ textarea.form-textarea {
    outline: none;
 }
 
-input.form-input:hover,
-select.form-select:hover, 
-textarea.form-textarea:hover {
+input.form_input:hover,
+select.form_select:hover, 
+textarea.form_textarea:hover {
    border: 2px #198754 solid;
    box-shadow: 0px 0px 6px 2px  #198754;
 }
@@ -72,21 +72,21 @@ option {
    font-weight: 500;
 }
 
-label.input-legend {
+label.input_legend {
    margin-top: 10px;
    font-size: 20px;
    font-weight: bold;
    color: rgb(45, 62, 81);
 }
 
-label.label-sexo {
+label.label_sexo {
    margin-bottom: 5px;
    font-size: 20px;
    font-weight: bold;
    color: rgb(45, 62, 81);
 }
 
-input.form-radio {
+input.form_radio {
    margin-right: 3%;
    height: 18px;
    width: 18px;
@@ -144,28 +144,28 @@ button#btn_cadastrar:hover {
    cursor: pointer;
 }
 
-div.div-name {
+div.div_name {
    padding: 0 2%;
 }
 
-section.setion-1-identification {
+section.setion_1_identification {
    display: flex;
    justify-content: left;
    flex-direction: row;
 }
 
-div.div-identification {
+div.div_identification {
    width: 50%;
    padding: 0 2%;
 }
 
-section.setion-1-address {
+section.setion_1_address {
    display: flex;
    justify-content: left;
    flex-direction: row;
 }
 
-div.div-address {
+div.div_address {
    width: 50%;
    padding: 0 2%;
 }
@@ -180,12 +180,12 @@ div.espaco {
 
 @media(max-width: 550px) {
 
-   h1.cadastro-title {
+   h1.cadastro_title {
       font-size: 25px;
    }
 
-   div#cadastro-interface, 
-   div#contato-interface {
+   div#cadastro_interface, 
+   div#contato_interface {
       width: 80%;
    }
 

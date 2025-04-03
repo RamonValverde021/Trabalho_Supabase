@@ -14,7 +14,7 @@ html {
 }
 /*------------------------ Formatação MENU ------------------------*/
 
-ul.menu-list {
+ul.menu_list {
    position: relative;
    width: 100%;
    display: flex;
@@ -22,14 +22,14 @@ ul.menu-list {
    flex-direction: row;
 }
 
-a.menu-link {
+a.menu_link {
    list-style: none;
    text-decoration: none;
    text-align: center;
    margin: 15px 0 0 20px;
 }
 
-li.menu-item {
+li.menu_item {
    font-size: 16px;
    font-weight: bold;
    color: rgb(45, 62, 81);
@@ -43,14 +43,14 @@ li.menu-item {
    list-style: none;
 }
 
-li.menu-item:hover {
+li.menu_item:hover {
    color: white;
    background-color: rgb(45, 62, 81);
    border: 2px white solid;
    transition-duration: 0.4s;
 }
 
-ul.dropdown-menu li {
+ul.dropdown_menu li {
    padding-left: 10px;
 }
 
@@ -119,12 +119,12 @@ li.menu_index:hover {
 }
 
 /*-------------------- Pagina Sobre --------------------*/
-h1.titulo-h1 {
+h1.titulo_h1 {
    font-family: "Arial", sans-serif;
    color: rgb(45, 62, 81);
 }
 
-h2.titulo-h2 {
+h2.titulo_h2 {
    font-family: "Arial", sans-serif;
    color: rgb(45, 62, 81);
 }
@@ -141,7 +141,7 @@ b.paragrafo {
    font-size: 20px;
 }
 
-main#main-sobre {
+main#main_sobre {
    text-align: center;
    margin: 0 15%;
    text-align: left;
@@ -151,24 +151,24 @@ main#main-sobre {
    animation: slideIn 1s ease-out forwards;
 }
 
-div.div-video {
+div.div_video {
    width: 100%;
    padding: 2% 0;
    text-align: center;
    margin-bottom: 10%;
 }
 
-iframe.iframe-video {
+iframe.iframe_video {
    /* 16:9  Multiplica o width por 16 e o height por 9 para manter a proporção do video */
    height: 60vh;
    width: 100%;
 }
 
-legend.legenda-video {
+legend.legenda_video {
    font-size: 20px;
 }
 
-div.div-graphic {
+div.div_graphic {
    width: 100%;
    display: flex;
    align-items: center;
@@ -180,13 +180,13 @@ div.div-graphic {
 
 @media(max-width: 550px) {
 
-   main#main-sobre {
+   main#main_sobre {
       padding-top: 5%;
       width: 80%;
       margin: 0 10%;
    }
 
-   iframe.iframe-video {
+   iframe.iframe_video {
       height: 20vh;
    }
 

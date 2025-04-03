@@ -37,13 +37,10 @@
                   </a>
                   <ul class="dropdown-menu">
                      <li><a class="nav-link-dropdown" href="contato.html">Contato</a></li>
-                     <li><a class="nav-link-dropdown" href="profissional.html">Trabalhe Conosco</a></li>
+                     <li><a class="nav-link-dropdown" href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
                   </ul>
                </li>
                <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
-               <li class="nav-item active">
-                  <button class="nav-link" id="acessiblidade" onclick="alterarFonte()">Acessibilidade</button>
-               </li>
             </ul>
             <!-- 
             <form class="d-flex" role="search">
@@ -57,81 +54,81 @@
 
    <main class="cadastro">
 
-      <div id="cadastro-interface">
+      <div id="cadastro_interface">
 
-         <h1 class="cadastro-title">
+         <h1 class="cadastro_title">
             Preencha com suas informações pessoais
          </h1>
          
          <form name="formulario_alunos" method="post" onsubmit="envia_formulario(event);" action=" ">
 
-            <fieldset id="fieldset-identificacao" class="form-fieldset">
-               <legend class="form-legend">Identificação</legend>
+            <fieldset id="fieldset_identificacao" class="form_fieldset">
+               <legend class="form_legend">Identificação</legend>
 
-               <div class="div-name">
-                  <label class="input-legend">Nome</label>
-                  <input id="nome" class="form-input" type="text" placeholder="Nome completo" />
+               <div class="div_name">
+                  <label class="input_legend">Nome</label>
+                  <input id="nome" class="form_input" type="text" placeholder="Nome completo" />
                </div>
 
-               <section class="setion-1-identification">
-                  <div class="div-identification">
-                     <label class="input-legend">CPF</label>
-                     <input id="cpf" type="text" class="form-input" placeholder="000.000.000-00"
+               <section class="setion_1_identification">
+                  <div class="div_identification">
+                     <label class="input_legend">CPF</label>
+                     <input id="cpf" type="text" class="form_input" placeholder="000.000.000-00"
                         oninput="autoincremento(this, 'CPF')" />
 
-                     <label class="input-legend">Data de Nascimento</label>
-                     <input id="nascimento" class="form-input" type="date" placeholder="__/__/____" />
+                     <label class="input_legend">Data de Nascimento</label>
+                     <input id="nascimento" class="form_input" type="date" placeholder="__/__/____" />
 
-                     <label class="input-legend">Sexo</label><br>
-                     <input id="sex_masc" class="form-radio" type="radio" name="sexo">
-                     <label class="label-sexo" for="sex_masc">Mascolino</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                     <input id="sex_fem" class="form-radio" type="radio" name="sexo">
-                     <label class="label-sexo" for="sex_fem">Feminino</label>
+                     <label class="input_legend">Sexo</label><br>
+                     <input id="sex_masc" class="form_radio" type="radio" name="sexo">
+                     <label class="label_sexo" for="sex_masc">Mascolino</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                     <input id="sex_fem" class="form_radio" type="radio" name="sexo">
+                     <label class="label_sexo" for="sex_fem">Feminino</label>
                   </div>
 
-                  <div class="div-identification">
-                     <label class="input-legend">Estado Civil</label>
-                     <select name="estado_civil" id="estado_civil" class="form-select">
+                  <div class="div_identification">
+                     <label class="input_legend">Estado Civil</label>
+                     <select name="estado_civil" id="estado_civil" class="form_select">
                         <option value="solt" selected>Solteiro(a)</option>
                         <option value="casad">Casado(a)</option>
                         <option value="divor">Divorciado(a)</option>
                      </select>
 
-                     <label class="input-legend">Celular</label>
-                     <input id="celular" class="form-input" type="tel" placeholder="(00) 0 0000 - 0000"
+                     <label class="input_legend">Celular</label>
+                     <input id="celular" class="form_input" type="tel" placeholder="(00) 0 0000 - 0000"
                         oninput="autoincremento(this, 'CEL')" />
 
-                     <label class="input-legend">E-mail</label>
-                     <input id="email" class="form-input" type="email" placeholder="seu.email@mail.com" />
+                     <label class="input_legend">E-mail</label>
+                     <input id="email" class="form_input" type="email" placeholder="seu.email@mail.com" />
                   </div>
                </section>
             </fieldset>
 
-            <fieldset id="fieldset-endereco" class="form-fieldset">
-               <legend class="form-legend">Endereço</legend>
+            <fieldset id="fieldset_endereco" class="form_fieldset">
+               <legend class="form_legend">Endereço</legend>
 
-               <div class="div-name">
-                  <label class="input-legend">Logradouro</label>
-                  <input id="logradouro" class="form-input" type="text" placeholder="Rua, Avenida, Travessa..." />
+               <div class="div_name">
+                  <label class="input_legend">Logradouro</label>
+                  <input id="logradouro" class="form_input" type="text" placeholder="Rua, Avenida, Travessa..." />
                </div>
 
-               <section class="setion-1-address">
-                  <div class="div-address">
-                     <label class="input-legend">CEP</label>
-                     <input id="cep" class="form-input" type="text" placeholder="00000-000"
+               <section class="setion_1_address">
+                  <div class="div_address">
+                     <label class="input_legend">CEP</label>
+                     <input id="cep" class="form_input" type="text" placeholder="00000-000"
                         oninput="autoincremento(this, 'CEP')" />
 
-                     <label class="input-legend">Número</label>
-                     <input id="numero" class="form-input" type="number" placeholder="Número da residência" />
+                     <label class="input_legend">Número</label>
+                     <input id="numero" class="form_input" type="number" placeholder="Número da residência" />
 
-                     <label class="input-legend">Complemento</label>
-                     <input id="complemento" class="form-input" type="text"
+                     <label class="input_legend">Complemento</label>
+                     <input id="complemento" class="form_input" type="text"
                         placeholder="Casa, Apartamento, próximo há..." />
                   </div>
 
-                  <div class="div-address">
-                     <label class="input-legend">Estado</label>
-                     <select name="estados" id="estados" class="form-select">
+                  <div class="div_address">
+                     <label class="input_legend">Estado</label>
+                     <select name="estados" id="estados" class="form_select">
                         <optgroup label="Região Sudeste">
                            <option value="MG" selected>Minas Gerais</option>
                            <!-- "selected" deixa a opçaõ de minas gerais maracada automaticamente-->
@@ -176,10 +173,10 @@
                         </optgroup>
                      </select>
 
-                     <label class="input-legend">Cidade</label>
-                     <input id="cidade" class="form-input" type="text" placeholder="Cidade" />
-                     <label class="input-legend">Bairro</label>
-                     <input id="bairro" class="form-input" type="text" placeholder="Bairro" />
+                     <label class="input_legend">Cidade</label>
+                     <input id="cidade" class="form_input" type="text" placeholder="Cidade" />
+                     <label class="input_legend">Bairro</label>
+                     <input id="bairro" class="form_input" type="text" placeholder="Bairro" />
                   </div>
                </section>
             </fieldset>
