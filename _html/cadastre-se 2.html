@@ -5,10 +5,10 @@
    <meta name="author" content="Ramon Valverde" />
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <title>Login</title>
+   <title>Cadastre-se</title>
    <link rel="icon" href="../_images/Icone_Planta_03.png">
    <link rel="stylesheet" type="text/css" href="../_css/estilos.css">
-   <link rel="stylesheet" type="text/css" href="../_css/login.css">
+   <link rel="stylesheet" type="text/css" href="../_css/contato.css">
    <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css">
    <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
    <script language="JavaScript" src="../_javascript/script.js" defer></script>
@@ -17,7 +17,7 @@
    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
-<body id="login">
+<body id="cadastre-se">
 
    <!-- Menu -->
    <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -45,6 +45,7 @@
                   </ul>
                </li>
                <li class="nav-item active"><a class="nav-link" href="forum.html">Forum</a></li>
+               <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
             </ul>
             <!-- 
             <form class="d-flex" role="search">
@@ -56,24 +57,61 @@
       </div>
    </nav>
 
-   <main class="login">
-      <div id="login_interface">
-         <h1 class="login_title">Degite suas credenciais de acesso!</h1>
-         <form name="formulario_login" onsubmit="return false;">
-            <fieldset id="fieldset_login" class="form_fieldset">
-               <input id="email" class="form_input" type="text" placeholder="Digite seu email">
-               <input id="senha" class="form_input" type="password" placeholder="Digite a senha">
-            </fieldset>
-            <footer id="btn_cadastrar">
-               <button class="botoes" type="button" onclick="login()">Entrar</button>
-               <a class="botoes" href="cadastre-se 2.html">Cadastrar</a>
-            </footer>
-         </form>
-         <p id="mensagem" class="message_successful"></p>
-      </div>
-   </main>
+   <main class="cadastro">
 
-   <div class="espaco"></div>
+
+      <form id="formulario" onsubmit="return false;">
+         <label>Nome Completo:</label>
+         <input id="nome" type="text" placeholder="Digite seu nome completo..." required>
+         <p id="nome_feedback" class="feedback"></p>
+
+         <label>Data de Nascimento:</label>
+         <input id="nascimento" type="date" placeholder="dd/mm/aaaa" required>
+         <p id="nascimento_feedback" class="feedback"></p>
+
+         <label>CPF:</label>
+         <input id="cpf" type="text" placeholder="000.000.000-00" oninput="autoincremento(this, 'CPF')" required>
+         <p id="cpf_feedback" class="feedback"></p>
+
+         <label>Sexo:</label>
+         <div id="div_sexo">
+             <input type="radio" name="sexo" id="masculino" value="Masculino" required>
+             <label for="masculino">Masculino</label>
+             <input type="radio" name="sexo" id="feminino" value="Feminino" required>
+             <label for="feminino">Feminino</label>
+         </div>
+         <p id="sexo_feedback" class="feedback"></p>
+
+         <label>Celular:</label>
+         <input id="celular" type="tel" placeholder="(00) 00000 - 0000" oninput="autoincremento(this, 'CEL')"
+             required>
+         <p id="celular_feedback" class="feedback"></p>
+
+         <label>E-Mail:</label>
+         <input id="e-mail" type="email" placeholder="seu.email@mail.com" required>
+         <p id="email_feedback" class="feedback"></p>
+
+         <label>Senha:</label>
+         <input id="senha" type="password" placeholder="Crie uma senha" required>
+         <p id="senha_feedback" class="feedback"></p>
+
+
+         <label>Endereço Completo:</label>
+         <input id="endereco" type="text" placeholder="Logradouro, Numero - Bairro, Cidade" required>
+         <p id="endereco_feedback" class="feedback"></p>
+
+         <label>CEP:</label>
+         <input id="cep" type="text" placeholder="00000-000" oninput="autoincremento(this, 'CEP')" required>
+         <p id="cep_feedback" class="feedback"></p>
+
+         <div id="btn_verificar">
+            <button id="btn_cadastrar" class="botoes" type="button" onclick="cadastrar()">Cadastrar</button>
+         </div>
+     </form>
+     <p id="mensagem"></p>
+
+      
+   </main>
 
    <!-- Rodapé -->
    <footer class="assinatura">
@@ -83,4 +121,5 @@
    </footer>
 
 </body>
+
 </html>

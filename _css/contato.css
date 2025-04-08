@@ -22,6 +22,14 @@ h1.cadastro_title {
    text-align: center;
 }
 
+legend.form_legend {
+   margin-top: 30px;
+   margin-bottom: -10px;
+   font-size: 24px;
+   font-weight: bold;
+   color: rgb(45, 62, 81);
+}
+
 fieldset#fieldset_contato {
    margin-top: 15px;
 }
@@ -34,14 +42,6 @@ div#cadastro_interface {
 div#contato_interface {
    width: 40%;
    animation: slideIn 1s ease-out forwards;
-}
-
-legend.form_legend {
-   margin-top: 30px;
-   margin-bottom: -10px;
-   font-size: 24px;
-   font-weight: bold;
-   color: rgb(45, 62, 81);
 }
 
 input.form_input,
@@ -144,18 +144,19 @@ button#btn_cadastrar:hover {
    cursor: pointer;
 }
 
-div.div_name {
-   padding: 0 2%;
-}
-
 section.setion_1_identification {
    display: flex;
    justify-content: left;
    flex-direction: row;
 }
 
-div.div_identification {
+div.div_column {
    width: 50%;
+   padding: 0 2%;
+}
+
+div.div_column_2 {
+   width: 100%;
    padding: 0 2%;
 }
 
@@ -165,16 +166,27 @@ section.setion_1_address {
    flex-direction: row;
 }
 
-div.div_address {
-   width: 50%;
-   padding: 0 2%;
-}
-
 div.espaco {
    height: 7vh;
 }
 
+.pass {
+   color: green;
+   font-size: 10pt;
+   word-break: break-all;
+   border-radius: 10px;
+   padding: 5px 10px;
+   margin-bottom: -10pt;
+}
 
+.fail {
+   color: red;
+   font-size: 10pt;
+   word-break: break-all;
+   border-radius: 10px;
+   padding: 5px 10px;
+   margin-bottom: -10pt;
+}
 
 /* --------------------------- CORREÇÃO DE RESPONSIVIDADE --------------------------- */
 

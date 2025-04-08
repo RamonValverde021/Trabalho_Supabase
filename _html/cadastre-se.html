@@ -12,8 +12,9 @@
    <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css">
    <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
    <script language="JavaScript" src="../_javascript/script.js" defer></script>
-   <script language="JavaScript" src="../_javascript/cadastre-se.js" defer></script>
+   <script language="JavaScript" src="../_javascript/login.js" defer></script>
    <script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js" defer></script>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body id="cadastre-se">
@@ -57,82 +58,100 @@
    </nav>
 
    <main class="cadastro">
-
       <div id="cadastro_interface">
+         <h1 class="cadastro_title">Preencha com suas informações pessoais</h1>
 
-         <h1 class="cadastro_title">
-            Preencha com suas informações pessoais
-         </h1>
-         
-         <form name="formulario_alunos" method="post" onsubmit="envia_formulario(event);" action=" ">
+         <form name="formulario_alunos" onsubmit="return false;">
+
+            <fieldset id="fieldset_login" class="form_fieldset">
+               <legend class="form_legend">Login</legend>
+               
+               <div class="div_column_2">
+                  <label class="input_legend">E-mail</label>
+                  <input id="email" class="form_input" type="email" placeholder="seu.email@mail.com" required>
+                  <p id="email_feedback" class="feedback"></p>
+
+                  <label class="input_legend">Senha:</label>
+                  <input id="senha" class="form_input" type="password" placeholder="Crie uma senha" required>
+                  <p id="senha_feedback" class="feedback"></p>
+               </div>
+            </fieldset>
 
             <fieldset id="fieldset_identificacao" class="form_fieldset">
                <legend class="form_legend">Identificação</legend>
 
-               <div class="div_name">
-                  <label class="input_legend">Nome</label>
-                  <input id="nome" class="form_input" type="text" placeholder="Nome completo" />
-               </div>
-
                <section class="setion_1_identification">
-                  <div class="div_identification">
-                     <label class="input_legend">CPF</label>
-                     <input id="cpf" type="text" class="form_input" placeholder="000.000.000-00"
-                        oninput="autoincremento(this, 'CPF')" />
+                  <div class="div_column">
+                     <label class="input_legend">Nome:</label>
+                     <input id="nome" class="form_input" type="text" placeholder="Digite seu nome completo..." required>
+                     <p id="nome_feedback" class="feedback"></p>
 
-                     <label class="input_legend">Data de Nascimento</label>
-                     <input id="nascimento" class="form_input" type="date" placeholder="__/__/____" />
+                     <label class="input_legend">Celular:</label>
+                     <input id="celular" class="form_input" type="tel" placeholder="(00) 0 0000 - 0000"
+                        oninput="autoincremento(this, 'CEL')" required>
+                     <p id="celular_feedback" class="feedback"></p>
 
-                     <label class="input_legend">Sexo</label><br>
-                     <input id="sex_masc" class="form_radio" type="radio" name="sexo">
-                     <label class="label_sexo" for="sex_masc">Mascolino</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                     <input id="sex_fem" class="form_radio" type="radio" name="sexo">
-                     <label class="label_sexo" for="sex_fem">Feminino</label>
+                     <label class="input_legend">Estado Civil:</label>
+                     <select name="estado_civil" id="estado_civil" class="form_select" required>
+                        <option value="Solteiro" selected>Solteiro(a)</option>
+                        <option value="Casado">Casado(a)</option>
+                        <option value="Divorciado">Divorciado(a)</option>
+                     </select>
+                     <p id="estado_civil_feedback" class="feedback"></p>
                   </div>
 
-                  <div class="div_identification">
-                     <label class="input_legend">Estado Civil</label>
-                     <select name="estado_civil" id="estado_civil" class="form_select">
-                        <option value="solt" selected>Solteiro(a)</option>
-                        <option value="casad">Casado(a)</option>
-                        <option value="divor">Divorciado(a)</option>
-                     </select>
+                  <div class="div_column">
+                     <label class="input_legend">CPF:</label>
+                     <input id="cpf" type="text" class="form_input" placeholder="000.000.000-00"
+                        oninput="autoincremento(this, 'CPF')" required>
+                     <p id="cpf_feedback" class="feedback"></p>
 
-                     <label class="input_legend">Celular</label>
-                     <input id="celular" class="form_input" type="tel" placeholder="(00) 0 0000 - 0000"
-                        oninput="autoincremento(this, 'CEL')" />
+                     <label class="input_legend">Data de Nascimento:</label>
+                     <input id="nascimento" class="form_input" type="date" placeholder="dd/mm/aaaa" required>
+                     <p id="nascimento_feedback" class="feedback"></p>
 
-                     <label class="input_legend">E-mail</label>
-                     <input id="email" class="form_input" type="email" placeholder="seu.email@mail.com" />
+                     <label class="input_legend">Sexo:</label><br>
+                     <input id="masculino" class="form_radio" type="radio" name="sexo" value="Masculino">
+                     <label class="label_sexo" for="masculino">Mascolino</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                     <input id="feminino" class="form_radio" type="radio" name="sexo" value="Feminino">
+                     <label class="label_sexo" for="feminino">Feminino</label>
+                     <p id="sexo_feedback" class="feedback"></p>
                   </div>
                </section>
             </fieldset>
 
             <fieldset id="fieldset_endereco" class="form_fieldset">
                <legend class="form_legend">Endereço</legend>
-
-               <div class="div_name">
-                  <label class="input_legend">Logradouro</label>
-                  <input id="logradouro" class="form_input" type="text" placeholder="Rua, Avenida, Travessa..." />
+               <div class="div_column_2">
+                  <div class="div_name">
+                     <label class="input_legend">Logradouro:</label>
+                     <input id="logradouro" class="form_input" type="text" placeholder="Rua, Avenida, Travessa..."
+                        required>
+                     <p id="logradouro_feedback" class="feedback"></p>
+                  </div>
                </div>
 
                <section class="setion_1_address">
-                  <div class="div_address">
-                     <label class="input_legend">CEP</label>
+                  <div class="div_column">
+                     <label class="input_legend">CEP:</label>
                      <input id="cep" class="form_input" type="text" placeholder="00000-000"
-                        oninput="autoincremento(this, 'CEP')" />
+                        oninput="autoincremento(this, 'CEP')" required>
+                     <p id="cep_feedback" class="feedback"></p>
 
-                     <label class="input_legend">Número</label>
-                     <input id="numero" class="form_input" type="number" placeholder="Número da residência" />
+                     <label class="input_legend">Número:</label>
+                     <input id="numero_casa" class="form_input" type="number" placeholder="Número da residência"
+                        required>
+                     <p id="numero_casa_feedback" class="feedback"></p>
 
-                     <label class="input_legend">Complemento</label>
+                     <label class="input_legend">Complemento:</label>
                      <input id="complemento" class="form_input" type="text"
-                        placeholder="Casa, Apartamento, próximo há..." />
+                        placeholder="Casa, Apartamento, próximo há..." required>
+                     <p id="complemento_feedback" class="feedback"></p>
                   </div>
 
-                  <div class="div_address">
-                     <label class="input_legend">Estado</label>
-                     <select name="estados" id="estados" class="form_select">
+                  <div class="div_column">
+                     <label class="input_legend">Estado:</label>
+                     <select name="estados" id="estado" class="form_select" required>
                         <optgroup label="Região Sudeste">
                            <option value="MG" selected>Minas Gerais</option>
                            <!-- "selected" deixa a opçaõ de minas gerais maracada automaticamente-->
@@ -176,20 +195,28 @@
                            <option value="SE">Sergipe</option>
                         </optgroup>
                      </select>
+                     <p id="estado_feedback" class="feedback"></p>
 
-                     <label class="input_legend">Cidade</label>
-                     <input id="cidade" class="form_input" type="text" placeholder="Cidade" />
-                     <label class="input_legend">Bairro</label>
-                     <input id="bairro" class="form_input" type="text" placeholder="Bairro" />
+                     <label class="input_legend">Cidade:</label>
+                     <input id="cidade" class="form_input" type="text" placeholder="Cidade" required>
+                     <p id="cidade_feedback" class="feedback"></p>
+
+                     <label class="input_legend">Bairro:</label>
+                     <input id="bairro" class="form_input" type="text" placeholder="Bairro" required>
+                     <p id="bairro_feedback" class="feedback"></p>
                   </div>
                </section>
             </fieldset>
 
             <footer id="btn_cadastrar">
-               <button href="obrigado.html" id="btn_cadastrar">Cadastrar</button>
+               <button id="btn_cadastrar" class="botoes" type="submit" onclick="cadastrar()">Cadastrar</button>
             </footer>
-
          </form>
+         <p id="mensagem"></p>
+         
+         <span>Cadastro realizado com sucesso!</span>
+            <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" target="_blank" class="links">Confirme em seu email</a>
+
       </div>
    </main>
 
@@ -201,4 +228,5 @@
    </footer>
 
 </body>
+
 </html>
