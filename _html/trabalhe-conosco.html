@@ -43,7 +43,8 @@
                   </ul>
                </li>
                <li class="nav-item active"><a class="nav-link" href="forum.html">Forum</a></li>
-               <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
+               <li class="nav-item active"><a class="nav-link" href="login.html" id="menu_login" style="display: block;">Login</a></li>
+               <li class="nav-item active"><a class="nav-link" href="minha_conta.html" id="menu_conta" style="display: none;">Sua Conta</a></li>
             </ul>
             <!-- 
             <form class="d-flex" role="search">
@@ -67,13 +68,13 @@
             <fieldset id="fieldset_identificacao" class="form_fieldset">
                <legend class="form_legend">Identificação</legend>
 
-               <div class="div_name">
+               <div class="div_column_2">
                   <label class="input_legend">Nome</label>
                   <input id="nome" class="form_input" type="text" placeholder="Nome completo" />
                </div>
 
                <section class="setion_1_identification">
-                  <div class="div_identification">
+                  <div class="div_column">
                      <label class="input_legend">CPF</label>
                      <input id="cpf" class="form_input" type="text" placeholder="000.000.000-00"
                         oninput="autoincremento(this, 'CPF')" />
@@ -88,7 +89,7 @@
                      <label class="label_sexo" for="sex_fem">Feminino</label>
                   </div>
 
-                  <div class="div_identification">
+                  <div class="div_column">
                      <label class="input_legend">Estado Civil</label>
                      <select name="estado_civil" class="form_select" id="estado_civil">
                         <option value="solt" selected>Solteiro(a)</option>
@@ -109,13 +110,13 @@
             <fieldset id="endereco" class="form_fieldset">
                <legend class="form_legend">Endereço</legend>
 
-               <div class="div_name">
+               <div class="div_column_2">
                   <label class="input_legend">Logradouro</label>
                   <input id="logradouro" class="form_input" type="text" placeholder="Rua, Avenida, Travessa..." />
                </div>
 
                <section class="setion_1_address">
-                  <div class="div_address">
+                  <div class="div_column">
                      <label class="input_legend">CEP</label>
                      <input id="cep" class="form_input" type="text" placeholder="00000-000"
                         oninput="autoincremento(this, 'CEP')" />
@@ -128,7 +129,7 @@
                         placeholder="Casa, Apartamento, próximo há..." />
                   </div>
 
-                  <div class="div_address">
+                  <div class="div_column">
                      <label class="input_legend">Estado</label>
                      <select name="estados" id="estados" class="form_select">
                         <optgroup label="Região Sudeste">
@@ -186,7 +187,7 @@
             </fieldset>
             <fieldset id="competencias" class="form_fieldset">
                <legend class="form_legend">Competências</legend>
-               <div class="div_name">
+               <div class="div_column_2">
                   <label class="input_legend">Formação</label>
                   <input id="formacao" class="form_input" type="text" placeholder="Formação" />
                   <label class="input_legend">Titulação</label>
