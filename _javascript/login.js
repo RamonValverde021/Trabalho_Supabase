@@ -371,7 +371,7 @@ async function cadastrar() {
             "Erro: " + error.message;
     } else {
         document.getElementById("mensagem").innerHTML =
-            `<span>Cadastro realizado com sucesso!</span>
-            <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" target="_blank" class="links">Confirme em seu email</a>`;
+            `<span class="message_progress">Cadastro realizado com sucesso!</span>
+         <a class="your_email" href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" target="_blank" class="links">Confirme em seu email!</a>`;
     }
 }
