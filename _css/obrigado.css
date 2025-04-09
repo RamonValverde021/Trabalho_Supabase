@@ -24,25 +24,39 @@ h1 {
 }
 
 p {
+    display: inline-block;
     font-size: 20pt;
     padding: 10pt;
     margin-bottom: 1%;
 }
 
-a {
+a.botao {
+    display: inline-block;
     text-decoration: none;
     font-weight: 600;
     padding: 10pt;
-    margin: 10pt;
+    margin-top: 10px;
     color: white;
     background-color: rgb(45, 62, 81);
     border-radius: 10px;
 }
 
-a:hover {
+a.botao:hover {
     color: rgb(45, 62, 81);
     font-weight: 600;
     background-color: white;
     border: 3px rgb(45, 62, 81) solid;
     transition-duration: 0.4s;
 }
+
+a.your_email{
+    display: inline-block;
+    text-decoration: none;
+    font-style: italic;
+    font-size: 18pt;
+    color: blue;
+ }
+
+ a.your_email:hover {
+    color: DeepSkyBlue;
+ }

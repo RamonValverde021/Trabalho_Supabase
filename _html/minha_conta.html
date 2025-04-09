@@ -45,8 +45,8 @@
                   </ul>
                </li>
                <li class="nav-item active"><a class="nav-link" href="forum.html">Forum</a></li>
-               <li class="nav-item active"><a class="nav-link" href="login.html" id="menu_login" style="display: none;">Login</a></li>
-               <li class="nav-item active"><a class="nav-link" href="minha_conta.html" id="menu_conta" style="display: none;">Sua Conta</a></li>
+               <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login</a></li>
+               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta</a></li>
             </ul>
             <!-- 
             <form class="d-flex" role="search">
@@ -59,8 +59,9 @@
    </nav>
 
    <main class="minha_conta">
+      <button class="botoes" type="button" onclick="logout()">Sair</button>
 
-
+      <p id="data_user"></p>
    </main>
 
    <div class="espaco"></div>

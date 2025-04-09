@@ -1,7 +1,3 @@
-const supabaseUrl = "https://yfslzbsaazkvofzjbkyk.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlmc2x6YnNhYXprdm9mempia3lrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM1MDk1OTMsImV4cCI6MjA1OTA4NTU5M30.jlxk0LcLeuF60iV540i0eHHCrf43MIYXTTSKfTOCM-s";
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
 // Flags booleanas de confirmação
 let okEmail, okSenha, okNome, okCelular, okEstado_civil, okCPF, okIdade, okSexo, okLogradouro, okCEP, okNumero_casa, okComplemento, okEstado, okCidade, okBairro = false;
 
@@ -337,8 +333,9 @@ async function cadastrar() {
         document.getElementById("mensagem").innerText =
             "Erro: " + error.message;
     } else {
-        document.getElementById("mensagem").innerHTML =
-            `<span class="message_progress">Cadastro realizado com sucesso!</span>
-         <a class="your_email" href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" target="_blank" class="links">Confirme em seu email!</a>`;
+        document.getElementById("mensagem").innerText = "Tudo certo!"
+        setTimeout(() => {
+            window.location.href = "obrigado.html";
+        }, 2000);
     }
 }

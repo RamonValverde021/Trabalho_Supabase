@@ -49,6 +49,15 @@ li.menu_item:hover {
    border: 2px white solid;
    transition-duration: 0.4s;
 }
+
+.menu_visible {
+   display: block;
+}
+
+.menu_hide {
+   display: none;
+}
+
 /*------------------------ Formatação Rpdapé ------------------------*/
 
 footer.assinatura {

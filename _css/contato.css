@@ -154,12 +154,6 @@ span.message_progress {
    margin-bottom: 20px;
 }
 
-a.your_email{
-   text-decoration: none;
-   font-style: italic;
-   font-size: 20px;
-}
-
 section.setion_1_identification {
    display: flex;
    justify-content: left;
