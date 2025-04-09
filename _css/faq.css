@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+div.espaco {
+    height: 200px;
+}
+
+/* Estilização - perguntas frequentes*/
+/* Limita o conteúdo centralizado em 1900px */
+.container {
+  max-width: 1900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Título principal */
+.container > h1 {
+  text-align:left;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.pergutas {
+    max-width: 1900px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os blocos */
+  }
+  
+  .pergutas > div {
+    flex: 1 1 30%;
+    min-width: 200px;
+    max-width: 80%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  
+  .pergutas h1 {
+    font-size:0.1;
+    margin-bottom: 1rem;
+  }
+  
+  .pergutas p {
+    font-size: 1rem;
+    color: #333;
+  }
+
+/* Estilicação botão*/
+.container_1 {
+    width: 100%;
+    max-width: 1900px;
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+  }
+
+  .adicionar {
+    background: linear-gradient(135deg, #a8e063, #02fd38); /* tons de verde */
+    padding: 20px 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .adicionar a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .adicionar h2 {
+    margin: 0;
+  }
+
+  .btn-primary {
+    font-size: 18px;
+    padding: 12px 24px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
