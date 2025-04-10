@@ -5,7 +5,7 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // Checa se o usuário está logado quando a página carrega
 window.addEventListener('DOMContentLoaded', async () => {
-    const { data: { user } } = await supabase.auth.getUser()
+    const { data: { user } } = await supabase.auth.getUser();
     if (user) {
         mostrarMenuConta(user);
     } else {
