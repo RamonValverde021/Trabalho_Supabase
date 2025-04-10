@@ -1,4 +1,5 @@
 /*-- LISTANDO TODOS OS ITENS DA TABELA --*/
+
 async function fetchTabelaTeste() {
     const { data, error } = await supabase         // "await" A chamada é assíncrona. O código “pausa” aqui até receber resposta do Supabase.
         .from('tabela_teste')                      // Indica a tabela do banco que vamos consultar.
@@ -48,10 +49,9 @@ window.addEventListener('DOMContentLoaded', fetchTabelaTeste); //
 */
 
 
-
 /*-- INCREMENTANDO TABELA --*/
 
-// 2. Seleciona elementos do DOM
+// Seleciona elementos do DOM
 const form = document.getElementById('form-adicionar');
 const feedback = document.getElementById('feedback');
 
@@ -61,7 +61,7 @@ form.addEventListener('submit', async (e) => {                     // Adiciona l
 
     // Leitura dos valores - Extrai valores dos campos
     const nome = document.getElementById('nome').value.trim();     // .trim(): remove espaços extras.
-    const preco = document.getElementById('preco').value.trim();
+    const preco = document.getElementById('preco').value;
 
     // Inserção com Supabase - Chama o Supabase para inserir
     const { data, error } = await supabase
@@ -89,3 +89,75 @@ form.addEventListener('submit', async (e) => {                     // Adiciona l
 });
 
 
+/*-- MODIFICANDO ITEM DA TABELA --*/
+
+  const formEditar = document.getElementById('form-editar');
+  const feedbackEditar = document.getElementById('feedback-editar');
+
+  formEditar.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // 1. Extrai ID, novo nome e novo preço
+    const id = document.getElementById('id-editar').value.trim();
+    const novoNome = document.getElementById('nome-editar').value.trim();
+    const novoPreco = document.getElementById('preco-editar').value;
+
+    // Chamada de update - Chama o Supabase para atualizar
+    const { data, error } = await supabase
+      .from('tabela_teste')
+      .update({ nome: novoNome, preco: novoPreco })   // objeto com os campos e novos valores - campos a serem alterados
+      .eq('id', id);                                  // adiciona WHERE id = '...' à query - WHERE id = '...'
+
+    // Tratamento de erro
+    if (error) {
+      console.error('Erro ao atualizar:', error);
+      feedbackEditar.textContent = `Erro: ${error.message}`;
+      feedbackEditar.style.color = 'red';
+      return;
+    }
+
+    // Feedback de sucesso
+    feedbackEditar.textContent = 'Registro atualizado com sucesso! 🎉';
+    feedbackEditar.style.color = 'green';
+    formEditar.reset();
+
+    // Atualizar a listagem
+    fetchTabelaTeste(); // Função no começo da pagina aonde lista os itens da tabela
+  });
+
+
+ /*-- EXCLUINDO DADOS DA TABELA --*/
+
+  // 2. Seleciona elementos
+  const formExcluir = document.getElementById('form-excluir');
+  const feedbackExcluir = document.getElementById('feedback-excluir');
+
+  // 3. Listener de submit
+  formExcluir.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // 4. Pega o ID
+    const id = document.getElementById('id-excluir').value.trim();
+
+    // 5. Chama o Supabase para deletar
+    const { data, error } = await supabase
+      .from('tabela_teste')
+      .delete()           // operação DELETE
+      .eq('id', id);       // WHERE id = '...'
+
+    // 6. Trata erro
+    if (error) {
+      console.error('Erro ao excluir:', error);
+      feedbackExcluir.textContent = `Erro: ${error.message}`;
+      feedbackExcluir.style.color = 'red';
+      return;
+    }
+
+    // 7. Sucesso
+    feedbackExcluir.textContent = 'Registro excluído com sucesso! 🗑️';
+    feedbackExcluir.style.color = 'green';
+    formExcluir.reset();
+
+    // 8. (Opcional) Atualiza a lista
+    fetchTabelaTeste();
+  });
