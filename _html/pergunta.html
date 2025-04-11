@@ -5,19 +5,19 @@
    <meta name="author" content="Ramon Valverde" />
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <title>Minha Conta</title>
+   <title>Pergunta</title>
    <link rel="icon" href="../_images/Icone_Planta_03.png">
    <link rel="stylesheet" type="text/css" href="../_css/estilos.css">
-   <link rel="stylesheet" type="text/css" href="../_css/minha_conta.css">
+   <link rel="stylesheet" type="text/css" href="../_css/pergunta.css">
    <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css">
    <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
    <script language="JavaScript" src="../_javascript/script.js" defer></script>
-   <script language="JavaScript" src="../_javascript/minha_conta.js" defer></script>
-   <script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js" defer></script>
+   <script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+   <script language="JavaScript" src="../_javascript/pergunta.js" defer></script>
    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
-<body id="minha_conta">
+<body>
 
    <!-- Menu -->
    <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -40,14 +40,14 @@
                      Contato
                   </a>
                   <ul class="dropdown-menu">
-                     <li><a class="nav-link-dropdown" href="contato.html">Contato</a></li>
                      <li><a class="nav-link-dropdown" href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
                   </ul>
                </li>
                <li class="nav-item active"><a class="nav-link" href="faq.html">FAQ</a></li>
                <li class="nav-item active"><a class="nav-link" href="forum.html">Forum</a></li>
                <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login</a></li>
-               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta</a></li>
+               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta</a>
+               </li>
             </ul>
             <!-- 
             <form class="d-flex" role="search">
@@ -59,13 +59,30 @@
       </div>
    </nav>
 
-   <main class="minha_conta">
-      <button class="botoes" type="button" onclick="logout()">Sair</button>
+   <main class="pergunta" style="padding: 2%;">
 
-      <p id="data_user"></p>
+      <h1 id="titulo-pergunta">Carregando pergunta...</h1>
+      <p id="texto-pergunta"></p>
+
+      <h2>Respostas</h2>
+      <div id="lista-respostas">
+         <p>Carregando respostas...</p>
+      </div>
+
+      <div id="form-container">
+         <p id="login-msg" style="display:none;">Você precisa estar <a href="login.html">logado</a> para responder.</p>
+
+         <form id="form-resposta" style="display:none;">
+            <label for="resposta">Sua resposta:</label><br>
+            <textarea id="resposta" rows="4" required></textarea><br>
+            <button type="submit">Enviar resposta</button>
+            <p id="feedback-resposta"></p>
+         </form>
+      </div>
+
+
    </main>
 
-   <div class="espaco"></div>
 
    <!-- Rodapé -->
    <footer class="assinatura">
@@ -75,4 +92,5 @@
    </footer>
 
 </body>
+
 </html>

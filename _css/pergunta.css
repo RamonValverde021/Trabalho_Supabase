@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+main#pergunta {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.resposta {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+}
+
+textarea {
+    width: 100%;
+}
+
+#form-resposta {
+    margin-top: 2rem;
+}
+
+#login-msg {
+    color: red;
+}
