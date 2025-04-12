@@ -5,35 +5,37 @@ const cancelForm = document.getElementById('cancel-form');       // botão “Ca
 
 // 2) Função para carregar tópicos + contagem de respostas
 async function loadTopics() {
-  // Busca todas as perguntas
   const { data: perguntas, error } = await supabase
-    .from('perguntas')                          // escolhe a tabela.
-    .select(`id_perguntas, titulo, 
-             respostas:respostas(count)`)       // faz um join implícito na tabela answers, renomeando como answers e contando quantos registros existem (count).
-    .order('criado_em', { ascending: false });  // ordena da pergunta mais recente para a mais antiga.
+  .from('perguntas_com_respostas')                              // acessa a view no banco.
+  .select('*')                                                  // seleciona todas as colunas disponíveis na view (id_perguntas, titulo, criado_em, total_respostas).
+  .order('criado_em', { ascending: false });                    // ordena os resultados do mais recente para o mais antigo (descendente).
+  /*
+    O resultado vem como um objeto com dois campos:
+    data → os dados da consulta (renomeado aqui para perguntas)
+    error → erro, se houver algum
+  */
 
+  // Se houver algum erro na consulta, mostra no console e interrompe a função.
+  // Isso evita que o restante do código tente renderizar dados inexistentes (undefined).
   if (error) {
-    console.error(error); // se error existir, exibe no console e interrompe.
+    console.error(error);
     return;
   }
 
-  // Renderização: limpa o <tbody> e, para cada pergunta, cria um <tr> com:
-  // um link para a página de detalhes (pergunta.html?id=...) usando o id.
-  // a quantidade de respostas (q.answers.count).
-  tableBody.innerHTML = '';
-  perguntas.forEach(p => {
-    const tr = document.createElement('tr');
+  // Inicia um laço (for...of) que percorre cada pergunta recebida do Supabase.
+  for (const p of perguntas) {                                 // Cada item p representa uma pergunta individual, com seus campos vindos da view.
+    const tr = document.createElement('tr');                   // Cria um novo elemento HTML <tr> (linha de tabela) para exibir a pergunta.
     tr.innerHTML = `
       <td><a href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a></td>
-      <td style="text-align:center;">${p.respostas.count}</td>
-    `;
-    tableBody.appendChild(tr);
-  });
+      <td style="text-align:center;">${p.total_respostas}</td>
+    `; // Define o conteúdo dessa linha:
+    tableBody.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tableBody, que deve ser o <tbody> da tabela de tópicos).
+  }
 }
 
 // 3) Verifica autenticação para exibir botão “Faça uma pergunta”
-supabase.auth.onAuthStateChange((event, session) => {  // registra um callback que é chamado sempre que o usuário faz login ou logout.
-  if (session && session.user) {                       // Se existir session.user, mostramos o botão de perguntar. Caso contrário, ocultamos o botão e também o formulário (caso estivesse aberto).
+supabase.auth.onAuthStateChange((event, session) => {          // registra um callback que é chamado sempre que o usuário faz login ou logout.
+  if (session && session.user) {                               // Se existir session.user, mostramos o botão de perguntar. Caso contrário, ocultamos o botão e também o formulário (caso estivesse aberto).
     askButton.style.display = 'block';
   } else {
     askButton.style.display = 'none';
@@ -42,24 +44,24 @@ supabase.auth.onAuthStateChange((event, session) => {  // registra um callback q
 });
 
 // 4) Exibe formulário ao clicar no botão
-askButton.addEventListener('click', () => {   // Exibe o <form> (askForm) e esconde o botão para evitar múltiplos cliques.
+askButton.addEventListener('click', () => {                    // Exibe o <form> (askForm) e esconde o botão para evitar múltiplos cliques.
   askForm.style.display = 'block';
   askButton.style.display = 'none';
 });
-cancelForm.addEventListener('click', () => {  // Fecha o form e volta a exibir o botão.
+cancelForm.addEventListener('click', () => {                   // Fecha o form e volta a exibir o botão.
   askForm.style.display = 'none';
   askButton.style.display = 'block';
 });
 
 // 5) Tratamento do envio do formulário
 askForm.addEventListener('submit', async (e) => {
-  e.preventDefault();                              // evita que o navegador faça reload.
-  const formData = new FormData(askForm);          // facilita leitura de todos os campos do form.
+  e.preventDefault();                                          // evita que o navegador faça reload.
+  const formData = new FormData(askForm);                      // facilita leitura de todos os campos do form.
   const titulo = formData.get('title');
   const texto = formData.get('body');
   const files = formData.getAll('files');
 
-  const { data: { user } } = await supabase.auth.getUser();  // Verifica se o usuário está logado
+  const { data: { user } } = await supabase.auth.getUser();    // Verifica se o usuário está logado
   if (!user) {
     alert('Faça login para postar.');
     return;
