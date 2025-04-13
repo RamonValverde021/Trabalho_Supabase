@@ -26,6 +26,8 @@ async function mostrarMenuConta(user) {
 
     if (user) {
         // Exibe os dados do usuário no console
+        console.log(`Usuário logado: ${user.email}`);
+        /*
         console.log(`
             ID: ${user.id} \n 
             Nome: ${user.user_metadata.nome} \n
@@ -42,5 +44,8 @@ async function mostrarMenuConta(user) {
             Número da casa: ${user.user_metadata.numero_casa} \n
             Complemento: ${user.user_metadata.complemento} \n
             CEP: ${user.user_metadata.cep}`);
+            */
+    } else {
+        console.log('Nenhum usuário logado');
     }
 }

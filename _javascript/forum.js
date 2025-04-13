@@ -6,9 +6,9 @@ const cancelForm = document.getElementById('cancel-form');       // botão “Ca
 // 2) Função para carregar tópicos + contagem de respostas
 async function loadTopics() {
   const { data: perguntas, error } = await supabase
-  .from('perguntas_com_respostas')                              // acessa a view no banco.
-  .select('*')                                                  // seleciona todas as colunas disponíveis na view (id_perguntas, titulo, criado_em, total_respostas).
-  .order('criado_em', { ascending: false });                    // ordena os resultados do mais recente para o mais antigo (descendente).
+    .from('perguntas_com_respostas')                              // acessa a view no banco.
+    .select('*')                                                  // seleciona todas as colunas disponíveis na view (id_perguntas, titulo, criado_em, total_respostas).
+    .order('criado_em', { ascending: false });                    // ordena os resultados do mais recente para o mais antigo (descendente).
   /*
     O resultado vem como um objeto com dois campos:
     data → os dados da consulta (renomeado aqui para perguntas)
@@ -22,9 +22,10 @@ async function loadTopics() {
     return;
   }
 
+
   // Inicia um laço (for...of) que percorre cada pergunta recebida do Supabase.
   for (const p of perguntas) {                                 // Cada item p representa uma pergunta individual, com seus campos vindos da view.
-    const tr = document.createElement('tr');                   // Cria um novo elemento HTML <tr> (linha de tabela) para exibir a pergunta.
+    const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><a href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a></td>
       <td style="text-align:center;">${p.total_respostas}</td>
@@ -53,7 +54,7 @@ cancelForm.addEventListener('click', () => {                   // Fecha o form e
   askButton.style.display = 'block';
 });
 
-// 5) Tratamento do envio do formulário
+// 5) Envia o formulário
 askForm.addEventListener('submit', async (e) => {
   e.preventDefault();                                          // evita que o navegador faça reload.
   const formData = new FormData(askForm);                      // facilita leitura de todos os campos do form.
@@ -67,36 +68,61 @@ askForm.addEventListener('submit', async (e) => {
     return;
   }
 
-  // 5.1) Cria a pergunta
+  let media_url = null;
+  let media_tipo = null;
+
+  // 5.1) Faz upload dos arquivos para o Storage
+  // Se houver arquivo, faz upload do primeiro
+  if (files.length > 0 && files[0].size > 0) {
+    const file = files[0];
+    const path = `perguntas/${crypto.randomUUID()}_${file.name}`;
+
+    const { error: upErr } = await supabase
+      .storage
+      .from('uploads')
+      .upload(path, file);
+
+    if (upErr) {
+      console.error('Erro no upload:', upErr);
+    } else {
+      const { data: urlData } = supabase
+        .storage
+        .from('uploads')
+        .getPublicUrl(path);
+
+      media_url = urlData.publicUrl;
+      media_tipo = file.type;
+
+      console.log('Arquivo enviado com sucesso:', media_url);
+      console.log('Tipo do arquivo:', media_tipo);
+
+    }
+  } else {
+    console.log('Nenhum arquivo enviado.');
+  }
+
+  // 5.2) Cria a pergunta
   const { data: pergunta, error: qErr } = await supabase
     .from('perguntas')
     .insert({                  // insere um novo registro em questions.
       titulo,
       texto,
-      id_autor: user.id        // Passa author_id como o id do usuário logado.
+      id_autor: user.id,       // Passa author_id como o id do usuário logado.
+      media_url,
+      media_tipo
     })
     .select('id_perguntas')    // pede de volta apenas o id da nova pergunta, para usarmos nos uploads.
     .single();
+
   if (qErr) {
     console.error(qErr);
     return;
   }
 
-  // 5.2) Faz upload dos arquivos para o Storage
-  if (files.length) {
-    for (let file of files) {                                          // Itera sobre cada file selecionado.
-      const path = `perguntas/${pergunta.id_perguntas}/${file.name}`;  // Define um caminho organizado
-      const { error: upErr } = await supabase
-        .storage
-        .from('uploads')
-        .upload(path, file);
-      if (upErr) console.error('Upload:', upErr);
-    }
-  }
-
   // 5.3) Limpa e recarrega
-  askForm.reset();                  // limpa todos os campos do formulário.
+  askForm.reset();                  // limpa todos os campos do formulário.     
   askForm.style.display = 'none';   // Oculta novamente o form.
+  tableBody.innerHTML = " ";         // Limpa a tabela de tópicos (tableBody) para evitar duplicação de perguntas.
   loadTopics();                     // Chama loadTopics() para atualizar a lista de perguntas na tela, já incluindo a nova.
 });
 

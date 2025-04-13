@@ -45,7 +45,8 @@
                </li>
                <li class="nav-item active"><a class="nav-link" href="faq.html">FAQ</a></li>
                <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login</a></li>
-               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta</a></li>
+               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta</a>
+               </li>
             </ul>
             <!-- 
             <form class="d-flex" role="search">
@@ -61,26 +62,32 @@
 
       <h1 style="text-align:center;">Fórum</h1>
       <table id="topics-table">
-        <thead>
-          <tr><th>Tópicos</th><th>Respostas</th></tr>
-        </thead>
-        <tbody></tbody>
+         <thead>
+            <tr>
+               <th>Tópicos</th>
+               <th>Respostas</th>
+            </tr>
+         </thead>
+         <tbody></tbody>
       </table>
-    
+
       <button id="ask-button">Faça uma pergunta</button>
-    
+
       <form id="ask-form" enctype="multipart/form-data" style="display: none;">
-        <h2>Nova pergunta</h2>
-        <label>Título:<br><input type="text" name="title" required></label><br><br>
-        <label>Corpo:<br><textarea name="body" rows="4" required></textarea></label><br><br>
-        <label>Imagens ou documentos:<br><input type="file" name="files" multiple></label><br><br>
-        <button type="submit">Publicar</button>
-        <button type="button" id="cancel-form">Cancelar</button>
+         <h2>Nova pergunta</h2>
+         <label>Título:<br>
+            <input type="text" name="title" required></label><br><br>
+         <label>Corpo:<br>
+            <textarea name="body" rows="4" required></textarea></label><br><br>
+         <label>Imagens ou documentos:<br>
+            <input type="file" name="files" multiple></label><br><br>
+         <button type="submit">Publicar</button>
+         <button type="button" id="cancel-form">Cancelar</button>
       </form>
-         
+
    </main>
 
- 
+
 
    <!-- Rodapé -->
    <footer class="assinatura">
@@ -90,4 +97,5 @@
    </footer>
 
 </body>
+
 </html>
