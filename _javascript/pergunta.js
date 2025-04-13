@@ -1,11 +1,12 @@
 // Referência aos elementos HTML - Armazena os elementos do HTML em variáveis para facilitar o uso depois.
-const tituloEl = document.getElementById('titulo-pergunta');
-const textoEl = document.getElementById('texto-pergunta');
-const respostasEl = document.getElementById('lista-respostas');
-const formResposta = document.getElementById('form-resposta');
-const loginMsg = document.getElementById('login-msg');
-const feedbackResposta = document.getElementById('feedback-resposta');
-const mediaContainer = document.getElementById('media-pergunta');
+const tituloPergunta = document.getElementById('titulo_pergunta');
+const conteudoPergunta = document.getElementById('conteudo_pergunta');
+const mediaPergunta = document.getElementById('media_pergunta');
+const listaRespostas = document.getElementById('lista_respostas');
+const formularioResposta = document.getElementById('formulario_resposta');
+const loginMsg = document.getElementById('login_msg');
+const feedbackResposta = document.getElementById('feedback_resposta');
+
 
 // Variável global para manter o ID da pergunta
 let idPerguntaGlobal = null;
@@ -21,7 +22,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         await checkAuth();                // Verifica se o usuário está logado
     } else {                              // Se não tiver id, já dá erro e mostra mensagem no HTML.
         console.error('ID da pergunta não foi fornecido na URL.');
-        tituloEl.textContent = 'ID da pergunta não encontrado.';
+        tituloPergunta.textContent = 'ID da pergunta não encontrado.';
         throw new Error('ID da pergunta não encontrado na URL');
     }
 });
@@ -34,38 +35,38 @@ async function loadPergunta(idPergunta) {
         .eq('id_perguntas', idPergunta)
         .single();                       // // .single() garante que volte só 1 registro. - O método .single() retorna apenas um registro, já que o id é único.
 
-    // Se encontrar, atualiza o HTML com título e texto da pergunta.
+    // Se encontrar, atualiza o HTML com título e conteudo da pergunta.
     if (error) {
         console.error('Erro ao carregar pergunta:', error);
-        tituloEl.textContent = 'Erro ao carregar a pergunta.';
+        tituloPergunta.textContent = 'Erro ao carregar a pergunta.';
         return;
     }
 
-    // Atualiza título e texto
-    tituloEl.textContent = data.titulo;
-    textoEl.textContent = data.texto;
-    mediaContainer.innerHTML = ''; // limpa conteúdo anterior, se houver
+    // Atualiza título e conteudo
+    tituloPergunta.textContent = data.titulo;
+    conteudoPergunta.textContent = data.conteudo;
+    mediaPergunta.innerHTML = ''; // limpa conteúdo anterior, se houver
 
     // Exibe a mídia, se houver
     if (data.media_url && data.media_tipo) {
         if (data.media_tipo.startsWith('image/')) {
-            mediaContainer.innerHTML = `<img src="${data.media_url}" alt="imagem da pergunta" style="max-width: 100%; border-radius: 8px;">`;
+            mediaPergunta.innerHTML = `<img src="${data.media_url}" alt="imagem da pergunta" style="max-width: 100%; border-radius: 8px;">`;
         } else if (data.media_tipo.startsWith('video/')) {
-            mediaContainer.innerHTML = `
+            mediaPergunta.innerHTML = `
                 <video controls style="max-width: 100%; border-radius: 8px;">
                 <source src="${data.media_url}" type="${data.media_tipo}">
                 Seu navegador não suporta vídeo.
                 </video>
                 `;
         } else if (data.media_tipo.startsWith('audio/')) {
-            mediaContainer.innerHTML = `
+            mediaPergunta.innerHTML = `
                 <audio controls style="width: 100%;">
                 <source src="${data.media_url}" type="${data.media_tipo}">
                 Seu navegador não suporta áudio.
                 </audio>
                 `;
         } else {
-            mediaContainer.innerHTML = `
+            mediaPergunta.innerHTML = `
                 <a href="${data.media_url}" download style="display:inline-block; margin-top:10px; color:blue;">
                     📥 Baixar arquivo
                 </a>
@@ -86,26 +87,26 @@ async function loadRespostas(idPergunta) {
 
     // Se der erro, mostra aviso. Se não houver respostas, mostra “Nenhuma resposta”. - Se encontrar, atualiza o HTML com as respostas.
     if (error) {
-        respostasEl.innerHTML = `<p style="color:red">Erro ao carregar respostas.</p>`;
+        listaRespostas.innerHTML = `<p style="color:red">Erro ao carregar respostas.</p>`;
         console.error(error);
         return;
     }
 
     // Se não houver respostas, mostra mensagem.
     if (!data.length) {
-        respostasEl.innerHTML = '<p>Nenhuma resposta ainda.</p>';
+        listaRespostas.innerHTML = '<p>Nenhuma resposta ainda.</p>';
         return;
     }
 
     // Para cada resposta: 
-    respostasEl.innerHTML = '';
+    listaRespostas.innerHTML = '';
     data.forEach(r => {
         const div = document.createElement('div');  // Cria uma <div>
         div.classList.add('resposta');              // Adiciona a classe resposta para estilizar depois.
         div.innerHTML = `
-      <p>${r.texto}</p>
-      <small>Respondido em ${new Date(r.criado_em).toLocaleString()}</small>`; // Adiciona o texto da resposta e a data formatada - Adiciona o conteúdo da resposta na div.
-        respostasEl.appendChild(div);               // Insere no HTML a div criada com a resposta.
+      <p>${r.conteudo}</p>
+      <small>Respondido em ${new Date(r.criado_em).toLocaleString()}</small>`; // Adiciona o conteudo da resposta e a data formatada - Adiciona o conteúdo da resposta na div.
+      listaRespostas.appendChild(div);               // Insere no HTML a div criada com a resposta.
     });
 }
 
@@ -115,23 +116,23 @@ async function checkAuth() {
 
     // Se estiver logado, mostra o formulário de resposta. Se não estiver, mostra a mensagem pedindo login.
     if (user) {                                                // Verifica se há um usuário logado.
-        formResposta.style.display = 'block';
+        formularioResposta.style.display = 'block';
         loginMsg.style.display = 'none';
     } else {
-        formResposta.style.display = 'none';
+        formularioResposta.style.display = 'none';
         loginMsg.style.display = 'block';
     }
 }
 
-// Impede o envio padrão do formulário (reload).
-formResposta.addEventListener('submit', async (e) => {
+    // Impede o envio padrão do formulário (reload).
+    formularioResposta.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Limpa o feedback da resposta anterior.
     feedbackResposta.textContent = '';
 
-    // Lê o texto da resposta digitada e verifica se o usuário está logado.
-    const texto = document.getElementById('resposta').value.trim();
+    // Lê o conteudo da resposta digitada e verifica se o usuário está logado.
+    const conteudo = document.getElementById('resposta').value.trim();
     const { data: sessionData } = await supabase.auth.getSession();
     const user = sessionData?.session?.user;
     if (!user) {
@@ -145,7 +146,7 @@ formResposta.addEventListener('submit', async (e) => {
         .insert([
             {
                 id_perguntas: idPerguntaGlobal,  // ID da pergunta
-                texto,                           // Texto digitado
+                conteudo,                        // Conteudo digitado
                 id_autor: user.id                // ID do autor
             }
         ]);
@@ -159,6 +160,6 @@ formResposta.addEventListener('submit', async (e) => {
 
     feedbackResposta.textContent = 'Resposta enviada com sucesso!';
     feedbackResposta.style.color = 'green';
-    formResposta.reset();
+    formularioResposta.reset();
     await loadRespostas(idPerguntaGlobal);
 });

@@ -7,7 +7,7 @@ main#pergunta {
     padding: 2rem;
 }
 
-.resposta {
+.conteudo_resposta {
     border-bottom: 1px solid #ccc;
     padding: 1rem 0;
 }
@@ -16,10 +16,10 @@ textarea {
     width: 100%;
 }
 
-#form-resposta {
+#formulario-resposta {
     margin-top: 2rem;
 }
 
-#login-msg {
+#login_msg {
     color: red;
 }

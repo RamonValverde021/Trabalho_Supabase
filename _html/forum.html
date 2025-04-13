@@ -61,7 +61,7 @@
    <main class="forum" style="padding: 2%;">
 
       <h1 style="text-align:center;">Fórum</h1>
-      <table id="topics-table">
+      <table id="topicos_tabela">
          <thead>
             <tr>
                <th>Tópicos</th>
@@ -71,18 +71,18 @@
          <tbody></tbody>
       </table>
 
-      <button id="ask-button">Faça uma pergunta</button>
+      <button id="botao_perguntar">Faça uma pergunta</button>
 
-      <form id="ask-form" enctype="multipart/form-data" style="display: none;">
+      <form id="formulario_perguntar" enctype="multipart/form-data" style="display: none;">
          <h2>Nova pergunta</h2>
          <label>Título:<br>
-            <input type="text" name="title" required></label><br><br>
+            <input id="titulo_pergunta" type="text" name="title" required></label><br><br>
          <label>Corpo:<br>
-            <textarea name="body" rows="4" required></textarea></label><br><br>
+            <textarea id="conteudo_pergunta" name="body" rows="4" required></textarea></label><br><br>
          <label>Imagens ou documentos:<br>
-            <input type="file" name="files" multiple></label><br><br>
-         <button type="submit">Publicar</button>
-         <button type="button" id="cancel-form">Cancelar</button>
+         <input id="botao_arquivo" type="file" name="files" multiple></label><br><br>
+         <button id="botao_publicar" type="submit">Publicar</button>
+         <button id="botao_cancelar" type="button">Cancelar</button>
       </form>
 
    </main>

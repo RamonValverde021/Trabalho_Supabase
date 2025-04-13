@@ -1,7 +1,7 @@
-const tableBody = document.querySelector('#topics-table tbody'); // da tabela de tópicos — onde vamos injetar as linhas.
-const askButton = document.getElementById('ask-button');         // da tabela de tópicos — onde vamos injetar as linhas.zzz
-const askForm = document.getElementById('ask-form');             // formulário de nova pergunta — inicialmente oculto.
-const cancelForm = document.getElementById('cancel-form');       // botão “Cancelar” dentro do form, para fechá‑lo.
+const tabelaTopicos = document.querySelector('#topicos_tabela tbody');          // da tabela de tópicos — onde vamos injetar as linhas.
+const botaoPerguntar = document.getElementById('botao_perguntar');              // da tabela de tópicos — onde vamos injetar as linhas.zzz
+const formularioPerguntar  = document.getElementById('formulario_perguntar');   // formulário de nova pergunta — inicialmente oculto.
+const botaoCancelar = document.getElementById('botao_cancelar');                // botão “Cancelar” dentro do form, para fechá‑lo.
 
 // 2) Função para carregar tópicos + contagem de respostas
 async function loadTopics() {
@@ -30,36 +30,40 @@ async function loadTopics() {
       <td><a href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a></td>
       <td style="text-align:center;">${p.total_respostas}</td>
     `; // Define o conteúdo dessa linha:
-    tableBody.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tableBody, que deve ser o <tbody> da tabela de tópicos).
+    tabelaTopicos.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tabelaTopicos, que deve ser o <tbody> da tabela de tópicos).
   }
 }
 
 // 3) Verifica autenticação para exibir botão “Faça uma pergunta”
 supabase.auth.onAuthStateChange((event, session) => {          // registra um callback que é chamado sempre que o usuário faz login ou logout.
   if (session && session.user) {                               // Se existir session.user, mostramos o botão de perguntar. Caso contrário, ocultamos o botão e também o formulário (caso estivesse aberto).
-    askButton.style.display = 'block';
+    botaoPerguntar.style.display = 'block';
   } else {
-    askButton.style.display = 'none';
-    askForm.style.display = 'none';
+    botaoPerguntar.style.display = 'none';
+    formularioPerguntar.style.display = 'none';
   }
 });
 
 // 4) Exibe formulário ao clicar no botão
-askButton.addEventListener('click', () => {                    // Exibe o <form> (askForm) e esconde o botão para evitar múltiplos cliques.
-  askForm.style.display = 'block';
-  askButton.style.display = 'none';
+botaoPerguntar.addEventListener('click', () => {                // Exibe o <form> (formularioPerguntar) e esconde o botão para evitar múltiplos cliques.
+  formularioPerguntar.style.display = 'block';
+  botaoPerguntar.style.display = 'none';
 });
-cancelForm.addEventListener('click', () => {                   // Fecha o form e volta a exibir o botão.
-  askForm.style.display = 'none';
-  askButton.style.display = 'block';
+
+// 4.1) Fecha o formulário ao clicar no botão “Cancelar”
+botaoCancelar.addEventListener('click', () => {                 // Fecha o form e volta a exibir o botão.
+  document.getElementById('titulo_pergunta').value = '';        // Limpa o campo de título.
+  document.getElementById('conteudo_pergunta').value = '';      // Limpa o campo de conteúdo.
+  formularioPerguntar.style.display = 'none';
+  botaoPerguntar.style.display = 'block';
 });
 
 // 5) Envia o formulário
-askForm.addEventListener('submit', async (e) => {
+formularioPerguntar.addEventListener('submit', async (e) => {
   e.preventDefault();                                          // evita que o navegador faça reload.
-  const formData = new FormData(askForm);                      // facilita leitura de todos os campos do form.
+  const formData = new FormData(formularioPerguntar);          // facilita leitura de todos os campos do form.
   const titulo = formData.get('title');
-  const texto = formData.get('body');
+  const conteudo = formData.get('body');
   const files = formData.getAll('files');
 
   const { data: { user } } = await supabase.auth.getUser();    // Verifica se o usuário está logado
@@ -106,7 +110,7 @@ askForm.addEventListener('submit', async (e) => {
     .from('perguntas')
     .insert({                  // insere um novo registro em questions.
       titulo,
-      texto,
+      conteudo,
       id_autor: user.id,       // Passa author_id como o id do usuário logado.
       media_url,
       media_tipo
@@ -120,10 +124,12 @@ askForm.addEventListener('submit', async (e) => {
   }
 
   // 5.3) Limpa e recarrega
-  askForm.reset();                  // limpa todos os campos do formulário.     
-  askForm.style.display = 'none';   // Oculta novamente o form.
-  tableBody.innerHTML = " ";         // Limpa a tabela de tópicos (tableBody) para evitar duplicação de perguntas.
-  loadTopics();                     // Chama loadTopics() para atualizar a lista de perguntas na tela, já incluindo a nova.
+  formularioPerguntar.reset();                  // limpa todos os campos do formulário.     
+  formularioPerguntar.style.display = 'none';   // Oculta novamente o form.
+  tabelaTopicos.innerHTML = " ";                // Limpa a tabela de tópicos (tabelaTopicos) para evitar duplicação de perguntas.
+  loadTopics();                                 // Chama loadTopics() para atualizar a lista de perguntas na tela, já incluindo a nova.
+
+  window.location.href = `pergunta.html?id=${pergunta.id_perguntas}`; // Redireciona para a página da pergunta recém-criada, usando o id retornado na inserção.
 });
 
 // 6) Carrega tudo ao abrir a página
