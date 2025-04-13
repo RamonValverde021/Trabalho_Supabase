@@ -1,7 +1,12 @@
 const tabelaTopicos = document.querySelector('#topicos_tabela tbody');          // da tabela de tópicos — onde vamos injetar as linhas.
 const botaoPerguntar = document.getElementById('botao_perguntar');              // da tabela de tópicos — onde vamos injetar as linhas.zzz
-const formularioPerguntar  = document.getElementById('formulario_perguntar');   // formulário de nova pergunta — inicialmente oculto.
+const formularioPerguntar = document.getElementById('formulario_perguntar');   // formulário de nova pergunta — inicialmente oculto.
 const botaoCancelar = document.getElementById('botao_cancelar');                // botão “Cancelar” dentro do form, para fechá‑lo.
+
+
+
+
+
 
 // 2) Função para carregar tópicos + contagem de respostas
 async function loadTopics() {
@@ -22,8 +27,6 @@ async function loadTopics() {
     return;
   }
 
-  const atividade = "1H";
-
   // Inicia um laço (for...of) que percorre cada pergunta recebida do Supabase.
   for (const p of perguntas) {                                 // Cada item p representa uma pergunta individual, com seus campos vindos da view.
     const tr = document.createElement('tr');
@@ -31,7 +34,7 @@ async function loadTopics() {
       <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br><label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
       <td class="td_resposta">${p.total_respostas}</td>
       <td class="td_curtidas">${p.curtidas}</td>
-      <td class="td_atividade">${atividade}</td>
+      <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
     `; // Define o conteúdo dessa linha:
     tabelaTopicos.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tabelaTopicos, que deve ser o <tbody> da tabela de tópicos).
   }
@@ -138,17 +141,34 @@ window.addEventListener('DOMContentLoaded', loadTopics);
 // Quando o DOM estiver pronto, executa loadTopics() para popular a tabela de tópicos mesmo antes de qualquer interação.
 
 
+// Formatação do tempo decorrido desde que a pergunta foi criada
+function formatarTempoDecorrido(dataCriadoEm) {
+  const agora = new Date();
+  const criado = new Date(dataCriadoEm);
+  const diffMs = agora - criado;
 
+  const diffHoras = Math.floor(diffMs / (1000 * 60 * 60));
+  const diffMinutos = Math.floor((diffMs / (1000 * 60)) % 60);
+  const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
+  if(diffDias < 1) { // Se for menos de 1 dia, mostra horas e minutos
+    if (diffHoras < 1) {
+      return `${diffMinutos} m`;
+    } else {
+      return `${diffHoras} h`;
+    }
+  } else {
+    return `${diffDias} d`;
+  }
+}
 
-
-
+// Funções para exibir e esconder o painel de criar pergunta
 function togglePerguntar() {
   const painel = document.getElementById('painel_formulario');
   painel.classList.toggle('ativo_painel');
 }
 
-
+// Funções para exibir e esconder o menu de categorias
 function toggleDropdownCategorias() {
   const submenu = document.getElementById('submenu_categorias');
   submenu.classList.toggle('ativo_categorias');
