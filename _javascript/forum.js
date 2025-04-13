@@ -4,7 +4,7 @@ const formularioPerguntar = document.getElementById('formulario_perguntar');   /
 const botaoCancelar = document.getElementById('botao_cancelar');                // botão “Cancelar” dentro do form, para fechá‑lo.
 
 // 2) Função para carregar tópicos + contagem de respostas
-async function loadTopics() {
+async function loadTopics(filtro) {
   const { data: perguntas, error } = await supabase
     .from('perguntas_com_respostas')                              // acessa a view no banco.
     .select('*')                                                  // seleciona todas as colunas disponíveis na view (id_perguntas, titulo, criado_em, total_respostas).
@@ -24,24 +24,19 @@ async function loadTopics() {
 
   // Inicia um laço (for...of) que percorre cada pergunta recebida do Supabase.
   for (const p of perguntas) {                                 // Cada item p representa uma pergunta individual, com seus campos vindos da view.
-
-
-    
+    if(filtro == "recentes"){
         // Exibir pelo botão de Topicos 
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br><label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
+          <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br>
+          <label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
           <td class="td_resposta">${p.total_respostas}</td>
           <td class="td_curtidas">${p.curtidas}</td>
           <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
         `; // Define o conteúdo dessa linha:
         tabelaTopicos.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tabelaTopicos, que deve ser o <tbody> da tabela de tópicos).
       
-
-
-        
-
-
+    } else if (filtro == "categorias") {
         // cria um array de objetos. Cada objeto representa uma categoria de filtro com duas informações:
         // o id do checkbox no HTML (pra saber se ele está marcado).
         // o nome da categoria que aparece nos dados (p.categoria).
@@ -79,6 +74,7 @@ async function loadTopics() {
             tabelaTopicos.appendChild(tr);
           }
         });
+      }
   }
 }
 
@@ -173,13 +169,13 @@ formularioPerguntar.addEventListener('submit', async (e) => {
   formularioPerguntar.reset();                  // limpa todos os campos do formulário.     
   formularioPerguntar.style.display = 'none';   // Oculta novamente o form.
   tabelaTopicos.innerHTML = " ";                // Limpa a tabela de tópicos (tabelaTopicos) para evitar duplicação de perguntas.
-  loadTopics();                                 // Chama loadTopics() para atualizar a lista de perguntas na tela, já incluindo a nova.
+  loadTopics("recentes");                                 // Chama loadTopics() para atualizar a lista de perguntas na tela, já incluindo a nova.
 
   window.location.href = `pergunta.html?id=${pergunta.id_perguntas}`; // Redireciona para a página da pergunta recém-criada, usando o id retornado na inserção.
 });
 
 // 6) Carrega tudo ao abrir a página
-window.addEventListener('DOMContentLoaded', loadTopics);
+window.addEventListener('DOMContentLoaded', loadTopics("recentes"));
 // Quando o DOM estiver pronto, executa loadTopics() para popular a tabela de tópicos mesmo antes de qualquer interação.
 
 
@@ -198,7 +194,11 @@ function formatarTempoDecorrido(dataCriadoEm) {
 
   if (diffDias < 1) { // Se for menos de 1 dia, mostra horas e minutos
     if (diffHoras < 1) {
-      return `${diffMinutos} m`;
+      if (diffMinutos < 1) {
+        return 'Agora Mesmo!';
+      } else {
+        return `${diffMinutos} m`;
+      }
     } else {
       return `${diffHoras} h`;
     }
@@ -222,8 +222,9 @@ function toggleDropdownCategorias() {
 // Função para exibir todos os topicos no painel
 document.getElementById('nav_botao_recentes').addEventListener('click', () => {                 // Fecha o form e volta a exibir o botão.
   // Fecha o menu de categorias, se estiver aberto.
-  const submenu = document.getElementById('submenu_categorias');
-  submenu.classList.toggle('desativar_categorias');
+  if(document.getElementById('submenu_categorias').classList.contains('ativo_categorias')) {
+    toggleDropdownCategorias();
+  }
   // Limpa os checkboxes de categorias
   document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
     checkbox.checked = false;
@@ -231,14 +232,14 @@ document.getElementById('nav_botao_recentes').addEventListener('click', () => { 
   formularioPerguntar.reset();
   formularioPerguntar.style.display = 'none';
   tabelaTopicos.innerHTML = " ";
-  loadTopics();
+  loadTopics("recentes");
 });
 
-
+// Função para exibir os topicos filtrados por categorias
 document.getElementById('nav_botao_filtrar').addEventListener('click', () => {               
   toggleDropdownCategorias();
   formularioPerguntar.reset();
   formularioPerguntar.style.display = 'none';
   tabelaTopicos.innerHTML = " ";
-  loadTopics();
+  loadTopics("categorias");
 });
