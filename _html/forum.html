@@ -60,55 +60,66 @@
 
    <main class="forum" style="padding: 2%;">
 
+      <!-- Painel de perguntas -->
       <div id="menu_perguntas">
          <button id="nav_botao_recentes" class="botoes_perguntas">Recentes</button>
-         <button id="nav_botao_categoria" class="botoes_perguntas">Categoria</button>
+         <div class="dropdown_categorias">
+            <button id="nav_botao_categoria" class="botoes_perguntas" onclick="toggleDropdownCategorias()">Categoria</button>
+            <div id="submenu_categorias" class="submenu_categorias">
+               <button class="botoes_categorias" value="Orientações Gerais">Orientações Gerais</button>
+               <button class="botoes_categorias" value="Configuração">Configuração</button>
+               <button class="botoes_categorias" value="Instalação">Instalação</button>
+               <button class="botoes_categorias" value="Compatibilidade">Compatibilidade</button>
+               <button class="botoes_categorias" value="Dicas">Dicas</button>
+               <button class="botoes_categorias" value="Outros">Outros</button>
+            </div>
+         </div>
          <div class="spacer"></div>
-         <button id="botao_perguntar" class="botoes_perguntas" onclick="togglePainel()">📝 Faça uma pergunta</button>
+         <button id="botao_perguntar" class="botoes_perguntas" onclick="togglePerguntar()">📝 Faça uma pergunta</button>
       </div>
 
-    
-
+      <!-- Tabela de Perguntas -->
       <h1 style="text-align:center;">Fórum</h1>
       <table id="topicos_tabela">
          <thead>
             <tr>
                <th>Tópicos</th>
                <th>Respostas</th>
+               <th>Curtidas</th>
+               <th>Atividade</th>
             </tr>
          </thead>
          <tbody></tbody>
       </table>
 
-     
+      <!-- Formulario para criar Perguntas -->
+      <div id="painel_formulario" class="painel_formulario">
+         <form id="formulario_perguntar" enctype="multipart/form-data" style="display: none;">
+            <h2>Nova pergunta</h2>
+            <label>Título:<br>
+               <input id="titulo_pergunta" type="text" name="titulo" required></label><br></br>
 
-      <form id="formulario_perguntar" class="painel_formulario" enctype="multipart/form-data" style="display: none;">
-         <h2>Nova pergunta</h2>
-         <label>Título:<br>
-            <input id="titulo_pergunta" type="text" name="titulo" required></label><br></br>
+            <label>Corpo:<br>
+               <textarea id="conteudo_pergunta" name="conteudo" rows="4" required></textarea></label><br><br>
 
-         <label>Corpo:<br>
-            <textarea id="conteudo_pergunta" name="conteudo" rows="4" required></textarea></label><br><br>
+            <label>Categoria:</label><br>
+            <select name="categoria_pergunta" id="categoria_pergunta" name="categoria" required>
+               <option value="Orientações Gerais" selected>🔹 Orientações Gerais</option>
+               <option value="Configuração">🔹 Configuração</option>
+               <option value="Instalação">🔹 Instalação</option>
+               <option value="Compatibilidade">🔹 Compatibilidade</option>
+               <option value="Dicas">🔹 Dicas</option>
+               <option value="Outros">🔹 Outros</option>
+            </select><br><br>
 
-         <label>Categoria:</label><br>
-         <select name="categoria_pergunta" id="categoria_pergunta" name="categoria" required>
-            <option value="Orientações Gerais" selected>🔹 Orientações Gerais</option>
-            <option value="Configuração">🔹 Configuração</option>
-            <option value="Instalação">🔹 Instalação</option>
-            <option value="Compatibilidade">🔹 Compatibilidade</option>
-            <option value="Dicas">🔹 Dicas</option>
-            <option value="Outros">🔹 Outros</option>
-         </select><br><br>
-
-         <label>Imagens ou documentos:<br>
-            <input id="botao_arquivo" type="file" name="arquivo" multiple></label><br><br>
-         <button id="botao_publicar" type="submit">Publicar</button>
-         <button id="botao_cancelar" type="button" onclick="togglePainel()">Cancelar</button>
-      </form>
+            <label>Imagens ou documentos:<br>
+               <input id="botao_arquivo" type="file" name="arquivo" multiple></label><br><br>
+            <button id="botao_publicar" type="submit">Publicar</button>
+            <button id="botao_cancelar" type="button" onclick="togglePerguntar()">Cancelar</button>
+         </form>
+      </div>
 
    </main>
-
-
 
    <!-- Rodapé -->
    <footer class="assinatura">
@@ -118,5 +129,4 @@
    </footer>
 
 </body>
-
 </html>

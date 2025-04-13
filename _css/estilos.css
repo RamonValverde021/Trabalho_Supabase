@@ -12,6 +12,11 @@ html {
    font-weight: 500;
    color: white;
 }
+
+main {
+   min-height: 72vh;
+}
+
 /*------------------------ Formatação MENU ------------------------*/
 
 ul.menu_list {
@@ -64,7 +69,7 @@ footer.assinatura {
    width: 100%;
    font-size: 20px;
    text-align: center;
-   padding: 2vh 0;
+   padding: 20px 0;
    color: rgb(45, 62, 81);
    background-color: #f8f9fa;
    box-shadow: 0px 0px 5px 2px #286145;

@@ -22,6 +22,7 @@ async function loadTopics() {
     return;
   }
 
+  const atividade = "1H";
 
   // Inicia um laço (for...of) que percorre cada pergunta recebida do Supabase.
   for (const p of perguntas) {                                 // Cada item p representa uma pergunta individual, com seus campos vindos da view.
@@ -29,6 +30,8 @@ async function loadTopics() {
     tr.innerHTML = `
       <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br><label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
       <td class="td_resposta">${p.total_respostas}</td>
+      <td class="td_curtidas">${p.curtidas}</td>
+      <td class="td_atividade">${atividade}</td>
     `; // Define o conteúdo dessa linha:
     tabelaTopicos.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tabelaTopicos, que deve ser o <tbody> da tabela de tópicos).
   }
@@ -135,7 +138,18 @@ window.addEventListener('DOMContentLoaded', loadTopics);
 // Quando o DOM estiver pronto, executa loadTopics() para popular a tabela de tópicos mesmo antes de qualquer interação.
 
 
-function togglePainel() {
-  const painel = document.getElementById('formulario_perguntar');
-  painel.classList.toggle('ativo');
+
+
+
+
+
+function togglePerguntar() {
+  const painel = document.getElementById('painel_formulario');
+  painel.classList.toggle('ativo_painel');
+}
+
+
+function toggleDropdownCategorias() {
+  const submenu = document.getElementById('submenu_categorias');
+  submenu.classList.toggle('ativo_categorias');
 }

@@ -176,10 +176,6 @@ section.setion_1_address {
    flex-direction: row;
 }
 
-div.espaco {
-   height: 7vh;
-}
-
 .pass {
    color: green;
    font-size: 10pt;

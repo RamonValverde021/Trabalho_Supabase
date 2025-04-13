@@ -13,7 +13,7 @@
 
 div#menu_perguntas {
     display: flex;
-    al1ign-items: center;
+    align-items: center;
     padding: 10px;
     background-color: #f0f0f0;
 }
@@ -22,13 +22,41 @@ div.spacer {
     flex-grow: 1;
 }
 
-button.botoes_perguntas {
+button.botoes_perguntas, select.botoes_perguntas {
     margin: 0 5px;
     padding: 8px 16px;
     cursor: pointer;
 }
 
+div.dropdown_categorias {
+    position: relative;
+    display: inline-block;
+  }
 
+  div.submenu_categorias {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    overflow: hidden;
+    max-height: 0;
+    transform: translateY(-10px);
+    transition: max-height 0.8s ease, opacity 0.2s ease, transform 0.5s ease;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 0 10px;
+    opacity: 0;
+  }
+  
+  div.submenu_categorias.ativo_categorias {
+    max-height: 500px; /* o suficiente para comportar todas as opções */
+    padding: 10px;
+    opacity: 1;
+    
+    transform: translateY(0);
+  }
 
 /* Formatação Tabela */ 
 
@@ -41,7 +69,6 @@ thead {
     background-color: rgb(59, 31, 10);
     text-align: center;
 }
-
 
 tr {
     background-color: rgb(210, 117, 30);
@@ -67,19 +94,23 @@ td.td_pergunta {
 
 td.td_resposta {
     text-align: center;
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+td.td_curtidas, td.td_atividade {
+    text-align: center;
+    font-size: 15pt;
 }
 
 th {
     background-color: rgb(210, 30, 54);
     padding: 20px;
     font-size: 15pt;
-
 }
 
 tbody {
     background-color: rgb(30, 42, 210);
-
-
 }
 
 label.categoria_label {
@@ -96,7 +127,7 @@ span.categoria_span {
 
 /* Formatação Formulário pergunta */ 
 
-.painel_formulario {
+div.painel_formulario {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -110,8 +141,6 @@ span.categoria_span {
   z-index: 1000;
 }
 
-.painel_formulario.ativo {
+div.painel_formulario.ativo_painel {
   transform: translateY(0);
 }
-
-  

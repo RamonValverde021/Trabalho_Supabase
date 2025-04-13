@@ -122,10 +122,6 @@ p.alert_text {
     word-break: break-word;
 }
 
-div.espaco {
-    height: 200px;
-}
-
 p.message_successful {
     font-family: "Arial", sans-serif;
     color: rgb(45, 62, 81);
