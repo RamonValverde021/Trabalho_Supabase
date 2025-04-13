@@ -23,3 +23,27 @@ group by p.id_perguntas, p.titulo, p.criado_em              #  Como usamos count
                                                             # É como dizer: “Quero contar as respostas para cada pergunta única”.
 order by p.criado_em desc;                                  # Por fim, ordenamos os resultados pela data de criação da pergunta (criado_em) em ordem decrescente (desc).
                                                             # Isso significa que as perguntas mais recentes aparecem primeiro.
+
+
+
+
+
+
+
+-------------------------------------------
+
+drop view if exists perguntas_com_respostas;         # Isso deleta a view antiga e limpa o caminho pra recriar sem erro.
+
+--Atualização de View --
+create view perguntas_com_respostas as
+select 
+p.id_perguntas,
+p.titulo,
+p.criado_em,
+p.categoria,
+p.curtidas,
+count(r.id_respostas) as total_respostas
+from perguntas p 
+left join respostas r on p.id_perguntas = r.id_perguntas
+group by p.id_perguntas, p.titulo, p.criado_em, p.categoria, p.curtidas
+order by p.criado_em desc; 

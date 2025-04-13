@@ -60,6 +60,15 @@
 
    <main class="forum" style="padding: 2%;">
 
+      <div id="menu_perguntas">
+         <button id="nav_botao_recentes" class="botoes_perguntas">Recentes</button>
+         <button id="nav_botao_categoria" class="botoes_perguntas">Categoria</button>
+         <div class="spacer"></div>
+         <button id="botao_perguntar" class="botoes_perguntas" onclick="togglePainel()">📝 Faça uma pergunta</button>
+      </div>
+
+    
+
       <h1 style="text-align:center;">Fórum</h1>
       <table id="topicos_tabela">
          <thead>
@@ -71,18 +80,30 @@
          <tbody></tbody>
       </table>
 
-      <button id="botao_perguntar">Faça uma pergunta</button>
+     
 
-      <form id="formulario_perguntar" enctype="multipart/form-data" style="display: none;">
+      <form id="formulario_perguntar" class="painel_formulario" enctype="multipart/form-data" style="display: none;">
          <h2>Nova pergunta</h2>
          <label>Título:<br>
-            <input id="titulo_pergunta" type="text" name="title" required></label><br><br>
+            <input id="titulo_pergunta" type="text" name="titulo" required></label><br></br>
+
          <label>Corpo:<br>
-            <textarea id="conteudo_pergunta" name="body" rows="4" required></textarea></label><br><br>
+            <textarea id="conteudo_pergunta" name="conteudo" rows="4" required></textarea></label><br><br>
+
+         <label>Categoria:</label><br>
+         <select name="categoria_pergunta" id="categoria_pergunta" name="categoria" required>
+            <option value="Orientações Gerais" selected>🔹 Orientações Gerais</option>
+            <option value="Configuração">🔹 Configuração</option>
+            <option value="Instalação">🔹 Instalação</option>
+            <option value="Compatibilidade">🔹 Compatibilidade</option>
+            <option value="Dicas">🔹 Dicas</option>
+            <option value="Outros">🔹 Outros</option>
+         </select><br><br>
+
          <label>Imagens ou documentos:<br>
-         <input id="botao_arquivo" type="file" name="files" multiple></label><br><br>
+            <input id="botao_arquivo" type="file" name="arquivo" multiple></label><br><br>
          <button id="botao_publicar" type="submit">Publicar</button>
-         <button id="botao_cancelar" type="button">Cancelar</button>
+         <button id="botao_cancelar" type="button" onclick="togglePainel()">Cancelar</button>
       </form>
 
    </main>

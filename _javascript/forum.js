@@ -27,8 +27,8 @@ async function loadTopics() {
   for (const p of perguntas) {                                 // Cada item p representa uma pergunta individual, com seus campos vindos da view.
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td><a href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a></td>
-      <td style="text-align:center;">${p.total_respostas}</td>
+      <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br><label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
+      <td class="td_resposta">${p.total_respostas}</td>
     `; // Define o conteúdo dessa linha:
     tabelaTopicos.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tabelaTopicos, que deve ser o <tbody> da tabela de tópicos).
   }
@@ -54,7 +54,7 @@ botaoPerguntar.addEventListener('click', () => {                // Exibe o <form
 botaoCancelar.addEventListener('click', () => {                 // Fecha o form e volta a exibir o botão.
   document.getElementById('titulo_pergunta').value = '';        // Limpa o campo de título.
   document.getElementById('conteudo_pergunta').value = '';      // Limpa o campo de conteúdo.
-  formularioPerguntar.style.display = 'none';
+  //formularioPerguntar.style.display = 'none';
   botaoPerguntar.style.display = 'block';
 });
 
@@ -62,9 +62,10 @@ botaoCancelar.addEventListener('click', () => {                 // Fecha o form 
 formularioPerguntar.addEventListener('submit', async (e) => {
   e.preventDefault();                                          // evita que o navegador faça reload.
   const formData = new FormData(formularioPerguntar);          // facilita leitura de todos os campos do form.
-  const titulo = formData.get('title');
-  const conteudo = formData.get('body');
-  const files = formData.getAll('files');
+  const titulo = formData.get('titulo');
+  const conteudo = formData.get('conteudo');
+  const categoria = document.getElementById('categoria_pergunta').value; // Obtém o valor da categoria selecionada no formulário.
+  const arquivo = formData.getAll('arquivo');
 
   const { data: { user } } = await supabase.auth.getUser();    // Verifica se o usuário está logado
   if (!user) {
@@ -77,8 +78,8 @@ formularioPerguntar.addEventListener('submit', async (e) => {
 
   // 5.1) Faz upload dos arquivos para o Storage
   // Se houver arquivo, faz upload do primeiro
-  if (files.length > 0 && files[0].size > 0) {
-    const file = files[0];
+  if (arquivo.length > 0 && arquivo[0].size > 0) {
+    const file = arquivo[0];
     const path = `perguntas/${crypto.randomUUID()}_${file.name}`;
 
     const { error: upErr } = await supabase
@@ -96,10 +97,6 @@ formularioPerguntar.addEventListener('submit', async (e) => {
 
       media_url = urlData.publicUrl;
       media_tipo = file.type;
-
-      console.log('Arquivo enviado com sucesso:', media_url);
-      console.log('Tipo do arquivo:', media_tipo);
-
     }
   } else {
     console.log('Nenhum arquivo enviado.');
@@ -113,7 +110,8 @@ formularioPerguntar.addEventListener('submit', async (e) => {
       conteudo,
       id_autor: user.id,       // Passa author_id como o id do usuário logado.
       media_url,
-      media_tipo
+      media_tipo,
+      categoria
     })
     .select('id_perguntas')    // pede de volta apenas o id da nova pergunta, para usarmos nos uploads.
     .single();
@@ -135,3 +133,9 @@ formularioPerguntar.addEventListener('submit', async (e) => {
 // 6) Carrega tudo ao abrir a página
 window.addEventListener('DOMContentLoaded', loadTopics);
 // Quando o DOM estiver pronto, executa loadTopics() para popular a tabela de tópicos mesmo antes de qualquer interação.
+
+
+function togglePainel() {
+  const painel = document.getElementById('formulario_perguntar');
+  painel.classList.toggle('ativo');
+}

@@ -1,5 +1,117 @@
 @charset "UTF-8";
 
-div.espaco {
-    height: 200px;
+* {
+    /* Resetar modulos de espaçamentos*/
+    margin: 0px;
+    padding: 0px;
+
+    font-family: "Arial", sans-serif;
+    color: rgb(45, 62, 81);
 }
+
+/* Formatação Menu de botões das perguntas */ 
+
+div#menu_perguntas {
+    display: flex;
+    al1ign-items: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+div.spacer {
+    flex-grow: 1;
+}
+
+button.botoes_perguntas {
+    margin: 0 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+
+
+/* Formatação Tabela */ 
+
+table#topicos_tabela {
+    width: 80%;
+    margin: 0 10%;
+}
+
+thead {
+    background-color: rgb(59, 31, 10);
+    text-align: center;
+}
+
+
+tr {
+    background-color: rgb(210, 117, 30);
+    font-size: 15pt;
+}
+
+a.a_pergunta {
+    font-style: italic;
+    text-decoration: none;
+    color: rgb(45, 62, 81);
+    font-size: 15pt;
+}
+
+a.a_pergunta:hover {
+    color: rgb(61, 85, 112);
+    text-decoration: underline;
+}
+
+td.td_pergunta {
+    background-color: rgb(177, 210, 30);
+    padding-left: 10px;
+}
+
+td.td_resposta {
+    text-align: center;
+}
+
+th {
+    background-color: rgb(210, 30, 54);
+    padding: 20px;
+    font-size: 15pt;
+
+}
+
+tbody {
+    background-color: rgb(30, 42, 210);
+
+
+}
+
+label.categoria_label {
+    font-size: 12pt;
+    color: rgb(45, 62, 81);
+}
+
+span.categoria_span {
+    font-size: 12pt;
+    color: rgb(45, 62, 81);
+    padding: 5px;
+}
+
+
+/* Formatação Formulário pergunta */ 
+
+.painel_formulario {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 2px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.painel_formulario.ativo {
+  transform: translateY(0);
+}
+
+  
