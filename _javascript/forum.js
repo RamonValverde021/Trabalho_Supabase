@@ -3,11 +3,6 @@ const botaoPerguntar = document.getElementById('botao_perguntar');              
 const formularioPerguntar = document.getElementById('formulario_perguntar');   // formulário de nova pergunta — inicialmente oculto.
 const botaoCancelar = document.getElementById('botao_cancelar');                // botão “Cancelar” dentro do form, para fechá‑lo.
 
-
-
-
-
-
 // 2) Função para carregar tópicos + contagem de respostas
 async function loadTopics() {
   const { data: perguntas, error } = await supabase
@@ -29,14 +24,61 @@ async function loadTopics() {
 
   // Inicia um laço (for...of) que percorre cada pergunta recebida do Supabase.
   for (const p of perguntas) {                                 // Cada item p representa uma pergunta individual, com seus campos vindos da view.
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br><label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
-      <td class="td_resposta">${p.total_respostas}</td>
-      <td class="td_curtidas">${p.curtidas}</td>
-      <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
-    `; // Define o conteúdo dessa linha:
-    tabelaTopicos.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tabelaTopicos, que deve ser o <tbody> da tabela de tópicos).
+
+
+    
+        // Exibir pelo botão de Topicos 
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br><label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
+          <td class="td_resposta">${p.total_respostas}</td>
+          <td class="td_curtidas">${p.curtidas}</td>
+          <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
+        `; // Define o conteúdo dessa linha:
+        tabelaTopicos.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tabelaTopicos, que deve ser o <tbody> da tabela de tópicos).
+      
+
+
+        
+
+
+        // cria um array de objetos. Cada objeto representa uma categoria de filtro com duas informações:
+        // o id do checkbox no HTML (pra saber se ele está marcado).
+        // o nome da categoria que aparece nos dados (p.categoria).
+        const categorias = [
+          { id: 'categoria_orientacao', nome: 'Orientações Gerais' },
+          { id: 'categoria_configuracao', nome: 'Configuração' },
+          { id: 'categoria_instalacao', nome: 'Instalação' },
+          { id: 'categoria_funcionalidade', nome: 'Funcionalidade' },
+          { id: 'categoria_compatibilidade', nome: 'Compatibilidade' },
+          { id: 'categoria_problemas', nome: 'Problemas' },
+          { id: 'categoria_erro', nome: 'Erro' },
+          { id: 'categoria_sugestoes', nome: 'Sugestões' },
+          { id: 'categoria_duvidas', nome: 'Duvidas' },
+          { id: 'categoria_dicas', nome: 'Dicas' },
+          { id: 'categoria_outros', nome: 'Outros' }
+        ];
+        
+        // Percorre cada item do array categorias. Para cada um, a variável c vai conter um objeto com { id, nome }.
+        categorias.forEach(c => {
+          // Verifica se o checkbox correspondente (document.getElementById(c.id)) está marcado (checked).
+          // Se estiver, verifica se a categoria da pergunta (p.categoria) é igual ao nome do checkbox (c.nome).
+          if (document.getElementById(c.id).checked && p.categoria === c.nome) {
+            // Se ambos os critérios forem verdadeiros, cria uma nova linha (tr) na tabela de tópicos.
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td class="td_pergunta">
+                <a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br>
+                <label class="categoria_label">🔹 Categoria: </label>
+                <span class="categoria_span">${p.categoria}</span><br><br>
+              </td>
+              <td class="td_resposta">${p.total_respostas}</td>
+              <td class="td_curtidas">${p.curtidas}</td>
+              <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
+            `;
+            tabelaTopicos.appendChild(tr);
+          }
+        });
   }
 }
 
@@ -141,6 +183,9 @@ window.addEventListener('DOMContentLoaded', loadTopics);
 // Quando o DOM estiver pronto, executa loadTopics() para popular a tabela de tópicos mesmo antes de qualquer interação.
 
 
+
+/* ----------------------------------------------- Demais funções da pagina ----------------------------------------------- */
+
 // Formatação do tempo decorrido desde que a pergunta foi criada
 function formatarTempoDecorrido(dataCriadoEm) {
   const agora = new Date();
@@ -151,7 +196,7 @@ function formatarTempoDecorrido(dataCriadoEm) {
   const diffMinutos = Math.floor((diffMs / (1000 * 60)) % 60);
   const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-  if(diffDias < 1) { // Se for menos de 1 dia, mostra horas e minutos
+  if (diffDias < 1) { // Se for menos de 1 dia, mostra horas e minutos
     if (diffHoras < 1) {
       return `${diffMinutos} m`;
     } else {
@@ -173,3 +218,27 @@ function toggleDropdownCategorias() {
   const submenu = document.getElementById('submenu_categorias');
   submenu.classList.toggle('ativo_categorias');
 }
+
+// Função para exibir todos os topicos no painel
+document.getElementById('nav_botao_recentes').addEventListener('click', () => {                 // Fecha o form e volta a exibir o botão.
+  // Fecha o menu de categorias, se estiver aberto.
+  const submenu = document.getElementById('submenu_categorias');
+  submenu.classList.toggle('desativar_categorias');
+  // Limpa os checkboxes de categorias
+  document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    checkbox.checked = false;
+  });
+  formularioPerguntar.reset();
+  formularioPerguntar.style.display = 'none';
+  tabelaTopicos.innerHTML = " ";
+  loadTopics();
+});
+
+
+document.getElementById('nav_botao_filtrar').addEventListener('click', () => {               
+  toggleDropdownCategorias();
+  formularioPerguntar.reset();
+  formularioPerguntar.style.display = 'none';
+  tabelaTopicos.innerHTML = " ";
+  loadTopics();
+});

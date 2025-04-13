@@ -60,18 +60,25 @@
 
    <main class="forum" style="padding: 2%;">
 
+
       <!-- Painel de perguntas -->
       <div id="menu_perguntas">
          <button id="nav_botao_recentes" class="botoes_perguntas">Recentes</button>
          <div class="dropdown_categorias">
             <button id="nav_botao_categoria" class="botoes_perguntas" onclick="toggleDropdownCategorias()">Categoria</button>
             <div id="submenu_categorias" class="submenu_categorias">
-               <button class="botoes_categorias" value="Orientações Gerais">Orientações Gerais</button>
-               <button class="botoes_categorias" value="Configuração">Configuração</button>
-               <button class="botoes_categorias" value="Instalação">Instalação</button>
-               <button class="botoes_categorias" value="Compatibilidade">Compatibilidade</button>
-               <button class="botoes_categorias" value="Dicas">Dicas</button>
-               <button class="botoes_categorias" value="Outros">Outros</button>
+               <input type="checkbox" id="categoria_orientacao" name="categoria_orientacao" class="botoes_categorias"><label for="categoria_orientacao" class="label_menu_categoria">Orientações Gerais</label><br>
+               <input type="checkbox" id="categoria_configuracao" name="categoria_configuracao" class="botoes_categorias"><label for="categoria_configuracao" class="label_menu_categoria">Configuração</label><br>
+               <input type="checkbox" id="categoria_instalacao" name="categoria_instalacao" class="botoes_categorias"><label for="categoria_instalacao" class="label_menu_categoria">Instalação</label><br>
+               <input type="checkbox" id="categoria_compatibilidade" name="categoria_compatibilidade" class="botoes_categorias"><label for="categoria_compatibilidade" class="label_menu_categoria">Compatibilidade</label><br>
+               <input type="checkbox" id="categoria_funcionalidade" name="categoria_funcionalidade" class="botoes_categorias"><label for="categoria_funcionalidade" class="label_menu_categoria">Funcionalidade</label><br>
+               <input type="checkbox" id="categoria_problemas" name="categoria_problemas" class="botoes_categorias"><label for="categoria_problemas" class="label_menu_categoria">Problemas</label><br>
+               <input type="checkbox" id="categoria_erro" name="categoria_erro" class="botoes_categorias"><label for="categoria_erro" class="label_menu_categoria">Erro</label><br>
+               <input type="checkbox" id="categoria_sugestoes" name="categoria_sugestoes" class="botoes_categorias"><label for="categoria_sugestoes" class="label_menu_categoria">Sugestões</label><br>
+               <input type="checkbox" id="categoria_duvidas" name="categoria_duvidas" class="botoes_categorias"><label for="categoria_duvidas" class="label_menu_categoria">Duvidas</label><br>
+               <input type="checkbox" id="categoria_dicas" name="categoria_dicas" class="botoes_categorias"><label for="categoria_dicas" class="label_menu_categoria">Dicas</label><br>
+               <input type="checkbox" id="categoria_outros" name="categoria_outros" class="botoes_categorias"><label for="categoria_outros" class="label_menu_categoria">Outros</label><br>
+               <button id="nav_botao_filtrar">Filtrar</button>
             </div>
          </div>
          <div class="spacer"></div>
@@ -108,6 +115,11 @@
                <option value="Configuração">🔹 Configuração</option>
                <option value="Instalação">🔹 Instalação</option>
                <option value="Compatibilidade">🔹 Compatibilidade</option>
+               <option value="Funcionalidade">🔹 Funcionalidade</option>
+               <option value="Problemas">🔹 Problemas</option>
+               <option value="Erro">🔹 Erro</option>
+               <option value="Sugestões">🔹 Sugestões</option>
+               <option value="Dúvidas">🔹 Dúvidas</option>
                <option value="Dicas">🔹 Dicas</option>
                <option value="Outros">🔹 Outros</option>
             </select><br><br>
