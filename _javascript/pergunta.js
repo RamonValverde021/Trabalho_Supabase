@@ -132,7 +132,7 @@ async function checkAuth() {
     feedbackResposta.textContent = '';
 
     // Lê o conteudo da resposta digitada e verifica se o usuário está logado.
-    const conteudo = document.getElementById('resposta').value.trim();
+    const conteudo = document.getElementById('conteudo_resposta').value.trim();
     const { data: sessionData } = await supabase.auth.getSession();
     const user = sessionData?.session?.user;
     if (!user) {
