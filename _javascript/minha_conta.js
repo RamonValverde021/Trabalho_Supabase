@@ -92,21 +92,30 @@ window.addEventListener('DOMContentLoaded', async () => {
     cidade = user.user_metadata.cidade;
     bairro = user.user_metadata.bairro;
 
+
+    const { data, error_foto } = await supabase.auth.getUser();
+    if (error_foto) {
+      console.error("Erro ao buscar usuário:", error_foto.message);
+      return;
+    }
+    const user_foto = data.user;
+    const fotoPerfilUrl = user_foto.user_metadata?.foto_perfil;
+    if (fotoPerfilUrl) {
+      document.getElementById("icone_perfil_info").src = fotoPerfilUrl;
+      document.getElementById("preview_foto").src = fotoPerfilUrl;
+    } else {
+      console.log("Usuário ainda não tem foto de perfil.");
+    }
+
 });
 
 
-/* -------------------------- CODIGO DA VALIDAÇÃO DO FORMULARIO DE EDIÇÃO -------------------------- */
 
-// Edição foto de perfil
-function previewFotoPerfil(input) {
-    const file = input.files[0];
-    const preview = document.getElementById("preview_foto");
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = e => preview.src = e.target.result;
-        reader.readAsDataURL(file);
-    }
-}
+
+
+
+
+/* -------------------------- CODIGO DA VALIDAÇÃO DO FORMULARIO DE EDIÇÃO -------------------------- */
 
 // Habilitar painel de edição de senha
 document.getElementById("mudar_senha").style.display = "none";
@@ -449,7 +458,7 @@ function autoincremento(dado, tipo) {
 
 
 
-
+/*
 async function cadastrar() {
     console.log("Tentando cadastrar...");
 
@@ -489,7 +498,7 @@ async function cadastrar() {
             }
         }
     });
-    */
+    /
 
     if (error) {
         document.getElementById("mensagem").innerText =
@@ -501,3 +510,67 @@ async function cadastrar() {
         }, 2000);
     }
 }
+*/
+
+
+// Trocar foto de perfil
+function previewFotoPerfil(input) {
+    const file = input.files[0];
+    const preview = document.getElementById("preview_foto");
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = e => preview.src = e.target.result;
+        reader.readAsDataURL(file);
+    }
+}
+
+
+// Salvar foto de perfil
+async function atualizarFotoPerfil() {
+    const fileInput = document.getElementById("foto_perfil");
+    console.log(fileInput);
+
+    if (fileInput.files.length === 0) {
+        alert("Selecione uma imagem.");
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const user = (await supabase.auth.getUser()).data.user;
+
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${user.id}_${Date.now()}.${fileExt}`;
+    const filePath = `fotos-perfil/${fileName}`;
+
+    // Upload da imagem
+    const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("uploads")
+        .upload(filePath, file, {
+            contentType: file.type
+        });
+
+    if (uploadError) {
+        alert("Erro ao fazer upload: " + uploadError.message);
+        return;
+    }
+
+    // Gerar URL pública
+    const { data: publicURL } = supabase.storage
+        .from("uploads")
+        .getPublicUrl(filePath);
+
+    // Atualiza os metadados do usuário
+    const { error: updateError } = await supabase.auth.updateUser({
+        data: {
+            foto_perfil: publicURL.publicUrl
+        }
+    });
+
+    if (updateError) {
+        alert("Erro ao atualizar perfil: " + updateError.message);
+    } else {
+        alert("Foto de perfil atualizada com sucesso!");
+    }
+}
+
+
