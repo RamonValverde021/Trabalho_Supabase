@@ -74,6 +74,7 @@ li.menu_item:hover {
 img.icone_perfil {
    height: 50px;
    width: 50px;
+   border-radius: 50%;
 }
 
 

@@ -1,26 +1,50 @@
+// Flags booleanas de confirmação
+var okSenha = true;
+var okNome = true;
+var okCelular = true;
+var okEstado_civil = true;
+var okCPF = true;
+var okIdade = true;
+var okSexo = true;
+var okLogradouro = true;
+var okCEP = true;
+var okNumero_casa = true;
+var okComplemento = true;
+var okEstado = true;
+var okCidade = true;
+var okBairro = true;
+
+// Inicias os dados recebidos do formulario globalmente
+var senha_cadastro, nome, celular, estado_civil, cpf, nascimento, idade, sexo, logradouro, cep, numero_casa, complemento, estado, cidade, bairro;
+
+
+var okSenha, okNome, okCelular = true;
+
 // Logout
 async function logout() {
     await supabase.auth.signOut();
-    window.location.href = "../index.html";
+    window.location.href = "login.html";
 }
 
-// Flags booleanas de confirmação
-let okSenha, okNome, okCelular, okEstado_civil, okCPF, okIdade, okSexo, okLogradouro, okCEP, okNumero_casa, okComplemento, okEstado, okCidade, okBairro = true;
+// Botão de acesso ao painel de programar o dispositivo
+document.getElementById("meu_dispositivo").addEventListener('click', () => {
+    window.location.href = "../Interface de Controle SpringFy/index.html";
+});
 
-// Inicias os dados recebidos do formulario globalmente
-let senha_cadastro, nome, celular, estado_civil, cpf, nascimento, sexo, logradouro, cep, numero_casa, complemento, estado, cidade, bairro;
 
 // Checa se o usuário está logado quando a página carrega
 window.addEventListener('DOMContentLoaded', async () => {
     const { data: { user } } = await supabase.auth.getUser();
+    painelEditarDados(user);
 
     // Exibe o painel de informações do usuário
     document.getElementById("meu_perfil").style.display = "block";
     document.getElementById("edit_perfil").style.display = "none";
-    /*
-        document.getElementById("meu_perfil").style.display = "none";
-        document.getElementById("edit_perfil").style.display = "block";
-    */
+
+
+    //document.getElementById("meu_perfil").style.display = "none";
+    //document.getElementById("edit_perfil").style.display = "block";
+
     // Exibe os dados cadastrados da conta
     document.getElementById("nome_usuario").innerText = user.user_metadata.nome;
     document.getElementById("email_usuario").innerText = user.email.toLowerCase();
@@ -42,6 +66,26 @@ window.addEventListener('DOMContentLoaded', async () => {
     document.getElementById("data_cidade").innerText = user.user_metadata.cidade.toLowerCase();
     document.getElementById("data_estado").innerText = user.user_metadata.estado;
 
+    // Atualizando foto de perfil
+    const { data, error_foto } = await supabase.auth.getUser();
+    if (error_foto) {
+        console.error("Erro ao buscar usuário:", error_foto.message);
+        return;
+    }
+    const user_foto = data.user;
+    const fotoPerfilUrl = user_foto.user_metadata?.foto_perfil;
+    if (fotoPerfilUrl) {
+        document.getElementById("icone_perfil_info").src = fotoPerfilUrl || "../_images/Sem-perfil.png";;
+        document.getElementById("preview_foto").src = fotoPerfilUrl || "../_images/Sem-perfil.png";;
+        document.getElementById("icone_perfil").src = fotoPerfilUrl || "../_images/Sem-perfil.png";;
+    } else {
+        console.log("Usuário ainda não tem foto de perfil.");
+    }
+
+});
+
+// Carregar painel editar dados usuários
+async function painelEditarDados(user) {
     // Exibe o painel de edição de dados do usuário
     document.getElementById("editar_usuario").addEventListener('click', () => {
         document.getElementById("meu_perfil").style.display = "none";
@@ -91,93 +135,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     estado = user.user_metadata.estado;
     cidade = user.user_metadata.cidade;
     bairro = user.user_metadata.bairro;
-
-
-    const { data, error_foto } = await supabase.auth.getUser();
-    if (error_foto) {
-      console.error("Erro ao buscar usuário:", error_foto.message);
-      return;
-    }
-    const user_foto = data.user;
-    const fotoPerfilUrl = user_foto.user_metadata?.foto_perfil;
-    if (fotoPerfilUrl) {
-      document.getElementById("icone_perfil_info").src = fotoPerfilUrl;
-      document.getElementById("preview_foto").src = fotoPerfilUrl;
-    } else {
-      console.log("Usuário ainda não tem foto de perfil.");
-    }
-
-});
-
-
-
-
-
-
+}
 
 /* -------------------------- CODIGO DA VALIDAÇÃO DO FORMULARIO DE EDIÇÃO -------------------------- */
 
-// Habilitar painel de edição de senha
-document.getElementById("mudar_senha").style.display = "none";
-document.getElementById("btn_mudar_senha").addEventListener('click', () => {
-    if (document.getElementById("mudar_senha").style.display == "none") {
-        document.getElementById("mudar_senha").style.display = "inline";
-        document.getElementById("btn_mudar_senha").style.display = "none";
-    } else {
-        document.getElementById("mudar_senha").style.display = "none";
-    }
-});
-
-// Botão cancelar correção de senha
-document.getElementById("btn_cancelar_senha").addEventListener('click', () => {
-    document.getElementById('senha_feedback').innerText = "";
-    // Torna visivel o botão e o culta o painel de preenchimento
-    document.getElementById("mudar_senha").style.display = "none";
-    document.getElementById("btn_mudar_senha").style.display = "inline";
-    // Apaga os dados preenchidos nos campos
-    document.getElementById("senha_antiga").value = "";
-    document.getElementById("nova_senha").value = "";
-    document.getElementById("repete_senha").value = "";
-});
-
-// Botão salvar e validar senha nova
-document.getElementById("btn_salvar_senha").addEventListener('click', () => {
-    let senha_antiga = document.getElementById("senha_antiga").value;
-    let nova_senha = document.getElementById("nova_senha").value;
-    let repete_senha = document.getElementById("repete_senha").value;
-    let feedback = document.getElementById('senha_feedback');
-
-    if (senha_antiga == "123456") {
-        if (nova_senha.length >= 3) {
-            if (nova_senha == repete_senha) {
-                feedback.innerText = '✔️ Senha válida';
-                feedback.className = "pass";
-                okSenha = true;
-            } else {
-                feedback.innerText = '❌ A senha repetida não está igual a nova';
-                feedback.className = "fail";
-                okSenha = false;
-            }
-        } else {
-            feedback.innerText = '❌ Nova senha inválida (mínimo 3 letras)';
-            feedback.className = "fail";
-            okSenha = false;
-        }
-    } else {
-        feedback.innerText = '❌ Senha antiga invalida';
-        feedback.className = "fail";
-        okSenha = false;
-    }
-});
-
-
-
-
-
-
-
 // Validar Nome
-document.getElementById("nome").addEventListener("input", function () {
+document.getElementById("nome").addEventListener("change", function () {
     okNome = false;
     nome = document.getElementById('nome').value;
     let feedback = document.getElementById('nome_feedback');
@@ -193,7 +156,7 @@ document.getElementById("nome").addEventListener("input", function () {
 });
 
 // Validar Celular
-document.getElementById('celular').addEventListener("input", function () {
+document.getElementById('celular').addEventListener("change", function () {
     okCelular = false;
     celular = document.getElementById('celular').value;
     let feedback = document.getElementById('celular_feedback');
@@ -209,7 +172,7 @@ document.getElementById('celular').addEventListener("input", function () {
 });
 
 // Validar Estado Civil
-document.getElementById('estado_civil').addEventListener("click", function () {
+document.getElementById('estado_civil').addEventListener("change", function () {
     okEstado_civil = false;
     estado_civil = document.getElementById('estado_civil').value;
     let feedback = document.getElementById('estado_civil_feedback');
@@ -225,7 +188,7 @@ document.getElementById('estado_civil').addEventListener("click", function () {
 });
 
 // Validar CPF
-document.getElementById('cpf').addEventListener("input", function () {
+document.getElementById('cpf').addEventListener("change", function () {
     okCPF = false;
     cpf = document.getElementById('cpf').value;
     let feedback = document.getElementById('cpf_feedback');
@@ -265,7 +228,7 @@ function validarCPF(cpf) {
 }
 
 // Validar Nascimento e Idade
-document.getElementById("nascimento").addEventListener("input", function () {
+document.getElementById("nascimento").addEventListener("change", function () {
     okIdade = false;
     nascimento = document.getElementById("nascimento").value;
     var dataAtual = new Date();
@@ -315,7 +278,7 @@ function mostrarMensagem() {
 }
 
 // Validar Logradouro
-document.getElementById("logradouro").addEventListener("input", function () {
+document.getElementById("logradouro").addEventListener("change", function () {
     okLogradouro = false;
     logradouro = document.getElementById('logradouro').value;
     let feedback = document.getElementById('logradouro_feedback');
@@ -331,7 +294,7 @@ document.getElementById("logradouro").addEventListener("input", function () {
 });
 
 // Validar CEP
-document.getElementById('cep').addEventListener("input", function () {
+document.getElementById('cep').addEventListener("change", function () {
     okCEP = false;
     cep = document.getElementById('cep').value;
     let feedback = document.getElementById('cep_feedback');
@@ -347,7 +310,7 @@ document.getElementById('cep').addEventListener("input", function () {
 });
 
 // Validar Número da Casa
-document.getElementById("numero_casa").addEventListener("input", function () {
+document.getElementById("numero_casa").addEventListener("change", function () {
     okNumero_casa = false;
     numero_casa = document.getElementById('numero_casa').value;
     let feedback = document.getElementById('numero_casa_feedback');
@@ -363,7 +326,7 @@ document.getElementById("numero_casa").addEventListener("input", function () {
 });
 
 // Validar Complemento
-document.getElementById("complemento").addEventListener("input", function () {
+document.getElementById("complemento").addEventListener("change", function () {
     okComplemento = false;
     complemento = document.getElementById('complemento').value;
     let feedback = document.getElementById('complemento_feedback');
@@ -379,7 +342,7 @@ document.getElementById("complemento").addEventListener("input", function () {
 });
 
 // Validar Estado
-document.getElementById("estado").addEventListener("click", function () {
+document.getElementById("estado").addEventListener("change", function () {
     okEstado = false;
     estado = document.getElementById('estado').value;
     let feedback = document.getElementById('estado_feedback');
@@ -395,7 +358,7 @@ document.getElementById("estado").addEventListener("click", function () {
 });
 
 // Validar Cidade
-document.getElementById("cidade").addEventListener("input", function () {
+document.getElementById("cidade").addEventListener("change", function () {
     okCidade = false;
     cidade = document.getElementById('cidade').value;
     let feedback = document.getElementById('cidade_feedback');
@@ -411,7 +374,7 @@ document.getElementById("cidade").addEventListener("input", function () {
 });
 
 // Validar Bairro
-document.getElementById("bairro").addEventListener("input", function () {
+document.getElementById("bairro").addEventListener("change", function () {
     okBairro = false;
     bairro = document.getElementById('bairro').value;
     let feedback = document.getElementById('bairro_feedback');
@@ -425,8 +388,6 @@ document.getElementById("bairro").addEventListener("input", function () {
         okBairro = false;
     }
 });
-
-
 
 // Função que incrementa automaticamente os campos
 function autoincremento(dado, tipo) {
@@ -452,66 +413,44 @@ function autoincremento(dado, tipo) {
     }
 }
 
-
-
-
-
-
-
-/*
-async function cadastrar() {
+// Atualizar os dados do usuario
+async function atualizarCadastro() {
     console.log("Tentando cadastrar...");
-
-    if (!okEmail || !okSenha || !okNome || !okCelular || !okEstado_civil || !okCPF || !okIdade || !okSexo || !okLogradouro || !okCEP || !okNumero_casa || !okComplemento || !okEstado || !okCidade || !okBairro) {
+    if (!okNome || !okCelular || !okEstado_civil || !okCPF || !okIdade || !okSexo || !okLogradouro || !okCEP || !okNumero_casa || !okComplemento || !okEstado || !okCidade || !okBairro) {
         document.getElementById("mensagem").innerText =
             "Dados invalidos!";
-        //return;
+        return;
     } else {
         console.log("Sucesso!");
-        //console.log(email_cadastro + '\n' + senha_cadastro + '\n' + nome + '\n' + celular + '\n' + estado_civil + '\n' + cpf + '\n' + nascimento + '\n' + idade + '\n' + sexo.value + '\n' + logradouro + '\n' + cep + '\n' + numero_casa + '\n' + complemento + '\n' + estado + '\n' + cidade + '\n' + bairro);
     }
 
-
-    console.log(senha_cadastro + '\n' + nome + '\n' + celular + '\n' + estado_civil + '\n' + cpf + '\n' + nascimento + '\n' + sexo + '\n' + logradouro + '\n' + cep + '\n' + numero_casa + '\n' + complemento + '\n' + estado + '\n' + cidade + '\n' + bairro);
-
-
-    /*
-    const { data, error } = await supabase.auth.signUp({
-        email: email_cadastro,
-        password: senha_cadastro,
-        options: {
-            data: {
-                foto_perfil: null,
-                nome: nome,
-                celular: celular,
-                estado_civil: estado_civil,
-                cpf: cpf,
-                nascimento: nascimento,
-                sexo: sexo.value,
-                logradouro: logradouro,
-                cep: cep,
-                numero_casa: numero_casa,
-                complemento: complemento,
-                estado: estado,
-                cidade: cidade,
-                bairro: bairro
-            }
+    const { data, error } = await supabase.auth.updateUser({
+        data: {
+            nome: nome,
+            celular: celular,
+            estado_civil: estado_civil,
+            cpf: cpf,
+            nascimento: nascimento,
+            sexo: sexo.value,
+            logradouro: logradouro,
+            cep: cep,
+            numero_casa: numero_casa,
+            complemento: complemento,
+            estado: estado,
+            cidade: cidade,
+            bairro: bairro
         }
     });
-    /
 
     if (error) {
         document.getElementById("mensagem").innerText =
             "Erro: " + error.message;
     } else {
+        atualizarFotoPerfil();
         document.getElementById("mensagem").innerText = "Tudo certo!"
-        setTimeout(() => {
-            window.location.href = "obrigado.html";
-        }, 2000);
+        window.location.reload();
     }
 }
-*/
-
 
 // Trocar foto de perfil
 function previewFotoPerfil(input) {
@@ -524,16 +463,11 @@ function previewFotoPerfil(input) {
     }
 }
 
-
 // Salvar foto de perfil
 async function atualizarFotoPerfil() {
     const fileInput = document.getElementById("foto_perfil");
-    console.log(fileInput);
 
-    if (fileInput.files.length === 0) {
-        alert("Selecione uma imagem.");
-        return;
-    }
+    // if (fileInput.files.length === 0) {alert("Selecione uma imagem.");return;}
 
     const file = fileInput.files[0];
     const user = (await supabase.auth.getUser()).data.user;
@@ -550,7 +484,7 @@ async function atualizarFotoPerfil() {
         });
 
     if (uploadError) {
-        alert("Erro ao fazer upload: " + uploadError.message);
+        console.log("Erro ao fazer upload: " + uploadError.message);
         return;
     }
 
@@ -567,10 +501,8 @@ async function atualizarFotoPerfil() {
     });
 
     if (updateError) {
-        alert("Erro ao atualizar perfil: " + updateError.message);
+        console.log("Erro ao atualizar perfil: " + updateError.message);
     } else {
-        alert("Foto de perfil atualizada com sucesso!");
+        console.log("Foto de perfil atualizada com sucesso!");
     }
 }
-
-

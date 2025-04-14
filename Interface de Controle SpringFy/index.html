@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta name="author" content="Ramon Valverde">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="_images/icone.png">
+  <title>Interface SpringFy</title>
+  <link rel="stylesheet" type="text/css" href="_css/estilos.css">
+</head>
+
+<body>
+
+  <video autoplay muted loop playsinline id="bgVideo">
+    <source src="../_images/video_background-2.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo em HTML5.
+  </video>
+
+  <img id="icone" src="_images/icone.png" alt="Icone JavaScript">
+  <script>
+    document.getElementById("icone").addEventListener('click', () => {
+      window.location.href = "../index.html";
+    });
+  </script>
+
+  <main>
+    <h1>Interface SpringFy</h1>
+    <div id="interface">
+      <fieldset>
+        <legend>Acinar Zonas</legend>
+        <section id="section_1_acionar">
+          <div class="divisao_1_acionar">
+            <label class="info">Zona 01</label>
+            <input type="button" class="btn" value="ACIONAR" onclick="acionarZona(1)" />
+            <input type="button" class="btn" value="PARAR" onclick="pararZona(1)" />
+            <br />
+            <label class="info">Zona 02</label>
+            <input type="button" class="btn" value="ACIONAR" onclick="acionarZona(2)" />
+            <input type="button" class="btn" value="PARAR" onclick="pararZona(2)" />
+            <br />
+            <label class="info">Zona 03</label>
+            <input type="button" class="btn" value="ACIONAR" onclick="acionarZona(3)" />
+            <input type="button" class="btn" value="PARAR" onclick="pararZona(3)" />
+            <br />
+          </div>
+          <br />
+          <div class="divisao_1_acionar">
+            <label class="info">Zona 04</label>
+            <input type="button" class="btn" value="ACIONAR" onclick="acionarZona(4)" />
+            <input type="button" class="btn" value="PARAR" onclick="pararZona(4)" />
+            <br />
+            <label class="info">Zona 05</label>
+            <input type="button" class="btn" value="ACIONAR" onclick="acionarZona(5)" />
+            <input type="button" class="btn" value="PARAR" onclick="pararZona(5)" />
+            <br />
+            <label class="info">Zona 06</label>
+            <input type="button" class="btn" value="ACIONAR" onclick="acionarZona(6)" />
+            <input type="button" class="btn" value="PARAR" onclick="pararZona(6)" />
+          </div>
+        </section>
+        <div id="divisao_2_acionar">
+          <label id="info_tempo_acionar" class="info">Tempo</label>
+          <input type="range" id="range_tempo_acionar" class="range" min="1" max="60" value="1"
+            oninput="rangeTempoAcionar(this.value)" />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Gravar Programação</legend>
+        <section id="section_Nome_programar">
+          <select id="slt_programar_zona" name="slt_programar_zona" class="selecoes">
+            <option value="z1" class="opt">Zona 01</option>
+            <option value="z2" class="opt">Zona 02</option>
+            <option value="z3" class="opt">Zona 03</option>
+            <option value="z4" class="opt">Zona 04</option>
+            <option value="z5" class="opt">Zona 05</option>
+            <option value="z6" class="opt">Zona 06</option>
+            <option value="z7" class="opt">Zona 07</option>
+            <option value="z8" class="opt">Zona 08</option>
+            <option value="z9" class="opt">Zona 09</option>
+            <option value="z10" class="opt">Zona 10</option>
+          </select>
+          <label class="info">Nome da Zona:</label>
+          <input type="text" id="gravar_Nome_Zona" class="txt" placeholder="Nome da zona..." maxlength="22" />
+        </section>
+
+        <section id="section_1_programar">
+          <div class="divisao_1_programar">
+            <input type="checkbox" id="chk_domingo_prog" class="chk" value="dom" onclick="chkDiasProg(value)" /><label
+              class="info" for="chk_domingo_prog">Domingo</label><br />
+            <input type="checkbox" id="chk_segunda_prog" class="chk" value="seg" onclick="chkDiasProg(value)" /><label
+              class="info" for="chk_segunda_prog">Segunda-Feira</label><br />
+          </div>
+          <div class="divisao_1_programar">
+            <input type="checkbox" id="chk_terca_prog" class="chk" value="ter" onclick="chkDiasProg(value)" /><label
+              class="info" for="chk_terca_prog">Terça-Feira</label><br />
+            <input type="checkbox" id="chk_quarta_prog" class="chk" value="qua" onclick="chkDiasProg(value)" /><label
+              class="info" for="chk_quarta_prog">Quarta-Feira</label><br />
+          </div>
+          <div class="divisao_1_programar">
+            <input type="checkbox" id="chk_quinta_prog" class="chk" value="qui" onclick="chkDiasProg(value)" /><label
+              class="info" for="chk_quinta_prog">Quinta-Feira</label><br />
+            <input type="checkbox" id="chk_sexta_prog" class="chk" value="sex" onclick="chkDiasProg(value)" /><label
+              class="info" for="chk_sexta_prog">Sexta-Feira</label><br />
+          </div>
+          <div class="divisao_1_programar">
+            <input type="checkbox" id="chk_sabado_prog" class="chk" value="sab" onclick="chkDiasProg(value)" /><label
+              class="info" for="chk_sabado_prog">Sábado</label><br />
+            <input type="checkbox" id="chk_todos_prog" class="chk" value="tds" onclick="chkDiasProg(value)" /><label
+              class="info" for="chk_todos_prog">Todos</label>
+          </div>
+        </section>
+        <section id="section_2_programar">
+          <label id="info_tempo_programar" class="info">Tempo</label>
+          <input type="range" id="range_tempo_programar" class="range" min="1" max="60" value="1"
+            oninput="rangeTempoProg(this.value)" />
+        </section>
+        <section id="section_3_programar">
+          <div class="divisao_3_programar">
+            <label class="info">Horario 01: </label><input type="time" id="horario_01" class="horarios" /><br />
+            <label class="info">Horario 02: </label><input type="time" id="horario_02" class="horarios" /><br />
+          </div>
+          <div class="divisao_3_programar">
+            <label class="info">Horario 03: </label><input type="time" id="horario_03" class="horarios" /><br />
+            <label class="info">Horario 04: </label><input type="time" id="horario_04" class="horarios" /><br />
+          </div>
+          <div class="divisao_3_programar">
+            <label class="info">Horario 05: </label><input type="time" id="horario_05" class="horarios" />
+          </div>
+        </section>
+        <section id="section_4_programar">
+          <input type="button" id="btn_programar_programacao" class="btn" value="GRAVAR"
+            onclick="gravarProgramacao()" />
+        </section>
+      </fieldset>
+
+      <fieldset>
+        <legend>Modo Automático</legend>
+        <section id="section_1_automatico">
+          <div class="divisao_1_automatico">
+            <select id="slt_automatico" name="slt_automatico" class="selecoes">
+              <option value="z1" class="opt">Zona 01</option>
+              <option value="z2" class="opt">Zona 02</option>
+              <option value="z3" class="opt">Zona 03</option>
+              <option value="z4" class="opt">Zona 04</option>
+              <option value="z5" class="opt">Zona 05</option>
+              <option value="z6" class="opt">Zona 06</option>
+              <option value="z7" class="opt">Zona 07</option>
+              <option value="z8" class="opt">Zona 08</option>
+              <option value="z9" class="opt">Zona 09</option>
+              <option value="z10" class="opt">Zona 10</option>
+            </select>
+            <label class="info" for="chk_sensor_1">Sensor 01: </label><input type="checkbox" id="chk_sensor_1"
+              class="chk_sensor" value="s1" />
+            <label class="info" for="chk_sensor_2">Sensor 02: </label><input type="checkbox" id="chk_sensor_2"
+              class="chk_sensor" value="s2" />
+            <label class="info" for="chk_sensor_3">Sensor 03: </label><input type="checkbox" id="chk_sensor_3"
+              class="chk_sensor" value="s3" />
+            <label class="info" for="chk_sensor_4">Sensor 04: </label><input type="checkbox" id="chk_sensor_4"
+              class="chk_sensor" value="s4" />
+          </div>
+        </section>
+        <div class="divisao_2_automatico">
+          <input type="button" id="btn_automatico" class="btn" value="SALVAR" onclick="modoAutomatico()" />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Atraso de Regra</legend>
+        <section id="section_1_adr">
+          <div class="divisao_1_asr">
+            <select id="slt_adr" name="slt_adr" class="selecoes">
+              <option value="z1" class="opt">Zona 01</option>
+              <option value="z2" class="opt">Zona 02</option>
+              <option value="z3" class="opt">Zona 03</option>
+              <option value="z4" class="opt">Zona 04</option>
+              <option value="z5" class="opt">Zona 05</option>
+              <option value="z6" class="opt">Zona 06</option>
+              <option value="z7" class="opt">Zona 07</option>
+              <option value="z8" class="opt">Zona 08</option>
+              <option value="z9" class="opt">Zona 09</option>
+              <option value="z10" class="opt">Zona 10</option>
+            </select>
+            <input type="date" id="data_adr" class="data" />
+            <input type="button" id="btn_adr" class="btn" value="SALVAR" onclick="atrasoDeRegra()" />
+          </div>
+        </section>
+      </fieldset>
+
+      <fieldset>
+        <legend>Iluminação</legend>
+        <section id="section_1_iluminacao">
+          <div class="divisao_1_iluminacao">
+            <input type="checkbox" id="chk_domingo_ilu" class="chk" value="dom" onclick="chkDiasIlu(value)" /><label
+              class="info" for="chk_domingo_ilu">Domingo</label><br>
+            <input type="checkbox" id="chk_segunda_ilu" class="chk" value="seg" onclick="chkDiasIlu(value)" /><label
+              class="info" for="chk_segunda_ilu">Segunda-Feira</label><br>
+          </div>
+          <div class="divisao_1_iluminacao">
+            <input type="checkbox" id="chk_terca_ilu" class="chk" value="ter" onclick="chkDiasIlu(value)" /><label
+              class="info" for="chk_terca_ilu">Terça-Feira</label><br>
+            <input type="checkbox" id="chk_quarta_ilu" class="chk" value="qua" onclick="chkDiasIlu(value)" /><label
+              class="info" for="chk_quarta_ilu">Quarta-Feira</label><br>
+          </div>
+          <div class="divisao_1_iluminacao">
+            <input type="checkbox" id="chk_quinta_ilu" class="chk" value="qui" onclick="chkDiasIlu(value)" /><label
+              class="info" for="chk_quinta_ilu">Quinta-Feira</label><br>
+            <input type="checkbox" id="chk_sexta_ilu" class="chk" value="sex" onclick="chkDiasIlu(value)" /><label
+              class="info" for="chk_sexta_ilu">Sexta-Feira</label><br>
+          </div>
+          <div class="divisao_1_iluminacao">
+            <input type="checkbox" id="chk_sabado_ilu" class="chk" value="sab" onclick="chkDiasIlu(value)" /><label
+              class="info" for="chk_sabado_ilu">Sábado</label><br>
+            <input type="checkbox" id="chk_todos_ilu" class="chk" value="tds" onclick="chkDiasIlu(value)" /><label
+              class="info" for="chk_todos_ilu">Todos</label>
+          </div>
+        </section>
+
+        <section id="section_2_iluminacao">
+          <div class="divisao_2_iluminacao">
+            <label class="info">Início: </label><input type="time" id="horario_inicio" class="horarios_ilu" />
+            <label class="info">Término: </label><input type="time" id="horario_termino" class="horarios_ilu" />
+            <input type="button" id="btn_ilu" class="btn" value="SALVAR" onclick="iluminacao()" />
+          </div>
+        </section>
+      </fieldset>
+
+      <fieldset>
+        <legend>Configurar Wi-Fi</legend>
+        <div class="divisao_1_wifi">
+          <input type="button" id="btn_wifi_conectar" class="btn" value="CONECTAR" onclick="conectWiFi()" />
+        </div>
+        <section id="section_1_wifi">
+          <div class="divisao_2_wifi">
+            <label class="info">Rede Wi-Fi (SSID):</label><input type="text" id="ssid_wifi" class="txt"
+              placeholder="Nome do Wi-Fi..." maxlength="30" /><br />
+            <label class="info">Senha:</label><input type="password" id="senha_wifi" class="txt"
+              placeholder="Senha do Wi-Fi..." maxlength="30" /><br />
+            <label class="info">Endereço IP:</label><input type="text" id="endereco_ip" class="txt"
+              placeholder="192.168.0.130" oninput="autoincremento(this, 'ip')" /><br />
+            <label class="info">Porta:</label><input type="number" id="porta_ip" class="txt" placeholder="2450" min="1"
+              max="999999" />
+          </div>
+          <div class="divisao_2_wifi">
+            <label class="info">Máscara de Sub-Rede:</label><input type="text" id="mascara_ip" class="txt"
+              placeholder="255.255.255.0" oninput="autoincremento(this, 'mask')" /><br />
+            <label class="info">Gateway Padrão:</label><input type="text" id="gateway_ip" class="txt"
+              placeholder="192.168.0.1" oninput="autoincremento(this, 'gate')" /><br />
+            <label class="info">DNS:</label><input type="text" id="dns_ip" class="txt" placeholder="8.8.8.8"
+              oninput="autoincremento(this, 'dns')" /><br /><br />
+            <input type="button" id="btn_wifi_salvar" class="btn" value="GRAVAR" onclick="configWiFi()" />
+          </div>
+        </section>
+      </fieldset>
+
+      <fieldset>
+        <legend>JSON</legend>
+        <pre id="saida_json">...</pre>
+      </fieldset>
+    </div>
+  </main>
+     <!-- Rodapé -->
+     <footer class="assinatura">
+      <em>Copyright © 2024 by Ramon Aguiar Valverde</em><br>
+      <a href="https://www.facebook.com/" target="_blank" class="links">Facebook</a>
+      <a href="https://www.instagram.com/" target="_blank" class="links">Instagram</a>
+   </footer>
+</body>
+<script language="JavaScript" src="_javascript/WebSocket.js"></script>
+<script language="JavaScript" src="_javascript/Acionar_Zonas.js"></script>
+<script language="JavaScript" src="_javascript/Gravar_Programacao.js"></script>
+<script language="JavaScript" src="_javascript/Modo_Automatico.js"></script>
+<script language="JavaScript" src="_javascript/Atraso_de_Regra.js"></script>
+<script language="JavaScript" src="_javascript/Iluminacao.js"></script>
+<script language="JavaScript" src="_javascript/Configurar_WiFi.js"></script>
+
+</html>

@@ -46,9 +46,7 @@
                </li>
                <li class="nav-item active"><a class="nav-link" href="faq.html">FAQ</a></li>
                <li class="nav-item active"><a class="nav-link" href="forum.html">Forum</a></li>
-               <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login <img
-                        src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"
-                        class="icone_perfil"></a></li>
+               <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login</a></li>
                <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta <img
                         src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"
                         class="icone_perfil"></a></li>
@@ -82,7 +80,7 @@
                   class="span_info_destaque">0</span></label>
             <label id="perguntas_feitas" class="label_info_destaque">Perguntas Feitas: <span id="data_perguntas_feitas"
                   class="span_info_destaque">0</span></label>
-            <div class="spaco_1"></div>
+            <button id="meu_dispositivo" class="meu_dispositivo">Meu Dispositivo</button>
          </div>
          <hr>
 
@@ -126,27 +124,6 @@
                   <div class="foto_overlay">Alterar imagem</div>
                </div>
                <input type="file" id="foto_perfil" accept="image/*" onchange="previewFotoPerfil(this)">
-            </fieldset>
-
-            <fieldset id="fieldset_login" class="form_fieldset">
-               <legend class="form_legend">Conta</legend>
-               <div class="div_column_2">
-                  <button id="btn_mudar_senha" class="botoes_3">Mudar a senha</button>
-                  <div id="mudar_senha">
-                     <label class="input_legend">Senha Antiga:</label>
-                     <input id="senha_antiga" class="form_input_senha" type="password"
-                        placeholder="Digite sua senha antiga" required>
-                     <label class="input_legend">Nova Senha:</label>
-                     <input id="nova_senha" class="form_input_senha" type="password" placeholder="Crie uma nova senha"
-                        required>
-                     <label class="input_legend">Repita a Senha:</label>
-                     <input id="repete_senha" class="form_input_senha" type="password"
-                        placeholder="Repita a nova uma senha" required>
-                     <p id="senha_feedback" class="feedback"></p>
-                     <button id="btn_salvar_senha" class="botoes_4">Salvar</button>
-                     <button id="btn_cancelar_senha" class="botoes_4">Cancelar</button>
-                  </div>
-               </div>
             </fieldset>
 
             <fieldset id="fieldset_identificacao" class="form_fieldset">
@@ -281,7 +258,7 @@
             </fieldset>
 
             <footer id="btn_cadastrar">
-               <button id="btn_cadastrar" class="botoes" type="submit" onclick="atualizarFotoPerfil()">Salvar</button>
+               <button id="btn_cadastrar" class="botoes" type="submit" onclick="atualizarCadastro()">Salvar</button>
                <button id="btn_cancelar" class="botoes">Cancelar</button>
             </footer>
          </form>

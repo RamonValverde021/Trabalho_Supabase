@@ -1,0 +1,54 @@
+{
+	"Id":"Zona_1", 
+	"Dados": {
+			"Dom":false,
+			"Seg":false, 
+			"Ter":false,
+			"Qua":false,
+			"Qui":false,
+			"Sex":false,
+			"Sáb":false,
+			"Temp":60, 
+			"H_1":"07:00",
+			"H_2":"18:00",
+			"H_3":"--:--", 
+			"H_4":"--:--",
+			"H_5":"--:--",
+			"ADR": { 
+					"Ligado":false,
+					"Data":"12/05/2024"
+				},
+			"Auto": {
+					"Ligado":false, 
+					"S_1":false, 
+					"S_2":false,
+					"S_3":false, 
+					"S_4":false,
+					"S_5":false
+				}    
+		}
+}
+
+{"Id":"Zona_1","Dados":{"Dom":false,"Seg":false,"Ter":false,"Qua":false,"Qui":false,"Sex":false,"Sáb":false,"Temp":60,"H_1":"07:00","H_2":"18:00","H_3":"--:--", "H_4":"--:--","H_5":"--:--","ADR":{"Ligado":false,"Data":"12/05/2024"},"Auto":{"Ligado":false,"S_1":false,"S_2":false,"S_3":false,"S_4":false,"S_5":false}}}
+// 322 bytes ao maximo - 321 caracteres
+// 3210
+
+
+
+{
+	"Id":"Iluminação", 
+	"Dados": {
+			"Ligado":false,
+			"Dom":false, 
+			"Seg":false, 
+			"Ter":false,
+			"Qua":false,
+			"Qui":false,
+			"Sex":false,
+			"Sáb":false,
+			"Inic":"18:00",
+			"Fim":"03:00" 
+		}
+}
+{"Id":"Iluminação","Dados":{"Ligado":false,"Dom":false,"Seg":false,"Ter":false,"Qua":false,"Qui":false,"Sex":false,"Sáb":false,"Inic":"18:00","Fim":"03:00"}}
+// 160 bytes ao maximo - 157 caracteres

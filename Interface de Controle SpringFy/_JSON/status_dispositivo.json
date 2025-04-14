@@ -1,0 +1,327 @@
+{
+    "Id": "SpringFy",
+    "Designação": "Status",
+    "Dados": {
+        "Dispositivos_Acionados": {
+            "Zona_1": 1,
+            "Zona_2": 0,
+            "Zona_3": 1,
+            "Zona_4": 1,
+            "Zona_5": 0,
+            "Zona_6": 1,
+            "Zona_7": 1,
+            "Zona_8": 0,
+            "Zona_9": 0,
+            "Zona_10": 0,
+            "Motobomba": 1,
+            "Iluminação": 1
+        },
+        "Sensores": {
+            "Sensor_1": 1,
+            "Sensor_2": 0,
+            "Sensor_3": 0,
+            "Sensor_4": 1
+        },
+        "Zonas_Central": [
+            {
+                "Id": "Zona_1",
+                "Dados": {
+                    "Dom": 1,
+                    "Seg": 0,
+                    "Ter": 1,
+                    "Qua": 0,
+                    "Qui": 1,
+                    "Sex": 0,
+                    "Sáb": 1,
+                    "Temp": 2,
+                    "H_1": "06:00",
+                    "H_2": "18:00",
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 0,
+                        "Data": null
+                    },
+                    "Auto": {
+                        "Ligado": 0,
+                        "S_1": 0,
+                        "S_2": 0,
+                        "S_3": 0,
+                        "S_4": 0,
+                        "S_5": 0
+                    }
+                }
+            },
+            {
+                "Id": "Zona_2",
+                "Dados": {
+                    "Dom": 1,
+                    "Seg": 0,
+                    "Ter": 1,
+                    "Qua": 0,
+                    "Qui": 1,
+                    "Sex": 0,
+                    "Sáb": 1,
+                    "Temp": 2,
+                    "H_1": "07:00",
+                    "H_2": "18:00",
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 1,
+                        "Data": "12/05/2024"
+                    },
+                    "Auto": {
+                        "Ligado": 0,
+                        "S_1": 0,
+                        "S_2": 0,
+                        "S_3": 0,
+                        "S_4": 0,
+                        "S_5": 0
+                    }
+                }
+            },
+            {
+                "Id": "Zona_3",
+                "Dados": {
+                    "Dom": 0,
+                    "Seg": 0,
+                    "Ter": 0,
+                    "Qua": 0,
+                    "Qui": 0,
+                    "Sex": 0,
+                    "Sáb": 0,
+                    "Temp": null,
+                    "H_1": null,
+                    "H_2": null,
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 0,
+                        "Data": null
+                    },
+                    "Auto": {
+                        "Ligado": 1,
+                        "S_1": 1,
+                        "S_2": 1,
+                        "S_3": 0,
+                        "S_4": 0,
+                        "S_5": 0
+                    }
+                }
+            },
+            {
+                "Id": "Zona_4",
+                "Dados": {
+                    "Dom": 0,
+                    "Seg": 0,
+                    "Ter": 0,
+                    "Qua": 0,
+                    "Qui": 0,
+                    "Sex": 0,
+                    "Sáb": 0,
+                    "Temp": null,
+                    "H_1": null,
+                    "H_2": null,
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 0,
+                        "Data": null
+                    },
+                    "Auto": {
+                        "Ligado": 1,
+                        "S_1": 0,
+                        "S_2": 0,
+                        "S_3": 0,
+                        "S_4": 1,
+                        "S_5": 1
+                    }
+                }
+            },
+            {
+                "Id": "Zona_5",
+                "Dados": {
+                    "Dom": 0,
+                    "Seg": 0,
+                    "Ter": 0,
+                    "Qua": 0,
+                    "Qui": 0,
+                    "Sex": 0,
+                    "Sáb": 0,
+                    "Temp": 0,
+                    "H_1": null,
+                    "H_2": null,
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 0,
+                        "Data": null
+                    },
+                    "Auto": {
+                        "Ligado": 0,
+                        "S_1": 0,
+                        "S_2": 0,
+                        "S_3": 0,
+                        "S_4": 0,
+                        "S_5": 0
+                    }
+                }
+            }
+        ],
+        "Iluminação": {
+            "Ligado": 1,
+            "Dom": 1,
+            "Seg": 0,
+            "Ter": 0,
+            "Qua": 0,
+            "Qui": 0,
+            "Sex": 1,
+            "Sáb": 1,
+            "Inic": "18:00",
+            "Fim": "03:00"
+        },
+        "Zonas_Modulo": [
+            {
+                "Id": "Zona_6",
+                "Dados": {
+                    "Dom": 1,
+                    "Seg": 0,
+                    "Ter": 1,
+                    "Qua": 0,
+                    "Qui": 1,
+                    "Sex": 0,
+                    "Sáb": 1,
+                    "Temp": 2,
+                    "H_1": "06:00",
+                    "H_2": "18:00",
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 0,
+                        "Data": null
+                    },
+                    "Auto": {
+                        "Ligado": 0,
+                        "S_1": 0,
+                        "S_2": 0
+                    }
+                }
+            },
+            {
+                "Id": "Zona_7",
+                "Dados": {
+                    "Dom": 0,
+                    "Seg": 0,
+                    "Ter": 0,
+                    "Qua": 0,
+                    "Qui": 0,
+                    "Sex": 0,
+                    "Sáb": 0,
+                    "Temp": null,
+                    "H_1": null,
+                    "H_2": null,
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 0,
+                        "Data": null
+                    },
+                    "Auto": {
+                        "Ligado": 1,
+                        "S_1": 1,
+                        "S_2": 1
+                    }
+                }
+            },
+            {
+                "Id": "Zona_8",
+                "Dados": {
+                    "Dom": 0,
+                    "Seg": 0,
+                    "Ter": 0,
+                    "Qua": 0,
+                    "Qui": 0,
+                    "Sex": 0,
+                    "Sáb": 0,
+                    "Temp": null,
+                    "H_1": null,
+                    "H_2": null,
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 0,
+                        "Data": null
+                    },
+                    "Auto": {
+                        "Ligado": 0,
+                        "S_1": 0,
+                        "S_2": 0
+                    }
+                }
+            },
+            {
+                "Id": "Zona_9",
+                "Dados": {
+                    "Dom": 0,
+                    "Seg": 0,
+                    "Ter": 0,
+                    "Qua": 0,
+                    "Qui": 0,
+                    "Sex": 0,
+                    "Sáb": 0,
+                    "Temp": null,
+                    "H_1": null,
+                    "H_2": null,
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 0,
+                        "Data": null
+                    },
+                    "Auto": {
+                        "Ligado": 0,
+                        "S_1": 0,
+                        "S_2": 0
+                    }
+                }
+            },
+            {
+                "Id": "Zona_10",
+                "Dados": {
+                    "Dom": 0,
+                    "Seg": 0,
+                    "Ter": 0,
+                    "Qua": 0,
+                    "Qui": 0,
+                    "Sex": 0,
+                    "Sáb": 0,
+                    "Temp": null,
+                    "H_1": null,
+                    "H_2": null,
+                    "H_3": null,
+                    "H_4": null,
+                    "H_5": null,
+                    "ADR": {
+                        "Ligado": 0,
+                        "Data": null
+                    },
+                    "Auto": {
+                        "Ligado": 0,
+                        "S_1": 0,
+                        "S_2": 0
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -2,12 +2,9 @@
 
 main.login {
     display: flex;
-    justify-content: center;
-    /* Centraliza horizontalmente */
+    justify-content: flex-start;
     align-items: center;
-    /* Centraliza verticalmente */
     flex-direction: column;
-    /* Esse recurso é para empurrar o footer para o final da pagina, min-height = 100vh - (Soma de cada espaçamento vertical dos elemntos de footer) + 10*/
 }
 
 h1.login_title {

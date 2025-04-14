@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
         mostrarMenuConta(user);
+        atualizarFotoPerfilMenu();
     } else {
         mostrarMenuLogin();
     }
@@ -47,5 +48,26 @@ async function mostrarMenuConta(user) {
             */
     } else {
         console.log('Nenhum usuário logado');
+    }
+}
+
+// Atualizando foto de perfil
+async function atualizarFotoPerfilMenu() {
+    const { data, error_foto } = await supabase.auth.getUser();            // chama o Supabase pra pegar os dados do usuário que está logado no momento. - data contém os dados do usuário - error retorna um erro se houver problema (ex: usuário deslogado)
+    // Tratamento de erro
+    if (error_foto) {
+        console.error("Erro ao buscar usuário:", error_foto.message);
+        return;
+    }
+    // Pegando o objeto do usuário
+    const user_foto = data.user;                                           // Extraímos o objeto user de data pra facilitar o acesso às infos dele.
+    // Buscando a URL da foto no user_metadata
+    const fotoPerfilUrl = user_foto.user_metadata?.foto_perfil;            // Aqui usamos ?. (optional chaining) pra evitar erro se user_metadata estiver indefinido.
+    // Se a propriedade foto_perfil existir, ela vai ser atribuída à variável fotoPerfilUrl.
+    //  Alterando a imagem da <img> se a URL existir
+    if (fotoPerfilUrl) {                                                   // Se a URL estiver definida, alteramos o src da imagem com o ID fotoPerfil para exibir a foto de perfil do usuário.
+        document.getElementById("icone_perfil").src = fotoPerfilUrl || "../_images/Sem-perfil.png";
+    } else {                                                               // Caso contrário, só mostramos uma mensagem no console dizendo que o usuário ainda não tem imagem.
+        console.log("Usuário ainda não tem foto de perfil.");
     }
 }
