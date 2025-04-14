@@ -66,14 +66,16 @@ div#conteudoNavbarSuportado {
 }
 
 ul.navbar-nav {
-   width: 80%;
+   width: 100%;
    display: flex;
    justify-content: space-around;
    padding-left: 2%;
+   align-items: center;
 }
 
 li.nav-item {
    font-size: 30px;
+   flex-grow: 1;
 }
 
 a.nav-link {
@@ -86,7 +88,7 @@ a.nav-link:hover {
 }
 
 ul.dropdown-menu li {
-   padding-left: 10px;
+   padding-left: 2px;
 }
 
 a.nav-link-dropdown {

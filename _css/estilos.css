@@ -63,6 +63,15 @@ li.menu_item:hover {
    display: none;
 }
 
+img#icone_perfil {
+   height: 50px;
+   width: 50px;
+}
+
+div.spacer {
+   flex-grow: 5;
+}
+
 /*------------------------ Formatação Rpdapé ------------------------*/
 
 footer.assinatura {

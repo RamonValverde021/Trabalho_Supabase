@@ -1,1 +1,93 @@
 @charset "UTF-8";
+
+main {
+    padding: 10px;
+}
+
+label.label_info_principal {
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(45, 62, 81);
+}
+
+button.editar_usuario {
+    width: 150px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+div#info_principal {
+    display: inline-flex;
+    width: 100%;
+}
+
+img#icone_perfil_info {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin: 10px 30px 10px 10px;
+    animation: none;
+}
+
+img#icone_perfil_info:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+div#conteiner_info_prinipal {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div#info_destaques {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+label.label_info_destaque {
+    font-size: 26px;
+    font-weight: bold;
+    color: rgb(45, 62, 81);
+}
+
+span.span_info_destaque{
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(45, 62, 81);
+    text-transform: capitalize;
+}
+
+button#botao_logout {
+    width: 50px;
+}
+
+legend.titulo_info {
+    margin-top: 30px;
+    margin-bottom: -5px;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(45, 62, 81);
+}
+
+label.label_info {
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(45, 62, 81);
+}
+
+span.span_info {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: normal;
+    color: rgb(45, 62, 81);
+    text-transform: capitalize;
+}

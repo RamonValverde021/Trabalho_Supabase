@@ -46,8 +46,10 @@
                </li>
                <li class="nav-item active"><a class="nav-link" href="faq.html">FAQ</a></li>
                <li class="nav-item active"><a class="nav-link" href="forum.html">Forum</a></li>
-               <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login</a></li>
-               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta</a></li>
+               <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login <img
+                        src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"></a></li>
+               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta <img
+                        src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"></a></li>
             </ul>
             <!-- 
             <form class="d-flex" role="search">
@@ -60,9 +62,48 @@
    </nav>
 
    <main class="minha_conta">
-      <button class="botoes" type="button" onclick="logout()">Sair</button>
 
-      <p id="data_user"></p>
+      <div id="info_principal">
+         <img src="../_images/Sem-perfil.png" id="icone_perfil_info" alt="icone de perfil">
+         <div id="conteiner_info_prinipal">
+            <label id="nome_usuario" class="label_info_principal">Nome do Usuário</label>
+            <label id="email_usuario" class="label_info_principal">Email do Usuário</label>
+            <button id="editar_usuario" class="editar_usuario">⚙️ Editar Usuário</button>
+         </div>
+      </div>
+
+      <hr>
+      <div id="info_destaques">
+         <label id="ingressou_em" class="label_info_destaque">Ingressou em: <span id="data_ingresso_em"
+               class="span_info_destaque">0</span></label>
+         <label id="perguntas_feitas" class="label_info_destaque">Perguntas Feitas: <span id="data_perguntas_feitas"
+               class="span_info_destaque">0</span></label>
+         <div class="spaco_1"></div>
+         <button id="botao_logout" class="botoes" type="button" onclick="logout()">Sair</button>
+      </div>
+      <hr>
+
+      <fieldset class="info_pessoal">
+         <legend class="titulo_info">Identificação</legend>
+         <label class="label_info">Nome Completo: <span id="data_nome_completo" class="span_info"></span></label><br>
+         <label class="label_info">CPF: <span id="data_cpf" class="span_info"></span></label><br>
+         <label class="label_info">Celular: <span id="data_celular" class="span_info"></span></label><br>
+         <label class="label_info">Data de Nascimento: <span id="data_nascimento" class="span_info"></span></label><br>
+         <label class="label_info">Estado Civil: <span id="data_civil" class="span_info"></span></label><br>
+         <label class="label_info">Sexo: <span id="data_sexo" class="span_info"></span></label><br>
+      </fieldset>
+
+      <fieldset class="info_pessoal">
+         <legend class="titulo_info">Endereço</legend>
+         <label class="label_info">Logradouro: <span id="data_logradouro" class="span_info"></span></label><br>
+         <label class="label_info">CEP: <span id="data_cep" class="span_info"></span></label><br>
+         <label class="label_info">Numero: <span id="data_numero_casa" class="span_info"></span></label><br>
+         <label class="label_info">Complemento: <span id="data_complemento" class="span_info"></span></label><br>
+         <label class="label_info">Bairro: <span id="data_bairro" class="span_info"></span></label><br>
+         <label class="label_info">Cidade: <span id="data_cidade" class="span_info"></span></label><br>
+         <label class="label_info">Estado: <span id="data_estado" class="span_info"></span></label><br>
+      </fieldset>
+
    </main>
 
    <!-- Rodapé -->
@@ -73,4 +114,5 @@
    </footer>
 
 </body>
+
 </html>
