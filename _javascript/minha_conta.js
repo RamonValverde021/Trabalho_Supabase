@@ -4,51 +4,56 @@ async function logout() {
     window.location.href = "../index.html";
 }
 
+// Flags booleanas de confirmação
+let okSenha, okNome, okCelular, okEstado_civil, okCPF, okIdade, okSexo, okLogradouro, okCEP, okNumero_casa, okComplemento, okEstado, okCidade, okBairro = true;
+
+// Inicias os dados recebidos do formulario globalmente
+let senha_cadastro, nome, celular, estado_civil, cpf, nascimento, sexo, logradouro, cep, numero_casa, complemento, estado, cidade, bairro;
+
 // Checa se o usuário está logado quando a página carrega
 window.addEventListener('DOMContentLoaded', async () => {
     const { data: { user } } = await supabase.auth.getUser();
 
-    /*
     // Exibe o painel de informações do usuário
     document.getElementById("meu_perfil").style.display = "block";
     document.getElementById("edit_perfil").style.display = "none";
+    /*
+        document.getElementById("meu_perfil").style.display = "none";
+        document.getElementById("edit_perfil").style.display = "block";
     */
-
-    document.getElementById("meu_perfil").style.display = "none";
-    document.getElementById("edit_perfil").style.display = "block";
-
     // Exibe os dados cadastrados da conta
-    document.getElementById("nome_usuario").innerText = `${user.user_metadata.nome}`;
-    document.getElementById("email_usuario").innerText = `${user.email}`.toLowerCase();
-    document.getElementById("data_nome_completo").innerText = `${user.user_metadata.nome}`.toLowerCase();
-    document.getElementById("data_cpf").innerText = `${user.user_metadata.cpf}`;
-    document.getElementById("data_celular").innerText = `${user.user_metadata.celular}`;
-    document.getElementById("data_nascimento").innerText = `${user.user_metadata.nascimento}`;
-    document.getElementById("data_civil").innerText = `${user.user_metadata.estado_civil}`.toLowerCase();
-    document.getElementById("data_sexo").innerText = `${user.user_metadata.sexo}`;
-    document.getElementById("data_logradouro").innerText = `${user.user_metadata.logradouro}`.toLowerCase();
-    document.getElementById("data_cep").innerText = `${user.user_metadata.cep}`;
-    document.getElementById("data_numero_casa").innerText = `${user.user_metadata.numero_casa}`;
-    document.getElementById("data_complemento").innerText = `${user.user_metadata.complemento}`.toLowerCase();
-    document.getElementById("data_bairro").innerText = `${user.user_metadata.bairro}`.toLowerCase();
-    document.getElementById("data_cidade").innerText = `${user.user_metadata.cidade}`.toLowerCase();
-    document.getElementById("data_estado").innerText = `${user.user_metadata.estado}`;
+    document.getElementById("nome_usuario").innerText = user.user_metadata.nome;
+    document.getElementById("email_usuario").innerText = user.email.toLowerCase();
+    document.getElementById("data_nome_completo").innerText = user.user_metadata.nome.toLowerCase();
+    document.getElementById("data_cpf").innerText = user.user_metadata.cpf;
+    document.getElementById("data_celular").innerText = user.user_metadata.celular;
 
+    let partes = user.user_metadata.nascimento.split("-"); // ["1998", "06", "24"]
+    let dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
 
+    document.getElementById("data_nascimento").innerText = dataFormatada;
+    document.getElementById("data_civil").innerText = user.user_metadata.estado_civil.toLowerCase();
+    document.getElementById("data_sexo").innerText = user.user_metadata.sexo;
+    document.getElementById("data_logradouro").innerText = user.user_metadata.logradouro.toLowerCase();
+    document.getElementById("data_cep").innerText = user.user_metadata.cep;
+    document.getElementById("data_numero_casa").innerText = user.user_metadata.numero_casa;
+    document.getElementById("data_complemento").innerText = user.user_metadata.complemento.toLowerCase();
+    document.getElementById("data_bairro").innerText = user.user_metadata.bairro.toLowerCase();
+    document.getElementById("data_cidade").innerText = user.user_metadata.cidade.toLowerCase();
+    document.getElementById("data_estado").innerText = user.user_metadata.estado;
 
     // Exibe o painel de edição de dados do usuário
     document.getElementById("editar_usuario").addEventListener('click', () => {
         document.getElementById("meu_perfil").style.display = "none";
         document.getElementById("edit_perfil").style.display = "block";
 
-
         // Carrega os dados da conta nos campos de edição
         // Identificação
-        document.getElementById("nome").placeholder = `${user.user_metadata.nome}`;
-        document.getElementById("celular").placeholder = `${user.user_metadata.celular}`;
-        document.getElementById("estado_civil").placeholder = `${user.user_metadata.estado_civil}`;
-        document.getElementById("cpf").placeholder = `${user.user_metadata.cpf}`;
-        document.getElementById("nascimento").placeholder = `${user.user_metadata.nascimento}`;
+        document.getElementById("nome").placeholder = user.user_metadata.nome;
+        document.getElementById("celular").placeholder = user.user_metadata.celular;
+        document.getElementById("estado_civil").value = user.user_metadata.estado_civil;
+        document.getElementById("cpf").placeholder = user.user_metadata.cpf;
+        document.getElementById("nascimento").value = user.user_metadata.nascimento;
         if (user.user_metadata.sexo === 'Masculino') {
             document.getElementById("masculino").checked = true;
             document.getElementById("feminino").checked = false;
@@ -56,8 +61,13 @@ window.addEventListener('DOMContentLoaded', async () => {
             document.getElementById("masculino").checked = false;
             document.getElementById("feminino").checked = true;
         }
-
-
+        document.getElementById("logradouro").placeholder = user.user_metadata.logradouro;
+        document.getElementById("cep").placeholder = user.user_metadata.cep;
+        document.getElementById("numero_casa").placeholder = user.user_metadata.numero_casa;
+        document.getElementById("complemento").placeholder = user.user_metadata.complemento;
+        document.getElementById("estado").value = user.user_metadata.estado;
+        document.getElementById("cidade").placeholder = user.user_metadata.cidade;
+        document.getElementById("bairro").placeholder = user.user_metadata.bairro;
     });
 
     // Cancela a edição e torna a exibir o painel de informações do usuário
@@ -66,14 +76,27 @@ window.addEventListener('DOMContentLoaded', async () => {
         document.getElementById("edit_perfil").style.display = "none";
     });
 
+    // Incrementação de varaiaveis para edição de cadastro
+    senha_cadastro = "123456";
+    nome = user.user_metadata.nome;
+    celular = user.user_metadata.celular;
+    estado_civil = user.user_metadata.estado_civil;
+    cpf = user.user_metadata.cpf;
+    nascimento = user.user_metadata.nascimento;
+    sexo = user.user_metadata.sexo;
+    logradouro = user.user_metadata.logradouro;
+    cep = user.user_metadata.cep;
+    numero_casa = user.user_metadata.numero_casa;
+    complemento = user.user_metadata.complemento;
+    estado = user.user_metadata.estado;
+    cidade = user.user_metadata.cidade;
+    bairro = user.user_metadata.bairro;
+
 });
 
 
-
-
-
-
 /* -------------------------- CODIGO DA VALIDAÇÃO DO FORMULARIO DE EDIÇÃO -------------------------- */
+
 // Edição foto de perfil
 function previewFotoPerfil(input) {
     const file = input.files[0];
@@ -84,12 +107,6 @@ function previewFotoPerfil(input) {
         reader.readAsDataURL(file);
     }
 }
-
-// Flags booleanas de confirmação
-let okEmail, okSenha, okNome, okCelular, okEstado_civil, okCPF, okIdade, okSexo, okLogradouro, okCEP, okNumero_casa, okComplemento, okEstado, okCidade, okBairro = false;
-
-// Inicias os dados recebidos do formulario globalmente
-let email_cadastro, senha_cadastro, nome, celular, estado_civil, cpf, nascimento, idade, sexo, logradouro, cep, numero_casa, complemento, estado, cidade, bairro;
 
 // Habilitar painel de edição de senha
 document.getElementById("mudar_senha").style.display = "none";
@@ -104,6 +121,7 @@ document.getElementById("btn_mudar_senha").addEventListener('click', () => {
 
 // Botão cancelar correção de senha
 document.getElementById("btn_cancelar_senha").addEventListener('click', () => {
+    document.getElementById('senha_feedback').innerText = "";
     // Torna visivel o botão e o culta o painel de preenchimento
     document.getElementById("mudar_senha").style.display = "none";
     document.getElementById("btn_mudar_senha").style.display = "inline";
@@ -119,7 +137,7 @@ document.getElementById("btn_salvar_senha").addEventListener('click', () => {
     let nova_senha = document.getElementById("nova_senha").value;
     let repete_senha = document.getElementById("repete_senha").value;
     let feedback = document.getElementById('senha_feedback');
-    
+
     if (senha_antiga == "123456") {
         if (nova_senha.length >= 3) {
             if (nova_senha == repete_senha) {
@@ -143,8 +161,15 @@ document.getElementById("btn_salvar_senha").addEventListener('click', () => {
     }
 });
 
+
+
+
+
+
+
 // Validar Nome
 document.getElementById("nome").addEventListener("input", function () {
+    okNome = false;
     nome = document.getElementById('nome').value;
     let feedback = document.getElementById('nome_feedback');
     if (nome.length >= 5) {
@@ -160,6 +185,7 @@ document.getElementById("nome").addEventListener("input", function () {
 
 // Validar Celular
 document.getElementById('celular').addEventListener("input", function () {
+    okCelular = false;
     celular = document.getElementById('celular').value;
     let feedback = document.getElementById('celular_feedback');
     if (celular.length == 15) {
@@ -175,6 +201,7 @@ document.getElementById('celular').addEventListener("input", function () {
 
 // Validar Estado Civil
 document.getElementById('estado_civil').addEventListener("click", function () {
+    okEstado_civil = false;
     estado_civil = document.getElementById('estado_civil').value;
     let feedback = document.getElementById('estado_civil_feedback');
     if (estado_civil) {
@@ -190,6 +217,7 @@ document.getElementById('estado_civil').addEventListener("click", function () {
 
 // Validar CPF
 document.getElementById('cpf').addEventListener("input", function () {
+    okCPF = false;
     cpf = document.getElementById('cpf').value;
     let feedback = document.getElementById('cpf_feedback');
     if (validarCPF(cpf)) {
@@ -229,6 +257,7 @@ function validarCPF(cpf) {
 
 // Validar Nascimento e Idade
 document.getElementById("nascimento").addEventListener("input", function () {
+    okIdade = false;
     nascimento = document.getElementById("nascimento").value;
     var dataAtual = new Date();
     var anoAtual = dataAtual.getFullYear();
@@ -278,6 +307,7 @@ function mostrarMensagem() {
 
 // Validar Logradouro
 document.getElementById("logradouro").addEventListener("input", function () {
+    okLogradouro = false;
     logradouro = document.getElementById('logradouro').value;
     let feedback = document.getElementById('logradouro_feedback');
     if (logradouro.length >= 3) {
@@ -293,6 +323,7 @@ document.getElementById("logradouro").addEventListener("input", function () {
 
 // Validar CEP
 document.getElementById('cep').addEventListener("input", function () {
+    okCEP = false;
     cep = document.getElementById('cep').value;
     let feedback = document.getElementById('cep_feedback');
     if (cep.length == 9) {
@@ -308,6 +339,7 @@ document.getElementById('cep').addEventListener("input", function () {
 
 // Validar Número da Casa
 document.getElementById("numero_casa").addEventListener("input", function () {
+    okNumero_casa = false;
     numero_casa = document.getElementById('numero_casa').value;
     let feedback = document.getElementById('numero_casa_feedback');
     if (numero_casa >= 1) {
@@ -323,6 +355,7 @@ document.getElementById("numero_casa").addEventListener("input", function () {
 
 // Validar Complemento
 document.getElementById("complemento").addEventListener("input", function () {
+    okComplemento = false;
     complemento = document.getElementById('complemento').value;
     let feedback = document.getElementById('complemento_feedback');
     if (complemento.length >= 3) {
@@ -338,6 +371,7 @@ document.getElementById("complemento").addEventListener("input", function () {
 
 // Validar Estado
 document.getElementById("estado").addEventListener("click", function () {
+    okEstado = false;
     estado = document.getElementById('estado').value;
     let feedback = document.getElementById('estado_feedback');
     if (estado) {
@@ -353,6 +387,7 @@ document.getElementById("estado").addEventListener("click", function () {
 
 // Validar Cidade
 document.getElementById("cidade").addEventListener("input", function () {
+    okCidade = false;
     cidade = document.getElementById('cidade').value;
     let feedback = document.getElementById('cidade_feedback');
     if (cidade.length >= 3) {
@@ -368,6 +403,7 @@ document.getElementById("cidade").addEventListener("input", function () {
 
 // Validar Bairro
 document.getElementById("bairro").addEventListener("input", function () {
+    okBairro = false;
     bairro = document.getElementById('bairro').value;
     let feedback = document.getElementById('bairro_feedback');
     if (bairro.length >= 3) {
@@ -380,6 +416,8 @@ document.getElementById("bairro").addEventListener("input", function () {
         okBairro = false;
     }
 });
+
+
 
 // Função que incrementa automaticamente os campos
 function autoincremento(dado, tipo) {
@@ -405,15 +443,28 @@ function autoincremento(dado, tipo) {
     }
 }
 
+
+
+
+
+
+
+
 async function cadastrar() {
     console.log("Tentando cadastrar...");
+
     if (!okEmail || !okSenha || !okNome || !okCelular || !okEstado_civil || !okCPF || !okIdade || !okSexo || !okLogradouro || !okCEP || !okNumero_casa || !okComplemento || !okEstado || !okCidade || !okBairro) {
         document.getElementById("mensagem").innerText =
-            "Preencha todos os campos!";
-        return;
+            "Dados invalidos!";
+        //return;
     } else {
-        console.log(email_cadastro + '\n' + senha_cadastro + '\n' + nome + '\n' + celular + '\n' + estado_civil + '\n' + cpf + '\n' + nascimento + '\n' + idade + '\n' + sexo.value + '\n' + logradouro + '\n' + cep + '\n' + numero_casa + '\n' + complemento + '\n' + estado + '\n' + cidade + '\n' + bairro);
+        console.log("Sucesso!");
+        //console.log(email_cadastro + '\n' + senha_cadastro + '\n' + nome + '\n' + celular + '\n' + estado_civil + '\n' + cpf + '\n' + nascimento + '\n' + idade + '\n' + sexo.value + '\n' + logradouro + '\n' + cep + '\n' + numero_casa + '\n' + complemento + '\n' + estado + '\n' + cidade + '\n' + bairro);
     }
+
+
+    console.log(senha_cadastro + '\n' + nome + '\n' + celular + '\n' + estado_civil + '\n' + cpf + '\n' + nascimento + '\n' + sexo + '\n' + logradouro + '\n' + cep + '\n' + numero_casa + '\n' + complemento + '\n' + estado + '\n' + cidade + '\n' + bairro);
+
 
     /*
     const { data, error } = await supabase.auth.signUp({

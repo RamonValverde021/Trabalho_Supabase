@@ -1,10 +1,7 @@
 @charset "UTF-8";
 
 main.minha_conta {
-    padding: 10px;
-}
-
-div#meu_perfil {
+    padding: 1%;
     animation: slideIn 1s ease-out forwards;
 }
 
@@ -29,11 +26,6 @@ img#icone_perfil_info {
     animation: none;
 }
 
-img#icone_perfil_info:hover {
-    opacity: 0.8;
-    cursor: pointer;
-}
-
 div#conteiner_info_prinipal {
     width: 80%;
     display: flex;
@@ -48,14 +40,26 @@ div#info_destaques {
     justify-content: space-around;
 }
 
+hr {
+    height: 3px;
+    background-color: rgb(15, 21, 29);
+}
+
+div#divisao_informacao {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+
 label.label_info_destaque {
-    font-size: 26px;
+    font-size: 30px;
     font-weight: bold;
     color: rgb(45, 62, 81);
 }
 
 span.span_info_destaque {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 500;
     color: rgb(45, 62, 81);
     text-transform: capitalize;
@@ -64,7 +68,7 @@ span.span_info_destaque {
 legend.titulo_info {
     margin-top: 30px;
     margin-bottom: -5px;
-    font-size: 24px;
+    font-size: 30px;
     font-weight: bold;
     color: rgb(45, 62, 81);
 }
@@ -72,14 +76,14 @@ legend.titulo_info {
 label.label_info {
     margin-top: 10px;
     margin-left: 15px;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     color: rgb(45, 62, 81);
 }
 
 span.span_info {
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: normal;
     color: rgb(45, 62, 81);
     text-transform: capitalize;
@@ -126,6 +130,7 @@ button.botoes_3 {
 button.botoes_4 {
     font-size: 14px;
     margin-right: 15px;
+    margin-top: 5px;
     width: 80px;
     border: 2px rgb(45, 62, 81) solid;
     border-radius: 15px;
@@ -135,7 +140,22 @@ button.botoes_4 {
     background-color: rgb(255, 255, 255);
 }
 
-button.botoes_3:hover, button.botoes_4:hover  {
+button.botao_logout {
+    display: inline;
+    font-size: 16px;
+    margin: 20px 30px;
+    width: 130px;
+    border: 2px rgb(45, 62, 81) solid;
+    border-radius: 15px;
+    padding: 5px 0;
+    color: rgb(45, 62, 81);
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+}
+
+button.botoes_3:hover,
+button.botoes_4:hover,
+button.botao_logout:hover {
     border: 2px #ffffff solid;
     color: #ffffff;
     background-color: rgb(45, 62, 81);
@@ -162,12 +182,8 @@ p#senha_feedback {
 }
 
 fieldset.info_pessoal {
-    margin-top: -20px;
-    margin-bottom: 10px;
-}
-
-fieldset#fieldset_info_endereco {
-    margin-bottom: 20px;
+    width: 50%;
+    margin-left: 10%;
 }
 
 /* ---------------------------- CSS FORMULARIO DE EDIÇÃO DE CADASTRO ----------------------------*/
@@ -280,7 +296,7 @@ footer.form>a:hover {
 button.botoes {
     border: 2px rgb(255, 255, 255) solid;
     border-radius: 15px;
-    margin: 30px 20px;
+    margin: 10px 20px;
     padding: 4px 15px;
     color: white;
     font-size: 22px;
@@ -304,7 +320,6 @@ span.message_progress {
     font-weight: bold;
     color: rgb(45, 62, 81);
     text-align: center;
-    margin-bottom: 20px;
 }
 
 section.setion_1_identification {

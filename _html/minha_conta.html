@@ -86,28 +86,33 @@
          </div>
          <hr>
 
-         <fieldset id="fieldset_info_pessoal" class="info_pessoal">
-            <legend class="titulo_info">Identificação</legend>
-            <label class="label_info">Nome Completo: <span id="data_nome_completo" class="span_info"></span></label><br>
-            <label class="label_info">CPF: <span id="data_cpf" class="span_info"></span></label><br>
-            <label class="label_info">Celular: <span id="data_celular" class="span_info"></span></label><br>
-            <label class="label_info">Data de Nascimento: <span id="data_nascimento"
-                  class="span_info"></span></label><br>
-            <label class="label_info">Estado Civil: <span id="data_civil" class="span_info"></span></label><br>
-            <label class="label_info">Sexo: <span id="data_sexo" class="span_info"></span></label><br>
-         </fieldset>
+         <div id="divisao_informacao">
+            <fieldset id="fieldset_info_pessoal" class="info_pessoal">
+               <legend class="titulo_info">Identificação</legend>
+               <label class="label_info">Nome Completo: <span id="data_nome_completo"
+                     class="span_info"></span></label><br>
+               <label class="label_info">CPF: <span id="data_cpf" class="span_info"></span></label><br>
+               <label class="label_info">Celular: <span id="data_celular" class="span_info"></span></label><br>
+               <label class="label_info">Data de Nascimento: <span id="data_nascimento"
+                     class="span_info"></span></label><br>
+               <label class="label_info">Estado Civil: <span id="data_civil" class="span_info"></span></label><br>
+               <label class="label_info">Sexo: <span id="data_sexo" class="span_info"></span></label><br>
+            </fieldset>
 
-         <fieldset id="fieldset_info_endereco" class="info_pessoal">
-            <legend class="titulo_info">Endereço</legend>
-            <label class="label_info">Logradouro: <span id="data_logradouro" class="span_info"></span></label><br>
-            <label class="label_info">CEP: <span id="data_cep" class="span_info"></span></label><br>
-            <label class="label_info">Numero: <span id="data_numero_casa" class="span_info"></span></label><br>
-            <label class="label_info">Complemento: <span id="data_complemento" class="span_info"></span></label><br>
-            <label class="label_info">Bairro: <span id="data_bairro" class="span_info"></span></label><br>
-            <label class="label_info">Cidade: <span id="data_cidade" class="span_info"></span></label><br>
-            <label class="label_info">Estado: <span id="data_estado" class="span_info"></span></label><br>
-         </fieldset>
+            <fieldset id="fieldset_info_endereco" class="info_pessoal">
+               <legend class="titulo_info">Endereço</legend>
+               <label class="label_info">Logradouro: <span id="data_logradouro" class="span_info"></span></label><br>
+               <label class="label_info">CEP: <span id="data_cep" class="span_info"></span></label><br>
+               <label class="label_info">Numero: <span id="data_numero_casa" class="span_info"></span></label><br>
+               <label class="label_info">Complemento: <span id="data_complemento" class="span_info"></span></label><br>
+               <label class="label_info">Bairro: <span id="data_bairro" class="span_info"></span></label><br>
+               <label class="label_info">Cidade: <span id="data_cidade" class="span_info"></span></label><br>
+               <label class="label_info">Estado: <span id="data_estado" class="span_info"></span></label><br>
+            </fieldset>
+         </div>
       </div>
+
+      <!-- EDIÇÃO DE CADASTRO -->
 
       <div id="edit_perfil" class="edit_perfil">
          <h1 class="cadastro_title">Preencha com suas informações pessoais</h1>
@@ -129,17 +134,17 @@
                   <button id="btn_mudar_senha" class="botoes_3">Mudar a senha</button>
                   <div id="mudar_senha">
                      <label class="input_legend">Senha Antiga:</label>
-                     <input id="senha_antiga" class="form_input_senha" type="password" placeholder="Digite sua senha antiga"
-                        required>
+                     <input id="senha_antiga" class="form_input_senha" type="password"
+                        placeholder="Digite sua senha antiga" required>
                      <label class="input_legend">Nova Senha:</label>
                      <input id="nova_senha" class="form_input_senha" type="password" placeholder="Crie uma nova senha"
                         required>
                      <label class="input_legend">Repita a Senha:</label>
-                     <input id="repete_senha" class="form_input_senha" type="password" placeholder="Repita a nova uma senha"
-                        required>
+                     <input id="repete_senha" class="form_input_senha" type="password"
+                        placeholder="Repita a nova uma senha" required>
                      <p id="senha_feedback" class="feedback"></p>
-                        <button id="btn_salvar_senha" class="botoes_4">Salvar</button>
-                        <button id="btn_cancelar_senha" class="botoes_4">Cancelar</button>
+                     <button id="btn_salvar_senha" class="botoes_4">Salvar</button>
+                     <button id="btn_cancelar_senha" class="botoes_4">Cancelar</button>
                   </div>
                </div>
             </fieldset>
@@ -160,7 +165,7 @@
 
                      <label class="input_legend">Estado Civil:</label>
                      <select name="estado_civil" id="estado_civil" class="form_select" required>
-                        <option value="Solteiro" selected>Solteiro(a)</option>
+                        <option value="Solteiro">Solteiro(a)</option>
                         <option value="Casado">Casado(a)</option>
                         <option value="Divorciado">Divorciado(a)</option>
                      </select>
@@ -220,7 +225,7 @@
                      <label class="input_legend">Estado:</label>
                      <select name="estados" id="estado" class="form_select" required>
                         <optgroup label="Região Sudeste">
-                           <option value="MG" selected>Minas Gerais</option>
+                           <option value="MG">Minas Gerais</option>
                            <!-- "selected" deixa a opçaõ de minas gerais maracada automaticamente-->
                            <option value="SP">São Paulo</option>
                            <option value="RJ">Rio de Janeiro</option>
@@ -284,7 +289,7 @@
       </div>
 
       <div id="div_logout">
-         <button id="botao_logout" class="botoes_3" onclick="logout()">Sair da Conta</button>
+         <button id="botao_logout" class="botao_logout" onclick="logout()">Sair da Conta</button>
       </div>
 
    </main>
