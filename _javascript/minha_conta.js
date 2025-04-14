@@ -1,5 +1,4 @@
 // Flags booleanas de confirmação
-var okSenha = true;
 var okNome = true;
 var okCelular = true;
 var okEstado_civil = true;
@@ -15,10 +14,7 @@ var okCidade = true;
 var okBairro = true;
 
 // Inicias os dados recebidos do formulario globalmente
-var senha_cadastro, nome, celular, estado_civil, cpf, nascimento, idade, sexo, logradouro, cep, numero_casa, complemento, estado, cidade, bairro;
-
-
-var okSenha, okNome, okCelular = true;
+var nome, celular, estado_civil, cpf, nascimento, idade, sexo, logradouro, cep, numero_casa, complemento, estado, cidade, bairro;
 
 // Logout
 async function logout() {
@@ -40,10 +36,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Exibe o painel de informações do usuário
     document.getElementById("meu_perfil").style.display = "block";
     document.getElementById("edit_perfil").style.display = "none";
-
-
-    //document.getElementById("meu_perfil").style.display = "none";
-    //document.getElementById("edit_perfil").style.display = "block";
 
     // Exibe os dados cadastrados da conta
     document.getElementById("nome_usuario").innerText = user.user_metadata.nome;
@@ -121,7 +113,6 @@ async function painelEditarDados(user) {
     });
 
     // Incrementação de varaiaveis para edição de cadastro
-    senha_cadastro = "123456";
     nome = user.user_metadata.nome;
     celular = user.user_metadata.celular;
     estado_civil = user.user_metadata.estado_civil;
@@ -448,7 +439,9 @@ async function atualizarCadastro() {
     } else {
         atualizarFotoPerfil();
         document.getElementById("mensagem").innerText = "Tudo certo!"
-        window.location.reload();
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
     }
 }
 
@@ -467,7 +460,10 @@ function previewFotoPerfil(input) {
 async function atualizarFotoPerfil() {
     const fileInput = document.getElementById("foto_perfil");
 
-    // if (fileInput.files.length === 0) {alert("Selecione uma imagem.");return;}
+    if (fileInput.files.length === 0) {
+        alert("Selecione uma imagem.");
+        return;
+    }
 
     const file = fileInput.files[0];
     const user = (await supabase.auth.getUser()).data.user;
