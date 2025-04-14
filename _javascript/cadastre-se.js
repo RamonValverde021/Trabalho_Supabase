@@ -312,6 +312,7 @@ async function cadastrar() {
         password: senha_cadastro,
         options: {
             data: {
+                foto_perfil: null,
                 nome: nome,
                 celular: celular,
                 estado_civil: estado_civil,

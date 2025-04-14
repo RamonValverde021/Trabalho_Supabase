@@ -33,12 +33,6 @@ label.label_menu_categoria {
     padding-left: 5px;
 }
 
-
-div.dropdown_categorias {
-    position: relative;
-    display: inline-block;
-}
-
 div.submenu_categorias {
     width: 200px;
     position: absolute;

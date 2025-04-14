@@ -25,10 +25,10 @@ div#info_principal {
 }
 
 img#icone_perfil_info {
-    height: 150px;
-    width: 150px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
-    margin: 10px 30px 10px 10px;
+    margin: 10px 10px 10px 30px;
     animation: none;
 }
 
@@ -90,4 +90,8 @@ span.span_info {
     font-weight: normal;
     color: rgb(45, 62, 81);
     text-transform: capitalize;
+}
+
+div#div_logout {
+    margin: 30px 20px;
 }

@@ -22,7 +22,7 @@
    <!-- Menu -->
    <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-         <img src="../_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy"> <span
+         <img src="../_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy" id="img_logomarca"> <span
             id="logomarca">SpringFy</span>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,18 +34,20 @@
                   <a class="nav-link" href="../index.html">Home</a>
                </li>
                <li class="nav-item active"><a class="nav-link" href="sobre.html">Sobre</a></li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                     aria-expanded="false">
-                     Contato
-                  </a>
-                  <ul class="dropdown-menu">
-                     <li><a class="nav-link-dropdown" href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
-                  </ul>
-               </li>
+               <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">Contato</a>
+               <ul class="dropdown-menu">
+                  <li><a class="nav-link-dropdown" href="contato.html">Contato</a></li>
+                  <li><a class="nav-link-dropdown" href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
+               </ul>
+            </li>
                <li class="nav-item active"><a class="nav-link" href="faq.html">FAQ</a></li>
-               <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login <img src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"></a></li>
-               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta <img src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"></a>
+               <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login <img
+                        src="../_images/Sem-perfil.png" id="icone_perfil" class="icone_perfil"
+                        alt="icone de perfil"></a></li>
+               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta <img
+                        src="../_images/Sem-perfil.png" id="icone_perfil" class="icone_perfil"
+                        alt="icone de perfil"></a>
                </li>
             </ul>
             <!-- 
@@ -64,19 +66,38 @@
       <div id="menu_perguntas">
          <button id="nav_botao_recentes" class="botoes_perguntas">Recentes</button>
          <div class="dropdown_categorias">
-            <button id="nav_botao_categoria" class="botoes_perguntas" onclick="toggleDropdownCategorias()">Categoria</button>
+            <button id="nav_botao_categoria" class="botoes_perguntas"
+               onclick="toggleDropdownCategorias()">Categoria</button>
             <div id="submenu_categorias" class="submenu_categorias">
-               <input type="checkbox" id="categoria_orientacao" name="categoria_orientacao" class="botoes_categorias"><label for="categoria_orientacao" class="label_menu_categoria">Orientações Gerais</label><br>
-               <input type="checkbox" id="categoria_configuracao" name="categoria_configuracao" class="botoes_categorias"><label for="categoria_configuracao" class="label_menu_categoria">Configuração</label><br>
-               <input type="checkbox" id="categoria_instalacao" name="categoria_instalacao" class="botoes_categorias"><label for="categoria_instalacao" class="label_menu_categoria">Instalação</label><br>
-               <input type="checkbox" id="categoria_compatibilidade" name="categoria_compatibilidade" class="botoes_categorias"><label for="categoria_compatibilidade" class="label_menu_categoria">Compatibilidade</label><br>
-               <input type="checkbox" id="categoria_funcionalidade" name="categoria_funcionalidade" class="botoes_categorias"><label for="categoria_funcionalidade" class="label_menu_categoria">Funcionalidade</label><br>
-               <input type="checkbox" id="categoria_problemas" name="categoria_problemas" class="botoes_categorias"><label for="categoria_problemas" class="label_menu_categoria">Problemas</label><br>
-               <input type="checkbox" id="categoria_erro" name="categoria_erro" class="botoes_categorias"><label for="categoria_erro" class="label_menu_categoria">Erro</label><br>
-               <input type="checkbox" id="categoria_sugestoes" name="categoria_sugestoes" class="botoes_categorias"><label for="categoria_sugestoes" class="label_menu_categoria">Sugestões</label><br>
-               <input type="checkbox" id="categoria_duvidas" name="categoria_duvidas" class="botoes_categorias"><label for="categoria_duvidas" class="label_menu_categoria">Duvidas</label><br>
-               <input type="checkbox" id="categoria_dicas" name="categoria_dicas" class="botoes_categorias"><label for="categoria_dicas" class="label_menu_categoria">Dicas</label><br>
-               <input type="checkbox" id="categoria_outros" name="categoria_outros" class="botoes_categorias"><label for="categoria_outros" class="label_menu_categoria">Outros</label><br>
+               <input type="checkbox" id="categoria_orientacao" name="categoria_orientacao"
+                  class="botoes_categorias"><label for="categoria_orientacao" class="label_menu_categoria">Orientações
+                  Gerais</label><br>
+               <input type="checkbox" id="categoria_configuracao" name="categoria_configuracao"
+                  class="botoes_categorias"><label for="categoria_configuracao"
+                  class="label_menu_categoria">Configuração</label><br>
+               <input type="checkbox" id="categoria_instalacao" name="categoria_instalacao"
+                  class="botoes_categorias"><label for="categoria_instalacao"
+                  class="label_menu_categoria">Instalação</label><br>
+               <input type="checkbox" id="categoria_compatibilidade" name="categoria_compatibilidade"
+                  class="botoes_categorias"><label for="categoria_compatibilidade"
+                  class="label_menu_categoria">Compatibilidade</label><br>
+               <input type="checkbox" id="categoria_funcionalidade" name="categoria_funcionalidade"
+                  class="botoes_categorias"><label for="categoria_funcionalidade"
+                  class="label_menu_categoria">Funcionalidade</label><br>
+               <input type="checkbox" id="categoria_problemas" name="categoria_problemas"
+                  class="botoes_categorias"><label for="categoria_problemas"
+                  class="label_menu_categoria">Problemas</label><br>
+               <input type="checkbox" id="categoria_erro" name="categoria_erro" class="botoes_categorias"><label
+                  for="categoria_erro" class="label_menu_categoria">Erro</label><br>
+               <input type="checkbox" id="categoria_sugestoes" name="categoria_sugestoes"
+                  class="botoes_categorias"><label for="categoria_sugestoes"
+                  class="label_menu_categoria">Sugestões</label><br>
+               <input type="checkbox" id="categoria_duvidas" name="categoria_duvidas" class="botoes_categorias"><label
+                  for="categoria_duvidas" class="label_menu_categoria">Duvidas</label><br>
+               <input type="checkbox" id="categoria_dicas" name="categoria_dicas" class="botoes_categorias"><label
+                  for="categoria_dicas" class="label_menu_categoria">Dicas</label><br>
+               <input type="checkbox" id="categoria_outros" name="categoria_outros" class="botoes_categorias"><label
+                  for="categoria_outros" class="label_menu_categoria">Outros</label><br>
                <button id="nav_botao_filtrar">Filtrar</button>
             </div>
          </div>
@@ -140,4 +161,5 @@
    </footer>
 
 </body>
+
 </html>

@@ -22,7 +22,7 @@
    <!-- Menu -->
    <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-         <img src="../_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy"> <span
+         <img src="../_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy" id="img_logomarca"> <span
             id="logomarca">SpringFy</span>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,9 +47,11 @@
                <li class="nav-item active"><a class="nav-link" href="faq.html">FAQ</a></li>
                <li class="nav-item active"><a class="nav-link" href="forum.html">Forum</a></li>
                <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login <img
-                        src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"></a></li>
+                        src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"
+                        class="icone_perfil"></a></li>
                <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta <img
-                        src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"></a></li>
+                        src="../_images/Sem-perfil.png" id="icone_perfil" alt="icone de perfil"
+                        class="icone_perfil"></a></li>
             </ul>
             <!-- 
             <form class="d-flex" role="search">
@@ -68,7 +70,6 @@
          <div id="conteiner_info_prinipal">
             <label id="nome_usuario" class="label_info_principal">Nome do Usuário</label>
             <label id="email_usuario" class="label_info_principal">Email do Usuário</label>
-            <button id="editar_usuario" class="editar_usuario">⚙️ Editar Usuário</button>
          </div>
       </div>
 
@@ -79,7 +80,7 @@
          <label id="perguntas_feitas" class="label_info_destaque">Perguntas Feitas: <span id="data_perguntas_feitas"
                class="span_info_destaque">0</span></label>
          <div class="spaco_1"></div>
-         <button id="botao_logout" class="botoes" type="button" onclick="logout()">Sair</button>
+         <button id="editar_usuario" class="editar_usuario">⚙️ Editar Usuário</button>
       </div>
       <hr>
 
@@ -103,6 +104,10 @@
          <label class="label_info">Cidade: <span id="data_cidade" class="span_info"></span></label><br>
          <label class="label_info">Estado: <span id="data_estado" class="span_info"></span></label><br>
       </fieldset>
+
+      <div id="div_logout">
+         <button id="botao_logout" class="botoes" type="button" onclick="logout()">Sair</button>
+      </div>
 
    </main>
 

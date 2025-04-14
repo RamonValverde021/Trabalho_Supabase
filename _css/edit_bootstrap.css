@@ -5,7 +5,7 @@ nav.navbar {
    z-index: 5;
 }
 
-img {
+img#img_logomarca {
    margin: 5px;
    height: 80px;
    width: auto;
@@ -24,6 +24,43 @@ span#logomarca {
 div#navbarSupportedContent {
    animation: slideInMenu 1.3s ease-out forwards;
 }
+
+ul.navbar-nav {
+   width: 100%;
+   padding-left: 2%;
+   display: flex;
+   justify-content: space-around;
+}
+
+li.nav-item {
+   font-size: 30px;
+}
+
+a.nav-link {
+   font-size: 30px;
+}
+
+a.nav-link:hover {
+   color: #198754;
+   transition: 0.2s;
+}
+
+ul.dropdown-menu li {
+   padding: 2px 10px;
+}
+
+a.nav-link-dropdown {
+   font-size: 25px;
+   color: rgb(45, 62, 81);
+   text-decoration: none;
+}
+
+a.nav-link-dropdown:hover {
+   color: #198754;
+   transition: 0.2s;
+}
+/* ---------------------------- */
+
 
 form.form-inline {
    display: flex;
@@ -57,58 +94,6 @@ div.d-block {
    margin: 0;
    width: 100%;
    height: 77vh;
-}
-
-div#conteudoNavbarSuportado {
-   display: flex;
-   justify-content: space-between;
-   padding: 0 2%;
-}
-
-ul.navbar-nav {
-   width: 100%;
-   display: flex;
-   justify-content: space-around;
-   padding-left: 2%;
-   align-items: center;
-}
-
-li.nav-item {
-   font-size: 30px;
-   flex-grow: 1;
-}
-
-a.nav-link {
-   font-size: 30px;
-}
-
-a.nav-link:hover {
-   color: #198754;
-   transition: 0.2s;
-}
-
-ul.dropdown-menu li {
-   padding-left: 2px;
-}
-
-a.nav-link-dropdown {
-   font-size: 25px;
-   color: rgb(45, 62, 81);
-   text-decoration: none;
-}
-
-a.nav-link-dropdown:hover {
-   color: #198754;
-   transition: 0.2s;
-}
-
-button.nav-link {
-   color: rgba(15, 70, 87, 0.7);
-}
-
-button.nav-link:hover {
-   color: #198754;
-   transition: 0.2s;
 }
 
 span.carousel-control-prev-icon {
@@ -237,6 +222,8 @@ div.carousel-caption>p {
    div#navbarSupportedContent {
       animation: slideInMenu 1s ease-out forwards;
    }
+
+   
    
 }
 
