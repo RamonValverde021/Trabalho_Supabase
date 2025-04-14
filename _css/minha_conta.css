@@ -24,6 +24,7 @@ img#icone_perfil_info {
     border-radius: 50%;
     margin: 10px 10px 50px 30px;
     animation: none;
+    object-fit: cover;
 }
 
 div#conteiner_info_prinipal {
