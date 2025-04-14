@@ -65,48 +65,214 @@
 
    <main class="minha_conta">
 
-      <div id="info_principal">
-         <img src="../_images/Sem-perfil.png" id="icone_perfil_info" alt="icone de perfil">
-         <div id="conteiner_info_prinipal">
-            <label id="nome_usuario" class="label_info_principal">Nome do Usuário</label>
-            <label id="email_usuario" class="label_info_principal">Email do Usuário</label>
+      <div id="meu_perfil" class="meu_perfil">
+
+         <div id="info_principal">
+            <img src="../_images/Sem-perfil.png" id="icone_perfil_info" alt="icone de perfil">
+            <div id="conteiner_info_prinipal">
+               <label id="nome_usuario" class="label_info_principal">Nome do Usuário</label>
+               <label id="email_usuario" class="label_info_principal">Email do Usuário</label>
+               <button id="editar_usuario" class="botoes_2">⚙️ Editar Usuário</button>
+            </div>
          </div>
+
+         <hr>
+         <div id="info_destaques">
+            <label id="ingressou_em" class="label_info_destaque">Ingressou em: <span id="data_ingresso_em"
+                  class="span_info_destaque">0</span></label>
+            <label id="perguntas_feitas" class="label_info_destaque">Perguntas Feitas: <span id="data_perguntas_feitas"
+                  class="span_info_destaque">0</span></label>
+            <div class="spaco_1"></div>
+         </div>
+         <hr>
+
+         <fieldset id="fieldset_info_pessoal" class="info_pessoal">
+            <legend class="titulo_info">Identificação</legend>
+            <label class="label_info">Nome Completo: <span id="data_nome_completo" class="span_info"></span></label><br>
+            <label class="label_info">CPF: <span id="data_cpf" class="span_info"></span></label><br>
+            <label class="label_info">Celular: <span id="data_celular" class="span_info"></span></label><br>
+            <label class="label_info">Data de Nascimento: <span id="data_nascimento"
+                  class="span_info"></span></label><br>
+            <label class="label_info">Estado Civil: <span id="data_civil" class="span_info"></span></label><br>
+            <label class="label_info">Sexo: <span id="data_sexo" class="span_info"></span></label><br>
+         </fieldset>
+
+         <fieldset id="fieldset_info_endereco" class="info_pessoal">
+            <legend class="titulo_info">Endereço</legend>
+            <label class="label_info">Logradouro: <span id="data_logradouro" class="span_info"></span></label><br>
+            <label class="label_info">CEP: <span id="data_cep" class="span_info"></span></label><br>
+            <label class="label_info">Numero: <span id="data_numero_casa" class="span_info"></span></label><br>
+            <label class="label_info">Complemento: <span id="data_complemento" class="span_info"></span></label><br>
+            <label class="label_info">Bairro: <span id="data_bairro" class="span_info"></span></label><br>
+            <label class="label_info">Cidade: <span id="data_cidade" class="span_info"></span></label><br>
+            <label class="label_info">Estado: <span id="data_estado" class="span_info"></span></label><br>
+         </fieldset>
       </div>
 
-      <hr>
-      <div id="info_destaques">
-         <label id="ingressou_em" class="label_info_destaque">Ingressou em: <span id="data_ingresso_em"
-               class="span_info_destaque">0</span></label>
-         <label id="perguntas_feitas" class="label_info_destaque">Perguntas Feitas: <span id="data_perguntas_feitas"
-               class="span_info_destaque">0</span></label>
-         <div class="spaco_1"></div>
-         <button id="editar_usuario" class="editar_usuario">⚙️ Editar Usuário</button>
+      <div id="edit_perfil" class="edit_perfil">
+         <h1 class="cadastro_title">Preencha com suas informações pessoais</h1>
+
+         <form name="formulario_alunos" onsubmit="return false;">
+
+            <fieldset id="fieldset_login" class="form_fieldset">
+               <legend class="form_legend">Conta</legend>
+
+               <div class="div_column_2">
+                  <label class="input_legend">Senha Antiga:</label>
+                  <input id="senha" class="form_input" type="password" placeholder="Digite sua senha antiga" required>
+
+                  <label class="input_legend">Nova Senha:</label>
+                  <input id="nova_senha" class="form_input" type="password" placeholder="Crie uma nova senha" required>
+
+                  <label class="input_legend">Repita a Senha:</label>
+                  <input id="repete_senha" class="form_input" type="password" placeholder="Repita a nova uma senha"
+                     required>
+
+                  <p id="senha_feedback" class="feedback"></p>
+               </div>
+            </fieldset>
+
+            <fieldset id="fieldset_identificacao" class="form_fieldset">
+               <legend class="form_legend">Identificação</legend>
+
+               <section class="setion_1_identification">
+                  <div class="div_column">
+                     <label class="input_legend">Nome:</label>
+                     <input id="nome" class="form_input" type="text" placeholder="Digite seu nome completo..." required>
+                     <p id="nome_feedback" class="feedback"></p>
+
+                     <label class="input_legend">Celular:</label>
+                     <input id="celular" class="form_input" type="tel" placeholder="(00) 0 0000 - 0000"
+                        oninput="autoincremento(this, 'CEL')" required>
+                     <p id="celular_feedback" class="feedback"></p>
+
+                     <label class="input_legend">Estado Civil:</label>
+                     <select name="estado_civil" id="estado_civil" class="form_select" required>
+                        <option value="Solteiro" selected>Solteiro(a)</option>
+                        <option value="Casado">Casado(a)</option>
+                        <option value="Divorciado">Divorciado(a)</option>
+                     </select>
+                     <p id="estado_civil_feedback" class="feedback"></p>
+                  </div>
+
+                  <div class="div_column">
+                     <label class="input_legend">CPF:</label>
+                     <input id="cpf" type="text" class="form_input" placeholder="000.000.000-00"
+                        oninput="autoincremento(this, 'CPF')" required>
+                     <p id="cpf_feedback" class="feedback"></p>
+
+                     <label class="input_legend">Data de Nascimento:</label>
+                     <input id="nascimento" class="form_input" type="date" placeholder="dd/mm/aaaa" required>
+                     <p id="nascimento_feedback" class="feedback"></p>
+
+                     <label class="input_legend">Sexo:</label><br>
+                     <input id="masculino" class="form_radio" type="radio" name="sexo" value="Masculino">
+                     <label class="label_sexo" for="masculino">Mascolino</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                     <input id="feminino" class="form_radio" type="radio" name="sexo" value="Feminino">
+                     <label class="label_sexo" for="feminino">Feminino</label>
+                     <p id="sexo_feedback" class="feedback"></p>
+                  </div>
+               </section>
+            </fieldset>
+
+            <fieldset id="fieldset_endereco" class="form_fieldset">
+               <legend class="form_legend">Endereço</legend>
+               <div class="div_column_2">
+                  <div class="div_name">
+                     <label class="input_legend">Logradouro:</label>
+                     <input id="logradouro" class="form_input" type="text" placeholder="Rua, Avenida, Travessa..."
+                        required>
+                     <p id="logradouro_feedback" class="feedback"></p>
+                  </div>
+               </div>
+
+               <section class="setion_1_address">
+                  <div class="div_column">
+                     <label class="input_legend">CEP:</label>
+                     <input id="cep" class="form_input" type="text" placeholder="00000-000"
+                        oninput="autoincremento(this, 'CEP')" required>
+                     <p id="cep_feedback" class="feedback"></p>
+
+                     <label class="input_legend">Número:</label>
+                     <input id="numero_casa" class="form_input" type="number" placeholder="Número da residência"
+                        required>
+                     <p id="numero_casa_feedback" class="feedback"></p>
+
+                     <label class="input_legend">Complemento:</label>
+                     <input id="complemento" class="form_input" type="text"
+                        placeholder="Casa, Apartamento, próximo há..." required>
+                     <p id="complemento_feedback" class="feedback"></p>
+                  </div>
+
+                  <div class="div_column">
+                     <label class="input_legend">Estado:</label>
+                     <select name="estados" id="estado" class="form_select" required>
+                        <optgroup label="Região Sudeste">
+                           <option value="MG" selected>Minas Gerais</option>
+                           <!-- "selected" deixa a opçaõ de minas gerais maracada automaticamente-->
+                           <option value="SP">São Paulo</option>
+                           <option value="RJ">Rio de Janeiro</option>
+                           <option value="ES">Espírito Santo</option>
+                        </optgroup>
+
+                        <optgroup label="Região Sul">
+                           <option value="PR">Paraná</option>
+                           <option value="SC">Santa Catarina</option>
+                           <option value="RS">Rio Grande do Sul</option>
+                        </optgroup>
+
+                        <optgroup label="Região Centro-Oeste">
+                           <option value="DF">Distrito Federal</option>
+                           <option value="MT">Mato Grosso</option>
+                           <option value="GO">Goiás</option>
+                           <option value="MS">Mato Grosso do Sul</option>
+                        </optgroup>
+
+                        <optgroup label="Região Norte">
+                           <option value="AM">Amazonas</option>
+                           <option value="AC">Acre</option>
+                           <option value="RR">Rorâima</option>
+                           <option value="AP">Amapá</option>
+                           <option value="PA">Pará</option>
+                           <option value="RO">Rondônia</option>
+                           <option value="TO">Tocantins</option>
+                        </optgroup>
+
+                        <optgroup label="Região Nordeste">
+                           <option value="CE">Ceará</option>
+                           <option value="AL">Alagoas</option>
+                           <option value="BA">Bahia</option>
+                           <option value="MA">Maranhão</option>
+                           <option value="PB">Paraíba</option>
+                           <option value="PE">Pernambuco</option>
+                           <option value="PI">Piauí</option>
+                           <option value="RN">Rio Grande do Norte</option>
+                           <option value="SE">Sergipe</option>
+                        </optgroup>
+                     </select>
+                     <p id="estado_feedback" class="feedback"></p>
+
+                     <label class="input_legend">Cidade:</label>
+                     <input id="cidade" class="form_input" type="text" placeholder="Cidade" required>
+                     <p id="cidade_feedback" class="feedback"></p>
+
+                     <label class="input_legend">Bairro:</label>
+                     <input id="bairro" class="form_input" type="text" placeholder="Bairro" required>
+                     <p id="bairro_feedback" class="feedback"></p>
+                  </div>
+               </section>
+            </fieldset>
+
+            <footer id="btn_cadastrar">
+               <button id="btn_cadastrar" class="botoes" type="submit" onclick="cadastrar()">Salvar</button>
+               <button id="btn_cancelar" class="botoes">Cancelar</button>
+            </footer>
+         </form>
+         <span id="mensagem" class="message_progress"></span>
       </div>
-      <hr>
 
-      <fieldset class="info_pessoal">
-         <legend class="titulo_info">Identificação</legend>
-         <label class="label_info">Nome Completo: <span id="data_nome_completo" class="span_info"></span></label><br>
-         <label class="label_info">CPF: <span id="data_cpf" class="span_info"></span></label><br>
-         <label class="label_info">Celular: <span id="data_celular" class="span_info"></span></label><br>
-         <label class="label_info">Data de Nascimento: <span id="data_nascimento" class="span_info"></span></label><br>
-         <label class="label_info">Estado Civil: <span id="data_civil" class="span_info"></span></label><br>
-         <label class="label_info">Sexo: <span id="data_sexo" class="span_info"></span></label><br>
-      </fieldset>
-
-      <fieldset class="info_pessoal">
-         <legend class="titulo_info">Endereço</legend>
-         <label class="label_info">Logradouro: <span id="data_logradouro" class="span_info"></span></label><br>
-         <label class="label_info">CEP: <span id="data_cep" class="span_info"></span></label><br>
-         <label class="label_info">Numero: <span id="data_numero_casa" class="span_info"></span></label><br>
-         <label class="label_info">Complemento: <span id="data_complemento" class="span_info"></span></label><br>
-         <label class="label_info">Bairro: <span id="data_bairro" class="span_info"></span></label><br>
-         <label class="label_info">Cidade: <span id="data_cidade" class="span_info"></span></label><br>
-         <label class="label_info">Estado: <span id="data_estado" class="span_info"></span></label><br>
-      </fieldset>
-
-      <div id="div_logout">
-         <button id="botao_logout" class="botoes" type="button" onclick="logout()">Sair</button>
+    <div id="div_logout">
+         <button id="botao_logout" class="botoes_2" onclick="logout()">Sair da Conta</button>
       </div>
 
    </main>

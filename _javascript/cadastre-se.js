@@ -303,8 +303,6 @@ async function cadastrar() {
         document.getElementById("mensagem").innerText =
             "Preencha todos os campos!";
         return;
-    } else {
-        console.log(email_cadastro + '\n' + senha_cadastro + '\n' + nome + '\n' + celular + '\n' + estado_civil + '\n' + cpf + '\n' + nascimento + '\n' + idade + '\n' + sexo.value + '\n' + logradouro + '\n' + cep + '\n' + numero_casa + '\n' + complemento + '\n' + estado + '\n' + cidade + '\n' + bairro);
     }
 
     const { data, error } = await supabase.auth.signUp({
