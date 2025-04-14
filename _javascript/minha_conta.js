@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     document.getElementById("meu_perfil").style.display = "block";
     document.getElementById("edit_perfil").style.display = "none";
     */
-   
+
     document.getElementById("meu_perfil").style.display = "none";
     document.getElementById("edit_perfil").style.display = "block";
 
@@ -74,41 +74,70 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
 /* -------------------------- CODIGO DA VALIDAÇÃO DO FORMULARIO DE EDIÇÃO -------------------------- */
-
-
+// Edição foto de perfil
+function previewFotoPerfil(input) {
+    const file = input.files[0];
+    const preview = document.getElementById("preview_foto");
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = e => preview.src = e.target.result;
+        reader.readAsDataURL(file);
+    }
+}
 
 // Flags booleanas de confirmação
 let okEmail, okSenha, okNome, okCelular, okEstado_civil, okCPF, okIdade, okSexo, okLogradouro, okCEP, okNumero_casa, okComplemento, okEstado, okCidade, okBairro = false;
 
 // Inicias os dados recebidos do formulario globalmente
 let email_cadastro, senha_cadastro, nome, celular, estado_civil, cpf, nascimento, idade, sexo, logradouro, cep, numero_casa, complemento, estado, cidade, bairro;
-/*
-// Validar E-mail
-document.getElementById('email').addEventListener("input", function () {
-    email_cadastro = document.getElementById('email').value;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let feedback = document.getElementById('email_feedback');
-    if (emailPattern.test(email_cadastro)) {
-        feedback.innerText = '✔️ E-mail válido';
-        feedback.className = "pass";
-        okEmail = true;
+
+// Habilitar painel de edição de senha
+document.getElementById("mudar_senha").style.display = "none";
+document.getElementById("btn_mudar_senha").addEventListener('click', () => {
+    if (document.getElementById("mudar_senha").style.display == "none") {
+        document.getElementById("mudar_senha").style.display = "inline";
+        document.getElementById("btn_mudar_senha").style.display = "none";
     } else {
-        feedback.innerText = '❌ E-mail inválido';
-        feedback.className = "fail";
-        okEmail = false;
+        document.getElementById("mudar_senha").style.display = "none";
     }
 });
-*/
-// Validar Senha
-document.getElementById("senha").addEventListener("input", function () {
-    senha_cadastro = document.getElementById('senha').value;
+
+// Botão cancelar correção de senha
+document.getElementById("btn_cancelar_senha").addEventListener('click', () => {
+    // Torna visivel o botão e o culta o painel de preenchimento
+    document.getElementById("mudar_senha").style.display = "none";
+    document.getElementById("btn_mudar_senha").style.display = "inline";
+    // Apaga os dados preenchidos nos campos
+    document.getElementById("senha_antiga").value = "";
+    document.getElementById("nova_senha").value = "";
+    document.getElementById("repete_senha").value = "";
+});
+
+// Botão salvar e validar senha nova
+document.getElementById("btn_salvar_senha").addEventListener('click', () => {
+    let senha_antiga = document.getElementById("senha_antiga").value;
+    let nova_senha = document.getElementById("nova_senha").value;
+    let repete_senha = document.getElementById("repete_senha").value;
     let feedback = document.getElementById('senha_feedback');
-    if (senha_cadastro.length >= 3) {
-        feedback.innerText = '✔️ Senha válida';
-        feedback.className = "pass";
-        okSenha = true;
+    
+    if (senha_antiga == "123456") {
+        if (nova_senha.length >= 3) {
+            if (nova_senha == repete_senha) {
+                feedback.innerText = '✔️ Senha válida';
+                feedback.className = "pass";
+                okSenha = true;
+            } else {
+                feedback.innerText = '❌ A senha repetida não está igual a nova';
+                feedback.className = "fail";
+                okSenha = false;
+            }
+        } else {
+            feedback.innerText = '❌ Nova senha inválida (mínimo 3 letras)';
+            feedback.className = "fail";
+            okSenha = false;
+        }
     } else {
-        feedback.innerText = '❌ Senha inválida (mínimo 3 letras)';
+        feedback.innerText = '❌ Senha antiga invalida';
         feedback.className = "fail";
         okSenha = false;
     }

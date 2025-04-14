@@ -114,21 +114,33 @@
 
          <form name="formulario_alunos" onsubmit="return false;">
 
+            <fieldset id="fieldset_foto">
+               <div id="foto_container " class="foto_container"
+                  onclick="document.getElementById('foto_perfil').click()">
+                  <img id="preview_foto" src="../_images/Sem-perfil.png" alt="Foto de perfil">
+                  <div class="foto_overlay">Alterar imagem</div>
+               </div>
+               <input type="file" id="foto_perfil" accept="image/*" onchange="previewFotoPerfil(this)">
+            </fieldset>
+
             <fieldset id="fieldset_login" class="form_fieldset">
                <legend class="form_legend">Conta</legend>
-
                <div class="div_column_2">
-                  <label class="input_legend">Senha Antiga:</label>
-                  <input id="senha" class="form_input" type="password" placeholder="Digite sua senha antiga" required>
-
-                  <label class="input_legend">Nova Senha:</label>
-                  <input id="nova_senha" class="form_input" type="password" placeholder="Crie uma nova senha" required>
-
-                  <label class="input_legend">Repita a Senha:</label>
-                  <input id="repete_senha" class="form_input" type="password" placeholder="Repita a nova uma senha"
-                     required>
-
-                  <p id="senha_feedback" class="feedback"></p>
+                  <button id="btn_mudar_senha" class="botoes_3">Mudar a senha</button>
+                  <div id="mudar_senha">
+                     <label class="input_legend">Senha Antiga:</label>
+                     <input id="senha_antiga" class="form_input_senha" type="password" placeholder="Digite sua senha antiga"
+                        required>
+                     <label class="input_legend">Nova Senha:</label>
+                     <input id="nova_senha" class="form_input_senha" type="password" placeholder="Crie uma nova senha"
+                        required>
+                     <label class="input_legend">Repita a Senha:</label>
+                     <input id="repete_senha" class="form_input_senha" type="password" placeholder="Repita a nova uma senha"
+                        required>
+                     <p id="senha_feedback" class="feedback"></p>
+                        <button id="btn_salvar_senha" class="botoes_4">Salvar</button>
+                        <button id="btn_cancelar_senha" class="botoes_4">Cancelar</button>
+                  </div>
                </div>
             </fieldset>
 
@@ -271,8 +283,8 @@
          <span id="mensagem" class="message_progress"></span>
       </div>
 
-    <div id="div_logout">
-         <button id="botao_logout" class="botoes_2" onclick="logout()">Sair da Conta</button>
+      <div id="div_logout">
+         <button id="botao_logout" class="botoes_3" onclick="logout()">Sair da Conta</button>
       </div>
 
    </main>
