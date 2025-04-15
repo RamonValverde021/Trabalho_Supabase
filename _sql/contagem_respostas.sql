@@ -47,3 +47,13 @@ from perguntas p
 left join respostas r on p.id_perguntas = r.id_perguntas
 group by p.id_perguntas, p.titulo, p.criado_em, p.categoria, p.curtidas
 order by p.criado_em desc; 
+
+
+--Atualização de View --
+create view perguntas_com_respostas as
+select 
+  p.*, 
+  u.raw_user_meta_data ->> 'nome' as nome_autor,
+  (select count(*) from respostas r where r.id_perguntas = p.id_perguntas) as total_respostas
+from perguntas p
+join auth.users u on u.id = p.id_autor;

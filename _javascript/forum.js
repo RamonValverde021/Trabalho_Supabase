@@ -22,46 +22,51 @@ async function loadTopics(filtro) {
     return;
   }
 
+   // Se o filtro for por curtidas, ordena localmente o array
+   if (filtro == "curtidas") {
+    perguntas.sort((a, b) => b.curtidas - a.curtidas);
+  }
+
   // Inicia um laço (for...of) que percorre cada pergunta recebida do Supabase.
   for (const p of perguntas) {                                 // Cada item p representa uma pergunta individual, com seus campos vindos da view.
-    if(filtro == "recentes"){
-        // Exibir pelo botão de Topicos 
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
+    if (filtro == "recentes") {
+      // Exibir pelo botão de Topicos 
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
           <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br>
-          <label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
+          <label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br>
+          <label class="categoria_label">➡︎ Por: </label><span class="categoria_span" >${p.nome_autor.toLowerCase()}</span><br></td>
           <td class="td_resposta">${p.total_respostas}</td>
           <td class="td_curtidas">${p.curtidas}</td>
           <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
         `; // Define o conteúdo dessa linha:
-        tabelaTopicos.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tabelaTopicos, que deve ser o <tbody> da tabela de tópicos).
-      
+      tabelaTopicos.appendChild(tr); // Por fim, adiciona essa nova linha à tabela na tela (tabelaTopicos, que deve ser o <tbody> da tabela de tópicos).
     } else if (filtro == "categorias") {
-        // cria um array de objetos. Cada objeto representa uma categoria de filtro com duas informações:
-        // o id do checkbox no HTML (pra saber se ele está marcado).
-        // o nome da categoria que aparece nos dados (p.categoria).
-        const categorias = [
-          { id: 'categoria_orientacao', nome: 'Orientações Gerais' },
-          { id: 'categoria_configuracao', nome: 'Configuração' },
-          { id: 'categoria_instalacao', nome: 'Instalação' },
-          { id: 'categoria_funcionalidade', nome: 'Funcionalidade' },
-          { id: 'categoria_compatibilidade', nome: 'Compatibilidade' },
-          { id: 'categoria_problemas', nome: 'Problemas' },
-          { id: 'categoria_erro', nome: 'Erro' },
-          { id: 'categoria_sugestoes', nome: 'Sugestões' },
-          { id: 'categoria_duvidas', nome: 'Duvidas' },
-          { id: 'categoria_dicas', nome: 'Dicas' },
-          { id: 'categoria_outros', nome: 'Outros' }
-        ];
-        
-        // Percorre cada item do array categorias. Para cada um, a variável c vai conter um objeto com { id, nome }.
-        categorias.forEach(c => {
-          // Verifica se o checkbox correspondente (document.getElementById(c.id)) está marcado (checked).
-          // Se estiver, verifica se a categoria da pergunta (p.categoria) é igual ao nome do checkbox (c.nome).
-          if (document.getElementById(c.id).checked && p.categoria === c.nome) {
-            // Se ambos os critérios forem verdadeiros, cria uma nova linha (tr) na tabela de tópicos.
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
+      // cria um array de objetos. Cada objeto representa uma categoria de filtro com duas informações:
+      // o id do checkbox no HTML (pra saber se ele está marcado).
+      // o nome da categoria que aparece nos dados (p.categoria).
+      const categorias = [
+        { id: 'categoria_orientacao', nome: 'Orientações Gerais' },
+        { id: 'categoria_configuracao', nome: 'Configuração' },
+        { id: 'categoria_instalacao', nome: 'Instalação' },
+        { id: 'categoria_funcionalidade', nome: 'Funcionalidade' },
+        { id: 'categoria_compatibilidade', nome: 'Compatibilidade' },
+        { id: 'categoria_problemas', nome: 'Problemas' },
+        { id: 'categoria_erro', nome: 'Erro' },
+        { id: 'categoria_sugestoes', nome: 'Sugestões' },
+        { id: 'categoria_duvidas', nome: 'Duvidas' },
+        { id: 'categoria_dicas', nome: 'Dicas' },
+        { id: 'categoria_outros', nome: 'Outros' }
+      ];
+
+      // Percorre cada item do array categorias. Para cada um, a variável c vai conter um objeto com { id, nome }.
+      categorias.forEach(c => {
+        // Verifica se o checkbox correspondente (document.getElementById(c.id)) está marcado (checked).
+        // Se estiver, verifica se a categoria da pergunta (p.categoria) é igual ao nome do checkbox (c.nome).
+        if (document.getElementById(c.id).checked && p.categoria === c.nome) {
+          // Se ambos os critérios forem verdadeiros, cria uma nova linha (tr) na tabela de tópicos.
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
               <td class="td_pergunta">
                 <a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br>
                 <label class="categoria_label">🔹 Categoria: </label>
@@ -71,10 +76,25 @@ async function loadTopics(filtro) {
               <td class="td_curtidas">${p.curtidas}</td>
               <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
             `;
-            tabelaTopicos.appendChild(tr);
-          }
-        });
-      }
+          tabelaTopicos.appendChild(tr);
+        }
+      });
+    } else if (filtro == "curtidas") {
+      supabase
+        .from('perguntas_com_respostas')
+        .select('*')
+        .order('curtidas', { ascending: false });
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+          <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br>
+          <label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
+          <td class="td_resposta">${p.total_respostas}</td>
+          <td class="td_curtidas">${p.curtidas}</td>
+          <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
+        `;
+      tabelaTopicos.appendChild(tr);
+
+    }
   }
 }
 
@@ -222,7 +242,7 @@ function toggleDropdownCategorias() {
 // Função para exibir todos os topicos no painel
 document.getElementById('nav_botao_recentes').addEventListener('click', () => {                 // Fecha o form e volta a exibir o botão.
   // Fecha o menu de categorias, se estiver aberto.
-  if(document.getElementById('submenu_categorias').classList.contains('ativo_categorias')) {
+  if (document.getElementById('submenu_categorias').classList.contains('ativo_categorias')) {
     toggleDropdownCategorias();
   }
   // Limpa os checkboxes de categorias
@@ -236,10 +256,18 @@ document.getElementById('nav_botao_recentes').addEventListener('click', () => { 
 });
 
 // Função para exibir os topicos filtrados por categorias
-document.getElementById('nav_botao_filtrar').addEventListener('click', () => {               
+document.getElementById('nav_botao_filtrar').addEventListener('click', () => {
   toggleDropdownCategorias();
   formularioPerguntar.reset();
   formularioPerguntar.style.display = 'none';
   tabelaTopicos.innerHTML = " ";
   loadTopics("categorias");
+});
+
+// Função para exibir os topicos filtrados por mais curtidas
+document.getElementById('nav_botao_curtidas').addEventListener('click', () => {
+  formularioPerguntar.reset();
+  formularioPerguntar.style.display = 'none';
+  tabelaTopicos.innerHTML = " ";
+  loadTopics("curtidas");
 });

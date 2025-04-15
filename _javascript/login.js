@@ -27,3 +27,11 @@ async function login() {
     }
 }
 
+async function loginGoogle(params) {
+
+    let { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'Google'
+      })
+    
+}
+

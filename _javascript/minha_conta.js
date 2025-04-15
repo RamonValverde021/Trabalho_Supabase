@@ -460,10 +460,7 @@ function previewFotoPerfil(input) {
 async function atualizarFotoPerfil() {
     const fileInput = document.getElementById("foto_perfil");
 
-    if (fileInput.files.length === 0) {
-        alert("Selecione uma imagem.");
-        return;
-    }
+    //if (fileInput.files.length === 0) {alert("Selecione uma imagem.");return;}
 
     const file = fileInput.files[0];
     const user = (await supabase.auth.getUser()).data.user;
