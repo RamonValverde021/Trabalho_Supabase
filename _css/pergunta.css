@@ -7,6 +7,192 @@ main#pergunta {
     padding: 2rem;
 }
 
+h1.titulo_pergunta {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(45, 62, 81);
+}
+
+label.categotia_pergunta {
+    font-size: 18px;
+    color: rgb(45, 62, 81);
+}
+
+hr {
+    height: 2px;
+    background-color: rgb(15, 21, 29);
+}
+
+div.painel {
+    width: 95%;
+    margin: 0 2.5%;
+}
+
+div.dados_autor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* separa esquerda e direita */
+    align-items: center;
+    width: 100%;
+}
+
+div.autor_esquerda {
+    display: flex;
+    align-items: center;
+}
+
+img.perfil_autor {
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+span.nome_autor {
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(45, 62, 81);
+    margin-left: 10px;
+}
+
+span.tempo_de_postagem {
+    color: gray;
+    font-size: 0.9em;
+}
+
+p.conteudo {
+    font-size: 18px;
+    color: rgb(45, 62, 81);
+    margin-left: 70px;
+    white-space: pre-wrap;
+}
+
+div.midia {
+    margin-left: 70px;
+}
+
+div.midia {
+    width: 300px;
+    border-radius: 15px;
+    border: 1px darkgray solid;
+    margin: 10px 0;
+    transition: 0.5s;
+}
+
+div.midia:hover {
+    width: 100%;
+}
+
+
+div.interacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* separa esquerda e direita */
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+div.interacao_direita {
+    display: flex;
+    align-items: center;
+}
+
+span.numero_respostas {
+    color: gray;
+    font-size: 16px;
+}
+
+button.btn_curtir {
+    margin: 0 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    font-size: 20px;
+}
+
+button.btn_responder {
+    margin: 0 10px;
+    background: none;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 20px;
+    margin: 0 10px;
+}
+
+button.btn_responder:hover {
+    background-color: lightgray;
+}
+
+button.btn_excluir {
+    margin: 0 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-size: 20px;
+
+    margin: 0 10px;
+}
+
+
+
+
+
+
+
+label.label_conteudo_respostas {
+    font-size: 20px;
+    color: rgb(45, 62, 81);
+}
+
+textarea#conteudo_resposta {
+    border: 2px darkgray solid;
+    border-radius: 15px;
+    padding: 10px;
+    width: 50%;
+    height: 100px;    
+}
+
+button.responder {
+    display: inline;
+    font-size: 16px;
+    margin: 10px 0;
+    width: 130px;
+    border: 2px rgb(45, 62, 81) solid;
+    border-radius: 15px;
+    padding: 5px 0;
+    color: rgb(45, 62, 81);
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+}
+
+button.responder:hover {
+    border: 2px #ffffff solid;
+    color: #ffffff;
+    background-color: rgb(45, 62, 81);
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+
+
 .conteudo_resposta {
     border-bottom: 1px solid #ccc;
     padding: 1rem 0;
@@ -18,8 +204,4 @@ textarea {
 
 #formulario-resposta {
     margin-top: 2rem;
-}
-
-#login_msg {
-    color: red;
 }

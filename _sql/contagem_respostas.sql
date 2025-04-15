@@ -24,17 +24,11 @@ group by p.id_perguntas, p.titulo, p.criado_em              #  Como usamos count
 order by p.criado_em desc;                                  # Por fim, ordenamos os resultados pela data de criação da pergunta (criado_em) em ordem decrescente (desc).
                                                             # Isso significa que as perguntas mais recentes aparecem primeiro.
 
-
-
-
-
-
-
 -------------------------------------------
 
 drop view if exists perguntas_com_respostas;         # Isso deleta a view antiga e limpa o caminho pra recriar sem erro.
 
---Atualização de View --
+--Atualização 1 de View --
 create view perguntas_com_respostas as
 select 
 p.id_perguntas,
@@ -49,11 +43,48 @@ group by p.id_perguntas, p.titulo, p.criado_em, p.categoria, p.curtidas
 order by p.criado_em desc; 
 
 
---Atualização de View --
+--Atualização 2 de View --
+# Isso cria uma view, que é como uma tabela "virtual" baseada em uma consulta SQL.
+
 create view perguntas_com_respostas as
-select 
-  p.*, 
-  u.raw_user_meta_data ->> 'nome' as nome_autor,
-  (select count(*) from respostas r where r.id_perguntas = p.id_perguntas) as total_respostas
-from perguntas p
-join auth.users u on u.id = p.id_autor;
+select                                                                                           # Aqui é onde definimos o que vai ser exibido nessa view:
+  p.*,                                                                                           # Puxa todas as colunas da tabela perguntas.
+  u.raw_user_meta_data ->> 'nome' as nome_autor,                                                 # Esse é o truque pra pegar o nome do autor direto do Supabase Auth!
+  (select count(*) from respostas r where r.id_perguntas = p.id_perguntas) as total_respostas    # Isso aqui é uma subquery (uma mini-consulta dentro da principal)
+from perguntas p                                                                                 # Dizemos que a consulta está sendo feita a partir da tabela perguntas, e chamamos ela de p.
+join auth.users u on u.id = p.id_autor;                                                          # Aqui é onde ligamos (join) a tabela de perguntas com a tabela de usuários do Supabase Auth:
+
+
+/*
+p.*
+    Puxa todas as colunas da tabela perguntas.
+        p é um apelido (alias) que demos pra tabela perguntas, logo abaixo no from perguntas p.
+        Isso inclui coisas como id_perguntas, titulo, texto, id_autor, criado_em, etc.
+
+u.raw_user_meta_data ->> 'nome' as nome_autor
+    Esse é o truque pra pegar o nome do autor direto do Supabase Auth!
+    Explicando:
+        u é o alias da tabela auth.users (vem do join auth.users u).
+        raw_user_meta_data é a coluna onde ficam os dados extras que você salvou quando o usuário se registrou.
+        ->> é o operador do PostgreSQL para extrair um valor de um JSON como texto.
+            Se fosse só ->, ele retornaria um JSON bruto.
+        'nome' é a chave dentro do JSON que você salvou, ou seja, "nome": "RAMON AGUIAR VALVERDE".
+        as nome_autor dá um nome bonito pra essa coluna na view. Agora você pode acessar esse campo com p.nome_autor no front.
+
+(select count(*) from respostas r where r.id_perguntas = p.id_perguntas) as total_respostas
+    Isso aqui é uma subquery (uma mini-consulta dentro da principal), que:
+        Conta (count(*)) quantas linhas existem na tabela respostas (r é o alias).
+        Mas só aquelas em que r.id_perguntas = p.id_perguntas, ou seja:
+            Só conta as respostas que pertencem à pergunta atual do select.
+        as total_respostas: nomeia essa coluna como total_respostas.
+    Resultado: toda linha da view já vem com o total de respostas daquela pergunta.
+
+join auth.users u on u.id = p.id_autor
+    Aqui é onde ligamos (join) a tabela de perguntas com a tabela de usuários do Supabase Auth:
+        auth.users é onde o Supabase salva todos os usuários registrados.
+        u é um apelido pra ela.
+        on u.id = p.id_autor significa:
+            "pegue o usuário que tem o mesmo ID que está salvo em id_autor na tabela perguntas".
+    Com isso, conseguimos puxar os dados do autor junto com a pergunta — sem precisar fazer isso manualmente no front.
+
+*/

@@ -63,13 +63,33 @@
 
    <main class="pergunta" style="padding: 2%;">
 
-      <h1 id="titulo_pergunta">Carregando pergunta...</h1>
-      <p id="conteudo_pergunta"></p>
 
-      <!-- container para a mídia -->
-      <div id="media_pergunta"></div>
+      <h1 id="titulo_pergunta" class="titulo_pergunta">Carregando pergunta...</h1>
+      <label id="categotia_pergunta" class="categotia_pergunta">Categoria</label>
+      <hr>
+      <div id="painel_pergunta" class="painel">
+         <div id="dados_autor_pergunta" class="dados_autor">
+            <div class="autor_esquerda">
+               <img src="../_images/Sem-perfil.png" id="perfil_autor_pergunta" class="perfil_autor">
+               <span id="nome_autor_pergunta" class="nome_autor">Autor da Pergunta</span>
+            </div>
+            <span id="tempo_de_postagem_pergunta" class="tempo_de_postagem">X h</span>
+         </div>
+         <p id="conteudo_pergunta" class="conteudo"></p>
+         <!-- container para a mídia -->
+         <div id="media_pergunta" class="midia"></div>
+         <div id="interacao_pergunta" class="interacao">
+            <span id="numero_respostas" class="numero_respostas">X Respostas</span>
+            <div class="interacao_direita">
+               <button id="btn_responder_pergunta" class="btn_responder">↩︎ Responder</button>
+               <button id="btn_curtir_resposta" class="btn_curtir">🤍</button>
+               <span id="contador_curtidas">0</span>
+               <button id="btn_excluir_pergunta" class="btn_excluir">✖️</button>
+            </div>
+         </div>
+      </div>
+      <hr>
 
-      <h2>Respostas</h2>
       <div id="lista_respostas">
          <p>Carregando respostas...</p>
       </div>
@@ -78,9 +98,9 @@
          <p id="login_msg" style="display:none;">Você precisa estar <a href="login.html">logado</a> para responder.</p>
 
          <form id="formulario_resposta" style="display:none;">
-            <label for="conteudo_resposta">Sua resposta:</label><br>
+            <label for="conteudo_resposta" class="label_conteudo_respostas">Sua resposta:</label><br>
             <textarea id="conteudo_resposta" rows="4" required></textarea><br>
-            <button type="submit">Enviar resposta</button>
+            <button type="submit" class="responder">Enviar resposta</button>
             <p id="feedback_resposta"></p>
          </form>
       </div>

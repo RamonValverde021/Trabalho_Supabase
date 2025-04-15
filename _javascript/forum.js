@@ -22,8 +22,8 @@ async function loadTopics(filtro) {
     return;
   }
 
-   // Se o filtro for por curtidas, ordena localmente o array
-   if (filtro == "curtidas") {
+  // Se o filtro for por curtidas, ordena localmente o array
+  if (filtro == "curtidas") {
     perguntas.sort((a, b) => b.curtidas - a.curtidas);
   }
 
@@ -34,8 +34,8 @@ async function loadTopics(filtro) {
       const tr = document.createElement('tr');
       tr.innerHTML = `
           <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br>
-          <label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br>
-          <label class="categoria_label">➡︎ Por: </label><span class="categoria_span" >${p.nome_autor.toLowerCase()}</span><br></td>
+          <label class="categoria_label">🔹 Categoria: </label><span class="categoria_span">${p.categoria}</span><br>
+          <label class="nome_label">➡︎ Por: </label><span class="nome_span">${p.nome_autor.toLowerCase()}</span><br></td>
           <td class="td_resposta">${p.total_respostas}</td>
           <td class="td_curtidas">${p.curtidas}</td>
           <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
@@ -67,11 +67,9 @@ async function loadTopics(filtro) {
           // Se ambos os critérios forem verdadeiros, cria uma nova linha (tr) na tabela de tópicos.
           const tr = document.createElement('tr');
           tr.innerHTML = `
-              <td class="td_pergunta">
-                <a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br>
-                <label class="categoria_label">🔹 Categoria: </label>
-                <span class="categoria_span">${p.categoria}</span><br><br>
-              </td>
+              <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br>
+              <label class="categoria_label">🔹 Categoria: </label><span class="categoria_span">${p.categoria}</span><br>
+              <label class="nome_label">➡︎ Por: </label><span class="nome_span">${p.nome_autor.toLowerCase()}</span><br></td>
               <td class="td_resposta">${p.total_respostas}</td>
               <td class="td_curtidas">${p.curtidas}</td>
               <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>
@@ -87,7 +85,8 @@ async function loadTopics(filtro) {
       const tr = document.createElement('tr');
       tr.innerHTML = `
           <td class="td_pergunta"><a class="a_pergunta" href="pergunta.html?id=${p.id_perguntas}">${p.titulo}</a><br>
-          <label class="categoria_label">🔹 Categoria: </label><span class="categoria_span" >${p.categoria}</span><br><br></td>
+          <label class="categoria_label">🔹 Categoria: </label><span class="categoria_span">${p.categoria}</span><br>
+          <label class="nome_label">➡︎ Por: </label><span class="nome_span">${p.nome_autor.toLowerCase()}</span><br></td>
           <td class="td_resposta">${p.total_respostas}</td>
           <td class="td_curtidas">${p.curtidas}</td>
           <td class="td_atividade">${formatarTempoDecorrido(p.criado_em)}</td>

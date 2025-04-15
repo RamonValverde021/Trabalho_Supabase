@@ -65,12 +65,10 @@ table#topicos_tabela {
 }
 
 thead {
-    background-color: rgb(59, 31, 10);
     text-align: center;
 }
 
 tr {
-    background-color: rgb(210, 117, 30);
     font-size: 15pt;
 }
 
@@ -87,8 +85,8 @@ a.a_pergunta:hover {
 }
 
 td.td_pergunta {
-    background-color: rgb(177, 210, 30);
     padding-left: 10px;
+    padding: 20px 0;
 }
 
 td.td_resposta {
@@ -104,13 +102,13 @@ td.td_atividade {
 }
 
 th {
-    background-color: rgb(210, 30, 54);
+    border: 2px black solid;
     padding: 20px;
     font-size: 15pt;
 }
 
 tbody {
-    background-color: rgb(30, 42, 210);
+    border: 2px black solid;
 }
 
 label.categoria_label {
@@ -143,4 +141,26 @@ div.painel_formulario {
 
 div.painel_formulario.ativo_painel {
     transform: translateY(0);
+}
+
+
+button.responder {
+    display: inline;
+    font-size: 20px;
+    margin: 10px 10px;
+    width: 120px;
+    border: 2px rgb(45, 62, 81) solid;
+    border-radius: 15px;
+    padding: 0px 0;
+    color: rgb(45, 62, 81);
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+}
+
+button.responder:hover {
+    border: 2px #ffffff solid;
+    color: #ffffff;
+    background-color: rgb(45, 62, 81);
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
