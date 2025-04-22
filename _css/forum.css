@@ -1,14 +1,5 @@
 @charset "UTF-8";
 
-* {
-    /* Resetar modulos de espaçamentos*/
-    margin: 0px;
-    padding: 0px;
-
-    font-family: "Arial", sans-serif;
-    color: rgb(45, 62, 81);
-}
-
 /* Formatação Menu de botões das perguntas */
 
 div#menu_perguntas {
@@ -56,15 +47,20 @@ div.submenu_categorias.ativo_categorias {
     transform: translateY(0);
 }
 
-
 /* Formatação Tabela */
+
+h1.titulo_h1 {
+    color: rgb(45, 62, 81);
+    font-size: 40px;
+    text-align: center;
+}
 
 table#topicos_tabela {
     width: 80%;
     margin: 0 10%;
 }
 
-thead {
+thead#tabela_cabecalho {
     text-align: center;
 }
 
@@ -102,13 +98,8 @@ td.td_atividade {
 }
 
 th {
-    border: 2px black solid;
     padding: 20px;
     font-size: 15pt;
-}
-
-tbody {
-    border: 2px black solid;
 }
 
 label.categoria_label {
@@ -122,6 +113,11 @@ span.categoria_span {
     padding: 5px;
 }
 
+table,
+th,
+td {
+    border: 1px solid darkgray;
+}
 
 /* Formatação Formulário pergunta */
 
@@ -164,3 +160,24 @@ button.responder:hover {
     transition-duration: 0.4s;
     cursor: pointer;
 }
+
+button.botoes, a.botoes {
+    text-decoration: none;
+    display: inline;
+    font-size: 18px;
+    font-weight: 600;
+    border: 2px rgb(45, 62, 81) solid;
+    border-radius: 15px;
+    padding: 3px 10px;
+    margin: 5px 10px;
+    color: rgb(45, 62, 81);
+    background-color: rgb(255, 255, 255);
+  }
+  
+  button.botoes:hover, a.botoes:hover {
+    border: 2px #ffffff solid;
+    color: #ffffff;
+    background-color: rgb(45, 62, 81);
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }

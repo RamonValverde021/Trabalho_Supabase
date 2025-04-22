@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 main#pergunta {
-    font-family: Arial, sans-serif;
     max-width: 800px;
     margin: auto;
     padding: 2rem;
@@ -85,7 +84,6 @@ div.midia:hover {
     width: 100%;
 }
 
-
 div.interacao {
     display: flex;
     align-items: center;
@@ -106,18 +104,21 @@ span.numero_respostas {
     font-size: 16px;
 }
 
-button.btn_curtir {
-    margin: 0 10px;
+/* Botão Curtir */
+
+.curtir {
+    font-size: 20px;
     background: none;
     border: none;
-    padding: 0;
-    font: inherit;
-    color: inherit;
     cursor: pointer;
-    transition: color 0.3s;
-
-    font-size: 20px;
 }
+
+.curtir .icone {
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+/* --------------- */
 
 button.btn_responder {
     margin: 0 10px;
@@ -151,12 +152,6 @@ button.btn_excluir {
     margin: 0 10px;
 }
 
-
-
-
-
-
-
 label.label_conteudo_respostas {
     font-size: 20px;
     color: rgb(45, 62, 81);
@@ -167,7 +162,7 @@ textarea#conteudo_resposta {
     border-radius: 15px;
     padding: 10px;
     width: 50%;
-    height: 100px;    
+    height: 100px;
 }
 
 button.responder {
@@ -190,8 +185,6 @@ button.responder:hover {
     transition-duration: 0.4s;
     cursor: pointer;
 }
-
-
 
 .conteudo_resposta {
     border-bottom: 1px solid #ccc;

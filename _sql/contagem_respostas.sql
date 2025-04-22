@@ -88,3 +88,15 @@ join auth.users u on u.id = p.id_autor
     Com isso, conseguimos puxar os dados do autor junto com a pergunta — sem precisar fazer isso manualmente no front.
 
 */
+
+
+
+
+
+
+-- Permitir UPDATE apenas da coluna curtidas
+CREATE POLICY "Permitir update da curtida por qualquer usuário"
+ON perguntas
+FOR UPDATE
+USING (true)
+WITH CHECK (auth.uid() IS NOT NULL)

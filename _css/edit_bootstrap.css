@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 nav.navbar {
-   box-shadow: 0px 0px 6px 2px  #286145;
+   box-shadow: 0px 0px 6px 2px #286145;
    z-index: 5;
 }
 
@@ -13,7 +13,6 @@ img#img_logomarca {
 }
 
 span#logomarca {
-   font-family: Arial, Helvetica, sans-serif;
    font-weight: bold;
    font-size: 30px;
    color: rgb(45, 62, 81);
@@ -59,6 +58,7 @@ a.nav-link-dropdown:hover {
    color: #198754;
    transition: 0.2s;
 }
+
 /* ---------------------------- */
 
 
@@ -149,8 +149,7 @@ div#slide_05 {
    background-position-y: center;
 }
 
-div.carousel-caption>h5 {
-   font-family: Arial, Helvetica, sans-serif;
+div.carousel-caption > h5 {
    font-size: 40px;
    margin-bottom: -10px;
    -webkit-text-stroke: 1px 2F4F4F;
@@ -158,9 +157,18 @@ div.carousel-caption>h5 {
    text-shadow: 3px 3px 2px #2F4F4F;
 }
 
-div.carousel-caption>p {
-   font-family: Arial, Helvetica, sans-serif;
+div.carousel-caption > p {
    font-size: 26px;
+   padding: 2% 0;
+   margin-bottom: -10px;
+   -webkit-text-stroke: 1px 2F4F4F;
+   color: white;
+   text-shadow: 3px 3px 2px #2F4F4F;
+}
+
+div.carousel-caption > p > em {
+   font-size: 26px;
+   font-weight: bold;
    padding: 2% 0;
    margin-bottom: -10px;
    -webkit-text-stroke: 1px 2F4F4F;
@@ -174,38 +182,38 @@ div.carousel-caption>p {
 
 @keyframes slideInIMG {
    from {
-       transform: translateX(-100px);
-       /* Fora da tela à esquerda */
+      transform: translateX(-100px);
+      /* Fora da tela à esquerda */
    }
 
    to {
-       transform: translateX(0);
-       /* Posição final */
+      transform: translateX(0);
+      /* Posição final */
    }
 }
 
 @keyframes slideIn {
-    from {
-        transform: translateX(-400px);
-        /* Fora da tela à esquerda */
-    }
+   from {
+      transform: translateX(-400px);
+      /* Fora da tela à esquerda */
+   }
 
-    to {
-        transform: translateX(0);
-        /* Posição final */
-    }
+   to {
+      transform: translateX(0);
+      /* Posição final */
+   }
 }
 
 @keyframes slideInMenu {
    from {
       transform: translateX(-600px);
       /* Fora da tela à esquerda */
-  }
+   }
 
-  to {
+   to {
       transform: translateX(0);
       /* Posição final */
-  }
+   }
 }
 
 
@@ -213,17 +221,16 @@ div.carousel-caption>p {
    img {
       animation: slideInIMG 1s ease-out forwards;
    }
-   
+
    span#logomarca {
 
       animation: slideIn 1s ease-out forwards;
    }
-   
+
    div#navbarSupportedContent {
       animation: slideInMenu 1s ease-out forwards;
    }
 
-   
-   
-}
 
+
+}

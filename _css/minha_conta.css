@@ -2,7 +2,6 @@
 
 main.minha_conta {
     padding: 1%;
-    animation: slideIn 1s ease-out forwards;
 }
 
 label.label_info_principal {
@@ -19,11 +18,11 @@ div#info_principal {
 }
 
 img#icone_perfil_info {
-    height: 120px;
-    width: 120px;
+    display: block;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    margin: 10px 10px 50px 30px;
-    animation: none;
+    margin: 20px 10px;
     object-fit: cover;
 }
 
@@ -185,7 +184,6 @@ input.form_input_senha {
     padding: 5px;
     width: 48%;
     font-size: 15px;
-    font-family: "Arial", sans-serif;
     font-weight: 600;
     color: rgb(45, 62, 81);
     outline: none;
@@ -204,7 +202,6 @@ div.edit_perfil {
 }
 
 h1.cadastro_title {
-    font-family: "Arial", sans-serif;
     color: rgb(45, 62, 81);
     font-size: 30px;
     margin-top: 40px;
@@ -231,7 +228,6 @@ textarea.form_textarea {
     padding: 5px;
     width: 100%;
     font-size: 15px;
-    font-family: "Arial", sans-serif;
     font-weight: 600;
     color: rgb(45, 62, 81);
     outline: none;
@@ -247,7 +243,6 @@ textarea.form_textarea:hover {
 option {
     color: rgb(45, 62, 81);
     font-size: 15px;
-    font-family: "Arial", sans-serif;
     font-weight: 500;
 }
 
@@ -398,6 +393,7 @@ img#preview_foto {
     height: 100%;
     object-fit: cover;
     transition: opacity 0.3s ease;
+    border-radius: 50%;
 }
 
 img#preview_foto:hover {

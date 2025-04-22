@@ -4,17 +4,13 @@
    /* Resetar modulos de espaçamentos*/
    margin: 0px;
    padding: 0px;
-}
-
-html {
-   /*background-color: rgb(255, 255, 255);*/
    font-family: "Arial", sans-serif;
-   font-weight: 500;
-   color: white;
+   color: rgb(45, 62, 81);
 }
 
 main {
    min-height: 72vh;
+   /*animation: slideIn 1s ease-out forwards;*/  
 }
 
 /*------------------------ Formatação MENU ------------------------*/
@@ -76,32 +72,7 @@ img.icone_perfil {
    width: 50px;
    border-radius: 50%;
    object-fit: cover;
-}
-
-
-/*------------------------ Formatação Rpdapé ------------------------*/
-
-footer.assinatura {
-   width: 100%;
-   font-size: 20px;
-   text-align: center;
-   padding: 20px 0;
-   color: rgb(45, 62, 81);
-   background-color: #f8f9fa;
-   box-shadow: 0px 0px 5px 2px #286145;
-   z-index: 5;
-}
-
-a.links {
-   text-decoration: none;
-   color: rgb(45, 62, 81);
-   margin: 0 1%;
-   margin-top: 50px;
-}
-
-a.links:hover {
-   color: #198754;
-   transition: 0.2s;
+   margin-left: 10px;
 }
 
 /*-------------------- Formatação Index --------------------*/
@@ -143,90 +114,41 @@ li.menu_index:hover {
    transition-duration: 0.3s;
 }
 
-/*-------------------- Pagina Sobre --------------------*/
-h1.titulo_h1 {
-   font-family: "Arial", sans-serif;
-   color: rgb(45, 62, 81);
-}
+/*------------------------ Formatação Rpdapé ------------------------*/
 
-h2.titulo_h2 {
-   font-family: "Arial", sans-serif;
-   color: rgb(45, 62, 81);
-}
-
-p.paragrafo {
-   font-family: "Arial", sans-serif;
-   color: rgb(45, 62, 81);
+footer#pagina_rodape {
+   width: 100%;
    font-size: 20px;
-}
-
-b.paragrafo {
-   font-family: "Arial", sans-serif;
-   color: rgb(45, 62, 81);
-   font-size: 20px;
-}
-
-main#main_sobre {
    text-align: center;
-   margin: 0 15%;
-   text-align: left;
-   width: 70%;
-   padding-top: 2%;
-   min-height: 77vh;
-   animation: slideIn 1s ease-out forwards;
+   padding: 20px 0;
+   color: rgb(45, 62, 81);
+   background-color: #f8f9fa;
+   box-shadow: 0px 0px 5px 2px #286145;
+   z-index: 5;
 }
 
-div.div_video {
-   width: 100%;
-   padding: 2% 0;
-   text-align: center;
-   margin-bottom: 10%;
+a.links {
+   text-decoration: none;
+   color: rgb(45, 62, 81);
+   margin: 0 1%;
+   margin-top: 50px;
 }
 
-iframe.iframe_video {
-   /* 16:9  Multiplica o width por 16 e o height por 9 para manter a proporção do video */
-   height: 60vh;
-   width: 100%;
-}
-
-legend.legenda_video {
-   font-size: 20px;
-}
-
-div.div_graphic {
-   width: 100%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-}
-
-/* --------------------------- CORREÇÃO DE RESPONSIVIDADE --------------------------- */
-
-@media(max-width: 550px) {
-
-   main#main_sobre {
-      padding-top: 5%;
-      width: 80%;
-      margin: 0 10%;
-   }
-
-   iframe.iframe_video {
-      height: 20vh;
-   }
-
+a.links:hover {
+   color: #198754;
+   transition: 0.2s;
 }
 
 /* ------------------------- Definição da animação ------------------------- */
 
 @keyframes slideIn {
    from {
-       transform: translateX(-400px);
-       /* Fora da tela à esquerda */
+      transform: translateX(-400px);
+      /* Fora da tela à esquerda */
    }
 
    to {
-       transform: translateX(0);
-       /* Posição final */
+      transform: translateX(0);
+      /* Posição final */
    }
 }

@@ -67,9 +67,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     const user_foto = data.user;
     const fotoPerfilUrl = user_foto.user_metadata?.foto_perfil;
     if (fotoPerfilUrl) {
-        document.getElementById("icone_perfil_info").src = fotoPerfilUrl || "../_images/Sem-perfil.png";;
-        document.getElementById("preview_foto").src = fotoPerfilUrl || "../_images/Sem-perfil.png";;
-        document.getElementById("icone_perfil").src = fotoPerfilUrl || "../_images/Sem-perfil.png";;
+        document.getElementById("icone_perfil_info").src = fotoPerfilUrl || "../_images/Sem-perfil.png";
+        document.getElementById("preview_foto").src = fotoPerfilUrl || "../_images/Sem-perfil.png";
+        document.getElementById("icone_perfil").src = fotoPerfilUrl || "../_images/Sem-perfil.png";
     } else {
         console.log("Usuário ainda não tem foto de perfil.");
     }

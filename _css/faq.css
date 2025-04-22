@@ -13,10 +13,9 @@ div.espaco {
 }
 
 /* Título principal */
-.container>h1 {
-  text-align: left;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
+h1.titulo_h1 {
+  color: rgb(45, 62, 81);
+  font-size: 40px;
 }
 
 .pergutas {
@@ -95,12 +94,13 @@ div.espaco_botao {
 a.botoes {
   text-decoration: none;
   display: inline;
-  font-size: 26px;
+  font-size: 24px;
+  font-weight: 600;
   border: 2px rgb(45, 62, 81) solid;
   border-radius: 15px;
-  padding: 5px 15px;
+  padding: 8px 20px;
+  margin: 20px 20px 30px 20px;
   color: rgb(45, 62, 81);
-  font-weight: bold;
   background-color: rgb(255, 255, 255);
 }
 

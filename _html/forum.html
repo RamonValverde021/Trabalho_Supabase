@@ -7,64 +7,31 @@
    <meta name="viewport" content="width=device-width, initial-scale=1" />
    <title>Forum</title>
    <link rel="icon" href="../_images/Icone_Planta_03.png">
+   <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css">
    <link rel="stylesheet" type="text/css" href="../_css/estilos.css">
    <link rel="stylesheet" type="text/css" href="../_css/forum.css">
-   <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css">
-   <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
-   <script language="JavaScript" src="../_javascript/script.js" defer></script>
    <script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
-   <script language="JavaScript" src="../_javascript/forum.js" defer></script>
    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <script language="JavaScript" src="/_javascript/script.js" defer></script>
+   <script language="JavaScript" src="../_javascript/forum.js" defer></script>
 </head>
 
-<body id="forum">
+<style>
+   li#page_forum {
+      display: none;
+   }
+</style>
 
-   <!-- Menu -->
-   <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-         <img src="../_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy" id="img_logomarca"> <span
-            id="logomarca">SpringFy</span>
-         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-               <li class="nav-item active">
-                  <a class="nav-link" href="../index.html">Home</a>
-               </li>
-               <li class="nav-item active"><a class="nav-link" href="sobre.html">Sobre</a></li>
-               <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
-                  data-bs-toggle="dropdown" aria-expanded="false">Contato</a>
-               <ul class="dropdown-menu">
-                  <li><a class="nav-link-dropdown" href="contato.html">Contato</a></li>
-                  <li><a class="nav-link-dropdown" href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
-               </ul>
-            </li>
-               <li class="nav-item active"><a class="nav-link" href="faq.html">FAQ</a></li>
-               <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login</a></li>
-               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta <img
-                        src="../_images/Sem-perfil.png" id="icone_perfil" class="icone_perfil"
-                        alt="icone de perfil"></a>
-               </li>
-            </ul>
-            <!-- 
-            <form class="d-flex" role="search">
-               <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-               <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-            </form>
-            -->
-         </div>
-      </div>
-   </nav>
+<body id="forum">
 
    <main class="forum" style="padding: 2%;">
 
       <!-- Painel de perguntas -->
       <div id="menu_perguntas">
-         <button id="nav_botao_recentes" class="botoes_perguntas">Recentes</button>
+         <button id="nav_botao_recentes" class="botoes">Recentes</button>
          <div class="dropdown_categorias">
-            <button id="nav_botao_categoria" class="botoes_perguntas"
+            <button id="nav_botao_categoria" class="botoes"
                onclick="toggleDropdownCategorias()">Categoria</button>
             <div id="submenu_categorias" class="submenu_categorias">
                <input type="checkbox" id="categoria_orientacao" name="categoria_orientacao"
@@ -99,15 +66,15 @@
                <button id="nav_botao_filtrar">Filtrar</button>
             </div>
          </div>
-         <button id="nav_botao_curtidas" class="botoes_perguntas">Mais Curtidas 🤍</button>
+         <button id="nav_botao_curtidas" class="botoes">Mais Curtidas 🤍</button>
          <div class="spacer"></div>
-         <button id="botao_perguntar" class="botoes_perguntas" onclick="togglePerguntar()">📝 Faça uma pergunta</button>
+         <button id="botao_perguntar" class="botoes" onclick="togglePerguntar()">📝 Faça uma pergunta</button>
       </div>
 
       <!-- Tabela de Perguntas -->
-      <h1 style="text-align:center;">Fórum</h1>
+      <h1 class="titulo_h1">Fórum</h1>
       <table id="topicos_tabela">
-         <thead>
+         <thead id="tabela_cabecalho">
             <tr>
                <th>Tópicos</th>
                <th>Respostas</th>
@@ -115,49 +82,42 @@
                <th>Atividade</th>
             </tr>
          </thead>
-         <tbody></tbody>
+         <tbody id="tabela_corpo"></tbody>
       </table>
-
-      <!-- Formulario para criar Perguntas -->
-      <div id="painel_formulario" class="painel_formulario">
-         <form id="formulario_perguntar" enctype="multipart/form-data" style="display: none;">
-            <h2>Nova pergunta</h2>
-            <label>Título:<br>
-               <input id="titulo_pergunta" type="text" name="titulo" required></label><br></br>
-
-            <label>Corpo:<br>
-               <textarea id="conteudo_pergunta" name="conteudo" rows="4" required></textarea></label><br><br>
-
-            <label>Categoria:</label><br>
-            <select name="categoria_pergunta" id="categoria_pergunta" name="categoria" required>
-               <option value="Orientações Gerais" selected>🔹 Orientações Gerais</option>
-               <option value="Configuração">🔹 Configuração</option>
-               <option value="Instalação">🔹 Instalação</option>
-               <option value="Compatibilidade">🔹 Compatibilidade</option>
-               <option value="Funcionalidade">🔹 Funcionalidade</option>
-               <option value="Problemas">🔹 Problemas</option>
-               <option value="Erro">🔹 Erro</option>
-               <option value="Sugestões">🔹 Sugestões</option>
-               <option value="Dúvidas">🔹 Dúvidas</option>
-               <option value="Dicas">🔹 Dicas</option>
-               <option value="Outros">🔹 Outros</option>
-            </select><br><br>
-
-            <label>Imagens ou documentos:<br>
-               <input id="botao_arquivo" type="file" name="arquivo" multiple></label><br><br>
-            <button id="botao_publicar" type="submit" class="responder">Publicar</button>
-            <button id="botao_cancelar" type="button" class="responder" onclick="togglePerguntar()">Cancelar</button>
-         </form>
-      </div>
 
    </main>
 
-   <!-- Rodapé -->
-   <footer class="assinatura">
-      <em>Copyright © 2024 by Ramon Aguiar Valverde</em><br>
-      <a href="https://www.facebook.com/" target="_blank" class="links">Facebook</a>
-      <a href="https://www.instagram.com/" target="_blank" class="links">Instagram</a>
-   </footer>
+   <!-- Formulario para criar Perguntas -->
+   <div id="painel_formulario" class="painel_formulario">
+      <form id="formulario_perguntar" enctype="multipart/form-data" style="display: none;">
+         <h2>Nova pergunta</h2>
+         <label>Título:<br>
+            <input id="titulo_pergunta" type="text" name="titulo" required></label><br></br>
+
+         <label>Corpo:<br>
+            <textarea id="conteudo_pergunta" name="conteudo" rows="4" required></textarea></label><br><br>
+
+         <label>Categoria:</label><br>
+         <select name="categoria_pergunta" id="categoria_pergunta" name="categoria" required>
+            <option value="Orientações Gerais" selected>🔹 Orientações Gerais</option>
+            <option value="Configuração">🔹 Configuração</option>
+            <option value="Instalação">🔹 Instalação</option>
+            <option value="Compatibilidade">🔹 Compatibilidade</option>
+            <option value="Funcionalidade">🔹 Funcionalidade</option>
+            <option value="Problemas">🔹 Problemas</option>
+            <option value="Erro">🔹 Erro</option>
+            <option value="Sugestões">🔹 Sugestões</option>
+            <option value="Dúvidas">🔹 Dúvidas</option>
+            <option value="Dicas">🔹 Dicas</option>
+            <option value="Outros">🔹 Outros</option>
+         </select><br><br>
+
+         <label>Imagens ou documentos:<br>
+            <input id="botao_arquivo" type="file" name="arquivo" multiple></label><br><br>
+         <button id="botao_publicar" type="submit" class="responder">Publicar</button>
+         <button id="botao_cancelar" type="button" class="responder" onclick="togglePerguntar()">Cancelar</button>
+      </form>
+   </div>
 
 </body>
 

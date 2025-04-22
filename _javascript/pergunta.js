@@ -7,6 +7,10 @@ const formularioResposta = document.getElementById('formulario_resposta');
 const loginMsg = document.getElementById('login_msg');
 const feedbackResposta = document.getElementById('feedback_resposta');
 
+const btnCurtir = document.getElementById('btn_curtir_pergunta');
+const iconeCurtir = btnCurtir.querySelector('.icone');
+const contadorCurtidas = document.getElementById('contador_curtidas');
+
 // Variável global para manter o ID da pergunta
 let idPerguntaGlobal = null;
 
@@ -19,7 +23,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         await loadPergunta(idPergunta);   // Busca a pergunta
         await loadRespostas(idPergunta);  // Carrega as respostas
         await checkAuth();                // Verifica se o usuário está logado
-        await atualizaDados(idPergunta);
     } else {                              // Se não tiver id, já dá erro e mostra mensagem no HTML.
         console.error('ID da pergunta não foi fornecido na URL.');
         tituloPergunta.textContent = 'ID da pergunta não encontrado.';
@@ -72,75 +75,34 @@ async function loadPergunta(idPergunta) {
                 </a>
                 `;
         }
-
     }
+
+
+    // Atualiza botão de curtida
+    contadorCurtidas.textContent = data.curtidas;
+
+    const { data: sessionData } = await supabase.auth.getSession();
+    const user = sessionData?.session?.user;
+
+    if (user) {
+        const { data: curtida, error: erroCurtida } = await supabase
+            .from('curtidas_perguntas')
+            .select('*')
+            .eq('id_pergunta', idPergunta)
+            .eq('id_usuario', user.id)
+            .single();
+
+        if (curtida) {
+            iconeCurtir.textContent = '❤️';
+            btnCurtir.classList.add('ativo');
+        } else {
+            iconeCurtir.textContent = '🤍';
+            btnCurtir.classList.remove('ativo');
+        }
+    }
+
 }
 
-// Busca no Supabase as respostas da pergunta com o id_perguntas da URL.
-// Ordenadas da mais antiga para a mais nova.
-async function loadRespostas(idPergunta) {
-    const { data, error } = await supabase
-        .from('respostas')
-        .select('*')
-        .eq('id_perguntas', idPergunta)
-        .order('criado_em', { ascending: true });  // Ordena as respostas pela data de criação, do mais antigo para o mais novo.
-
-    // Se der erro, mostra aviso. Se não houver respostas, mostra “Nenhuma resposta”. - Se encontrar, atualiza o HTML com as respostas.
-    if (error) {
-        listaRespostas.innerHTML = `<p style="color:red">Erro ao carregar respostas.</p>`;
-        console.error(error);
-        return;
-    }
-
-    // Se não houver respostas, mostra mensagem.
-    if (!data.length) {
-        listaRespostas.innerHTML = '<p>Nenhuma resposta ainda.</p>';
-        return;
-    }
-
-    // Para cada resposta: 
-    listaRespostas.innerHTML = '';
-    data.forEach(r => {
-        const div = document.createElement('div');  // Cria uma <div>
-        //div.classList.add('resposta');              // Adiciona a classe resposta para estilizar depois.
-        div.innerHTML = `
-
-        <div id="painel_resposta" class="painel">
-         <div id="dados_autor_resposta" class="dados_autor">
-            <div class="autor_esquerda">
-               <img src="../_images/Sem-perfil.png" id="perfil_autor_resposta" class="perfil_autor">
-               <span id="nome_autor_resposta" class="nome_autor">Nome autor</span>
-            </div>
-            <span id="tempo_de_postagem_resposta" class="tempo_de_postagem">00</span>
-         </div>
-         <p id="conteudo_resposta" class="conteudo">${r.conteudo}</p>
-         <small>Respondido em ${new Date(r.criado_em).toLocaleString()}</small>
-   
-         <div id="media_resposta" class="midia"></div>
-         <div id="interacao_resposta" class="interacao">
-            <span id="numero_respostas" class="numero_respostas">0 Respostas</span>
-            <div class="interacao_direita">
-               <button id="btn_responder_resposta" class="btn_responder">↩︎ Responder</button>
-               <button id="btn_curtir_resposta" class="btn_curtir">🤍</button>
-               <span id="contador_curtidas">0</span>
-               <button id="btn_excluir_resposta" class="btn_excluir">✖️</button>
-            </div>
-         </div>
-      </div>
-      <hr>
-
-
-
-    
-      
-      
-      `; // Adiciona o conteudo da resposta e a data formatada - Adiciona o conteúdo da resposta na div.
-        
-      
-      
-      listaRespostas.appendChild(div);               // Insere no HTML a div criada com a resposta.
-    });
-}
 
 // Verifica autenticação
 async function checkAuth() {
@@ -197,49 +159,54 @@ formularioResposta.addEventListener('submit', async (e) => {
 });
 
 
-const numeroRespostas = document.getElementById("numero_respostas");
-const tempoPostagem = document.getElementById("tempo_de_postagem_pergunta");
-const autorPergunta = document.getElementById("nome_autor_pergunta");
-const categoriaPergunta = document.getElementById("categotia_pergunta");
+btnCurtir.addEventListener('click', async () => {
+    const { data: sessionData } = await supabase.auth.getSession();
+    const user = sessionData?.session?.user;
 
-async function atualizaDados(idPergunta) {
-    const { data, error } = await supabase
-        .from('perguntas_com_respostas')
-        .select('*')
-        .eq('id_perguntas', idPergunta);
-
-    if (error) {
-        console.error(error);
+    if (!user) {
+        alert('Você precisa estar logado para curtir.');
         return;
     }
-    numeroRespostas.innerText = `${data[0].total_respostas} Respostas `;
-    tempoPostagem.innerText =  `${formatarTempoDecorrido(data[0].criado_em)}`;
-    autorPergunta.innerText = data[0].nome_autor;
-    categoriaPergunta.innerText = `🔹 ${data[0].categoria}`;
-}
 
+    const { data: curtidaExistente } = await supabase
+        .from('curtidas_perguntas')
+        .select('*')
+        .eq('id_pergunta', idPerguntaGlobal)
+        .eq('id_usuario', user.id)
+        .single();
 
-// Formatação do tempo decorrido desde que a pergunta foi criada
-function formatarTempoDecorrido(dataCriadoEm) {
-    const agora = new Date();
-    const criado = new Date(dataCriadoEm);
-    const diffMs = agora - criado;
-  
-    const diffHoras = Math.floor(diffMs / (1000 * 60 * 60));
-    const diffMinutos = Math.floor((diffMs / (1000 * 60)) % 60);
-    const diffDias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  
-    if (diffDias < 1) { // Se for menos de 1 dia, mostra horas e minutos
-      if (diffHoras < 1) {
-        if (diffMinutos < 1) {
-          return 'Agora Mesmo!';
-        } else {
-          return `${diffMinutos} m`;
-        }
-      } else {
-        return `${diffHoras} h`;
-      }
+    let novaContagem = parseInt(contadorCurtidas.textContent);
+
+    if (curtidaExistente) {
+        // Descurtir
+        await supabase
+            .from('curtidas_perguntas')
+            .delete()
+            .eq('id_pergunta', idPerguntaGlobal)
+            .eq('id_usuario', user.id);
+
+        novaContagem--;
+        iconeCurtir.textContent = '🤍';
+        btnCurtir.classList.remove('ativo');
     } else {
-      return `${diffDias} d`;
+        // Curtir
+        await supabase
+            .from('curtidas_perguntas')
+            .insert([{
+                id_pergunta: idPerguntaGlobal,
+                id_usuario: user.id
+            }]);
+
+        novaContagem++;
+        iconeCurtir.textContent = '❤️';
+        btnCurtir.classList.add('ativo');
     }
-  }
+
+    // Atualiza contagem na tabela perguntas
+    await supabase
+        .from('perguntas')
+        .update({ curtidas: novaContagem })
+        .eq('id_perguntas', idPerguntaGlobal);
+
+    contadorCurtidas.textContent = novaContagem;
+});

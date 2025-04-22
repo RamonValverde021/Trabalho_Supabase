@@ -1,4 +1,4 @@
-const tabelaTopicos = document.querySelector('#topicos_tabela tbody');          // da tabela de tópicos — onde vamos injetar as linhas.
+const tabelaTopicos = document.getElementById("tabela_corpo");          // da tabela de tópicos — onde vamos injetar as linhas.
 const botaoPerguntar = document.getElementById('botao_perguntar');              // da tabela de tópicos — onde vamos injetar as linhas.zzz
 const formularioPerguntar = document.getElementById('formulario_perguntar');   // formulário de nova pergunta — inicialmente oculto.
 const botaoCancelar = document.getElementById('botao_cancelar');                // botão “Cancelar” dentro do form, para fechá‑lo.

@@ -7,63 +7,26 @@
    <meta name="viewport" content="width=device-width, initial-scale=1" />
    <title>FAQ</title>
    <link rel="icon" href="../_images/Icone_Planta_03.png">
+   <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css">
    <link rel="stylesheet" type="text/css" href="../_css/estilos.css">
    <link rel="stylesheet" type="text/css" href="../_css/faq.css">
-   <link rel="stylesheet" type="text/css" href="../_css/edit_bootstrap.css">
-   <link href="../_bootstrap-5.3.3/css/bootstrap.min.css" rel="stylesheet">
-   <script language="JavaScript" src="../_javascript/script.js" defer></script>
    <script language="JavaScript" src="../_bootstrap-5.3.3/js/bootstrap.bundle.min.js" defer></script>
-   <script language="JavaScript" src="../_javascript/forum.js" defer></script>
    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <script language="JavaScript" src="/_javascript/script.js" defer></script>
 </head>
+
+<style>
+   li#page_faq {
+      display: none;
+   }
+</style>
 
 <body id="faq">
 
-   <!-- Menu -->
-   <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-         <img src="../_images/Icone_Planta_03.png" alt="Logomarca da empresa SpringFy" id="img_logomarca"> <span
-            id="logomarca">SpringFy</span>
-         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-               <li class="nav-item active">
-                  <a class="nav-link" href="../index.html">Home</a>
-               </li>
-               <li class="nav-item active"><a class="nav-link" href="sobre.html">Sobre</a></li>
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                     aria-expanded="false">
-                     Contato
-                  </a>
-                  <ul class="dropdown-menu">
-                     <li><a class="nav-link-dropdown" href="contato.html">Contato</a></li>
-                     <li><a class="nav-link-dropdown" href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
-                  </ul>
-               </li>
-               <li class="nav-item active"><a class="nav-link" href="forum.html">Forum</a></li>
-               <li class="nav-item active" id="menu_login"><a class="nav-link" href="login.html">Login</a></li>
-               <li class="nav-item active" id="menu_conta"><a class="nav-link" href="minha_conta.html">Sua Conta <img
-                        src="../_images/Sem-perfil.png" id="icone_perfil" class="icone_perfil"
-                        alt="icone de perfil"></a>
-               </li>
-            </ul>
-            <!-- 
-         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Pesquisar</button>
-         </form>
-         -->
-         </div>
-      </div>
-   </nav>
-
    <main class="forum">
       <div class="container">
-         <h1>Perguntas frequentes</h1>
+         <h1 class="titulo_h1">Perguntas frequentes</h1>
          <div class="pergutas">
             <div class="pergunta">
                <h2>Como posso adquirir os produtos ou serviços da SpringFy?</h2>
@@ -116,13 +79,6 @@
          <a class="botoes" href="forum.html">Faça sua pergunta</a>
       </div>
    </main>
-
-   <!-- Rodapé -->
-   <footer class="assinatura">
-      <em>Copyright © 2024 by Ramon Aguiar Valverde, Sofia Karina Correa de Souza & </em><br>
-      <a href="https://www.facebook.com/" target="_blank" class="links">Facebook</a>
-      <a href="https://www.instagram.com/" target="_blank" class="links">Instagram</a>
-   </footer>
 
 </body>
 
