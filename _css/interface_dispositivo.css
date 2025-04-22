@@ -1,42 +1,19 @@
 @charset "UTF-8";
 
-* {
-    /* Resetar modulos de espaçamentos*/
-    margin: 0px;
-    padding: 0px;
-}
-
-html {
-    /*background-color: rgb(255, 255, 255);*/
-    font-family: "Arial", sans-serif;
-    font-weight: 500;
-    color: white;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
 #bgVideo {
     position: fixed;
     top: 0;
     left: 0;
-    margin-top: -30px;
+    margin-top: -25px;
     min-width: 100%;
     min-height: 100%;
     width: auto;
     height: auto;
     z-index: -1;
     object-fit: cover;
-    pointer-events: none; /* opcional, evita que o vídeo bloqueie cliques */
-  }
+    pointer-events: none;
+    /* opcional, evita que o vídeo bloqueie cliques */
+}
 
 img#icone {
     position: fixed;
@@ -51,19 +28,8 @@ img#icone:hover {
     opacity: 0.6;
 }
 
-main {
-    margin-top: 5%;
-    padding: 2%;
-    padding-top: 1%;
-    background-color: rgba(0, 153, 51, 0.8);
-    border: 3px white solid;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-h1 {
+h1.h1_interface {
+    color: rgb(255, 255, 255);
     text-align: left;
     width: 100%;
     padding-bottom: 1%;
@@ -74,9 +40,24 @@ h1 {
 }
 
 /*------------------------------ INTERFACE ------------------------------*/
+
+main.interface_dispositivo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+div#moldura {
+    margin: 5% 0;
+    padding: 2%;
+    padding-top: 1%;
+    background-color: rgba(0, 153, 51, 0.8);
+    border: 3px white solid;
+}
+
 div#interface {
-    min-width: 720px;
-    min-height: 70vh;
+    width: 800px;
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 1);
     padding: 1%;
@@ -89,6 +70,7 @@ fieldset {
 }
 
 legend {
+    all: unset;
     color: rgb(49, 49, 49);
     font-family: "Arial", sans-serif;
     font-weight: bold;
@@ -420,16 +402,16 @@ footer.assinatura {
     z-index: 5;
     opacity: 0.7;
     margin-top: 80px;
- }
- 
- a.links {
+}
+
+a.links {
     text-decoration: none;
     color: rgb(45, 62, 81);
     margin: 0 1%;
     margin-top: 50px;
- }
- 
- a.links:hover {
+}
+
+a.links:hover {
     color: #198754;
     transition: 0.2s;
- }
+}

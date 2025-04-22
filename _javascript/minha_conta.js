@@ -24,7 +24,7 @@ async function logout() {
 
 // Botão de acesso ao painel de programar o dispositivo
 document.getElementById("meu_dispositivo").addEventListener('click', () => {
-    window.location.href = "../Interface de Controle SpringFy/index.html";
+    window.location.href = "../_html/interface_dispositivo.html";
 });
 
 
